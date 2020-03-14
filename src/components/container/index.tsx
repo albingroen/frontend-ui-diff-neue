@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Navigation, ListItem } from "../navigation";
+import { AppNavigation } from "./components/app-navigation";
 
 const Content = styled.div`
   min-height: 100vh;
@@ -15,42 +15,10 @@ interface IContainerProps {
 }
 
 export const Container = ({ children }: IContainerProps) => {
-  const listItems: ListItem[] = [
-    {
-      value: "Projects",
-      link: "/",
-      key: 1,
-      active: window.location.pathname === "/"
-    },
-    {
-      value: "Members",
-      link: "/members",
-      key: 2,
-      active: window.location.pathname === "/members"
-    },
-    {
-      value: "Audit log",
-      link: "/audit-log",
-      key: 3,
-      active: window.location.pathname === "/audit-log"
-    },
-    {
-      value: "Team settings",
-      link: "/team-settings",
-      key: 4,
-      active: window.location.pathname === "/team-settings"
-    },
-    {
-      value: "Billing",
-      link: "/billing",
-      key: 5,
-      active: window.location.pathname === "/billing"
-    }
-  ];
 
   return (
     <>
-      <Navigation listItems={listItems} />
+      <AppNavigation />
       <Content>{children}</Content>
     </>
   );

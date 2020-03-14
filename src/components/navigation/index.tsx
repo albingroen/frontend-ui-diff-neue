@@ -1,20 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-const Root = styled.nav`
+const NavigationRoot = styled.nav`
   background-color: ${props => props?.theme?.colors?.black};
   width: 100%;
 `;
 
-const Wrapper = styled.div`
+const NavigationListWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 `;
 
-const List = styled.ul`
+const NavigationList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
@@ -29,37 +28,31 @@ const List = styled.ul`
   }
 `;
 
-const Item = styled.li`
-  list-style-type: none;
-  color: ${props => props?.theme?.colors?.white};
-  padding: ${props =>
-    `${props?.theme?.space[3]}px ${props?.theme?.space[2]}px`};
-  opacity: ${(props: { active: boolean }) => (props?.active ? 1 : 0.5)};
-`;
+export interface List {
+  key: number;
+  items: ListItem[];
+}
 
 export interface ListItem {
-  value: string;
-  link: string;
+  node: React.ReactNode | string;
   key: number;
-  active: boolean;
 }
 
 interface INavigationProps {
-  listItems?: ListItem[];
+  lists?: List[];
 }
 
-export const Navigation = ({ listItems }: INavigationProps) => {
+export const Navigation = ({ lists }: INavigationProps) => {
   return (
-    <Root>
-      <Wrapper>
-        <List>
-          {listItems?.map((listItem: ListItem) => (
-            <Link to={listItem.link} key={listItem.key}>
-              <Item active={listItem.active}>{listItem.value}</Item>
-            </Link>
+    <NavigationRoot>
+      <NavigationListWrapper>
+        {lists &&
+          lists.map((list: List) => (
+            <NavigationList key={list.key}>
+              {list.items?.map((listItem: ListItem) => listItem.node)}
+            </NavigationList>
           ))}
-        </List>
-      </Wrapper>
-    </Root>
+      </NavigationListWrapper>
+    </NavigationRoot>
   );
 };
