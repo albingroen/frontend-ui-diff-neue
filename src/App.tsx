@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, RouteProps } from "react-router-dom";
 
 // Import components
-import { Dashboard } from "./views";
 import { Container } from "./components";
+import routes from "./routes";
 
 // Render routes
 function App() {
@@ -11,7 +11,9 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Container>
-          <Route path="/" exact component={Dashboard} />
+          {routes.map((route: RouteProps) => (
+            <Route {...route} key={Math.random()} />
+          ))}
         </Container>
       </Switch>
     </BrowserRouter>

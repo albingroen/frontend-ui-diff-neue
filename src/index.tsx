@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 // a theme with custom spacing and font sizes
 const theme = {
   ...primer,
-  space: [0, 8, 16, 32, 64],
+  space: [0, 8, 16, 24, 32, 64],
   fontSizes: [10, 12, 16, 24, 48]
 }
 
