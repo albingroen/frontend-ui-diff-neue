@@ -15,7 +15,6 @@ interface IContainerProps {
 }
 
 export const Container = ({ children }: IContainerProps) => {
-
   return (
     <>
       <AppNavigation />
