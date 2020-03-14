@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Heading } from '@primer/components';
 
 const Container = styled.div`
-  background: ${props => props.theme.colors.bg.disabled};
+  background: ${props => props.theme?.colors?.bg?.disabled};
   min-height: 100vh;
 `
 
