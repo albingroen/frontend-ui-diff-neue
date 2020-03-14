@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# frontend-ui-diff-neue
 
-## Available Scripts
+[![CircleCI](https://circleci.com/gh/albingroen/frontend-ui-diff-neue.svg?style=svg&circle-token=9343f4e6de64f9f0e026e6cffe7d9953c96f0c78)](<LINK>)
 
-In the project directory, you can run:
+Frontend for the ui-diff platform built on
 
-### `yarn start`
+  - React
+  - Redux
+  - Typescript
+  - Styled components
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Development
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Want to contribute? Great!
 
-### `yarn test`
+Dillinger uses Gulp + Webpack for fast developing.
+Make a change in your file and instantaneously see your updates!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Open your favorite Terminal and run these commands.
 
-### `yarn build`
+Install dependencies:
+```sh
+$ yarn
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Start development mode:
+```sh
+$ yarn start
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Running tests:
+```sh
+$ yarn test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Building for source
+For production release:
+```sh
+$ yarn build
+```
 
-### `yarn eject`
+License
+----
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+UNLICENSED
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
