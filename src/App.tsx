@@ -1,16 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Heading } from '@primer/components';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-const Container = styled.div`
-  background: ${props => props.theme?.colors?.bg?.disabled};
-  min-height: 100vh;
-`
+// Import components
+import { Dashboard } from './views'
+import { Container } from './components';
 
+// Render routes
 function App() {
   return (
     <Container>
-      <Heading>frontend-ui-diff-neue</Heading>
+      <BrowserRouter>
+        <Switch>
+          <Route component={Dashboard} />
+        </Switch>
+      </BrowserRouter>
     </Container>
   );
 }
