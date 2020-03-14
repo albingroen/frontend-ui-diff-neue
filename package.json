@@ -1,0 +1,9 @@
+{
+  "name": "frontend-ui-diff-neue",
+  "version": "0.0.0",
+  "description": "Frontend for the ui-diff platform",
+  "main": "index.js",
+  "repository": "git@github.com:albingroen/frontend-ui-diff-neue.git",
+  "author": "Albin Groen <albin.groen@gmail.com>",
+  "license": "NOLICENSE"
+}
