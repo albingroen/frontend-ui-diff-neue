@@ -60,8 +60,8 @@ export const Signup: React.FC = () => {
 
         <Flex my={2} flexDirection="column">
           {signupMethods.map((method: SignupMethod) => (
-            <Button key={method.name} my={1}>
-              {method.name}
+            <Button variant="large" key={method.name.id} my={1}>
+              <FormattedMessage {...method.name} />
               <Icon>
                 <FontAwesomeIcon icon={method.icon} />
               </Icon>

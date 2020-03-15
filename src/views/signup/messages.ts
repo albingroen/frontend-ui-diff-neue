@@ -19,6 +19,22 @@ export default defineMessages({
       "By signing up, you are agreeing to our Terms of Service and Privacy Policy. We ask for read/write access to make your experience seamless on ui-diff.",
     id: "signup.policy"
   },
+  github: {
+    defaultMessage: "Get started with GitHub",
+    id: "signup.github"
+  },
+  gitlab: {
+    defaultMessage: "Get going with GitLab",
+    id: "signup.gitlab"
+  },
+  google: {
+    defaultMessage: "Sign up using Google",
+    id: "signup.google"
+  },
+  email: {
+    defaultMessage: "Prefer email & password",
+    id: "signup.email"
+  },
   feature1: {
     defaultMessage:
       "📷 <strong>Take screenshots</strong>. Screenshot your website or web apps pages.",

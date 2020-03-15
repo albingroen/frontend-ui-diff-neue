@@ -5,27 +5,29 @@ import {
   faGoogle
 } from "@fortawesome/free-brands-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import messages from "./messages";
+import { MessageDescriptor } from "react-intl";
 
 export interface SignupMethod {
-  name: string;
+  name: MessageDescriptor;
   icon: IconDefinition;
 }
 
 export const signupMethods: SignupMethod[] = [
   {
-    name: "Github",
+    name: messages.github,
     icon: faGithub
   },
   {
-    name: "Gitlab",
+    name: messages.gitlab,
     icon: faGitlab
   },
   {
-    name: "Google",
+    name: messages.google,
     icon: faGoogle
   },
   {
-    name: "Email & password",
+    name: messages.email,
     icon: faLock
   }
 ];
