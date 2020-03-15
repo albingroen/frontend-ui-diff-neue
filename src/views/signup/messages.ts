@@ -18,5 +18,25 @@ export default defineMessages({
     defaultMessage:
       "By signing up, you are agreeing to our Terms of Service and Privacy Policy. We ask for read/write access to make your experience seamless on ui-diff.",
     id: "signup.policy"
+  },
+  feature1: {
+    defaultMessage:
+      "📷 <strong>Take screenshots</strong>. Screenshot your website or web apps pages.",
+    id: "signup.feature1"
+  },
+  feature2: {
+    defaultMessage:
+      "🔔 <strong>Get notified</strong>. Get notified if a page has changed appearance.",
+    id: "signup.feature2"
+  },
+  feature3: {
+    defaultMessage:
+      "🛠 <strong>Compare environments</strong>. Compare screenshtos between your environments.",
+    id: "signup.feature3"
+  },
+  feature4: {
+    defaultMessage:
+      "✅ <strong>Detect regressions</strong>. Detect any unwanted changes on your app in seconds.",
+    id: "signup.feature4"
   }
 });

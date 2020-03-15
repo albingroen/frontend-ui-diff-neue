@@ -1,11 +1,13 @@
 import * as React from "react";
 import messages from "./messages";
 import styled from "styled-components";
-import { Heading, Text, Button, Flex } from "@primer/components";
-import { FormattedMessage } from "react-intl";
+import { Heading, Text, Button, Flex, Box } from "@primer/components";
+import { FormattedMessage, MessageDescriptor } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signupMethods, SignupMethod } from "./signupMethods";
 import { Logo } from "../../components";
+import features from "./features";
+import { Chunk } from "../../types";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -17,7 +19,7 @@ const Sidebar = styled.div`
   width: 100%;
   max-width: 450px;
   background: ${props => props?.theme?.colors?.white};
-  padding: ${props => props?.theme?.space[4]}px;
+  padding: ${props => props?.theme?.space[5]}px;
   border-right: 1px solid ${props => props?.theme?.colors?.border.gray};
 `;
 
@@ -25,6 +27,10 @@ const Other = styled.div`
   width: 100%;
   height: 100vh;
   background: ${props => props?.theme?.colors?.black};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 `;
 
 const Icon = styled.div`
@@ -67,7 +73,24 @@ export const Signup: React.FC = () => {
           <FormattedMessage {...messages.policy} />
         </Text>
       </Sidebar>
-      <Other />
+
+      <Other>
+        <Flex maxWidth="400px" flexDirection="column">
+          <Heading>Screenshot testing the way it is supposed to be</Heading>
+          <Box my={3} maxWidth="300px">
+            {features.map((feature: MessageDescriptor) => (
+              <Text lineHeight={1.5} as="p" my={2} key={feature.id}>
+                <FormattedMessage
+                  {...feature}
+                  values={{
+                    strong: (...chunks: Chunk) => <strong>{chunks}</strong>
+                  }}
+                />
+              </Text>
+            ))}
+          </Box>
+        </Flex>
+      </Other>
     </Wrapper>
   );
 };
