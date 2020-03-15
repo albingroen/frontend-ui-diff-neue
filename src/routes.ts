@@ -5,7 +5,8 @@ export default [
     path: '/signup',
     exact: true,
     component: Signup,
-    name: 'Signup'
+    name: 'Signup',
+    public: true
   },
   {
     path: '/',

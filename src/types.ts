@@ -5,3 +5,8 @@ export interface NamedRoute extends RouteProps {
 }
 
 export type Chunk = string[] | React.ReactElement[];
+
+export interface IUser {
+  name: string
+  email: string
+}
