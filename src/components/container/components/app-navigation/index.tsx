@@ -12,7 +12,7 @@ export const NavigationItem = styled.li`
   opacity: ${(props: { active: boolean }) => (props?.active ? 1 : 0.5)};
 `;
 
-export const AppNavigation = () => {
+export const AppNavigation: React.FC = () => {
   const appNavigationItems = [
     {
       key: 1,

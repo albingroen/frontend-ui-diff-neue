@@ -14,7 +14,7 @@ interface IContainerProps {
   children?: React.ReactNode;
 }
 
-export const Container = ({ children }: IContainerProps) => {
+export const Container: React.FC<IContainerProps> = ({ children }) => {
   const isOnSignup = window.location.pathname.includes("/signup");
   const withoutTemplate = isOnSignup;
 

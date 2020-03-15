@@ -33,7 +33,7 @@ interface IHeaderProps {
   lists: IHeader;
 }
 
-export const Header = ({ lists }: IHeaderProps) => {
+export const Header: React.FC<IHeaderProps> = ({ lists }) => {
   return (
     <HeaderRoot>
       <HeaderListWrapper>

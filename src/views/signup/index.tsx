@@ -1,6 +1,8 @@
 import * as React from "react";
+import messages from "./messages";
 import styled from "styled-components";
 import { Heading, Text, Button, Flex } from "@primer/components";
+import { FormattedMessage } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signupMethods, SignupMethod } from "./signupMethods";
 import { Logo } from "../../components";
@@ -38,15 +40,16 @@ export const Signup: React.FC = () => {
       <Sidebar>
         <Logo width="35px" />
 
-        <Heading my={3}>Signup to ui-diff</Heading>
-        <hr/>
+        <Heading my={3}>
+          <FormattedMessage {...messages.heading} />
+        </Heading>
+        <hr />
         <Text py={3} as="p" lineHeight={1.5}>
-          Start on our free plan which gives you unlimited projects. If you are
-          a GitHub user and not ready for private projects, choose public repos.
+          <FormattedMessage {...messages.lede} />
         </Text>
 
         <Heading color="green.5" mt={2} fontSize={3}>
-          Start testing
+          <FormattedMessage {...messages.subHeading} />
         </Heading>
 
         <Flex my={2} flexDirection="column">
@@ -61,9 +64,7 @@ export const Signup: React.FC = () => {
         </Flex>
 
         <Text lineHeight={1.5} color="gray.5" as="p" my={4} fontSize={1}>
-          By signing up, you are agreeing to our Terms of Service and Privacy
-          Policy. We ask for read/write access to make your experience seamless
-          on ui-diff.
+          <FormattedMessage {...messages.policy} />
         </Text>
       </Sidebar>
       <Other />
