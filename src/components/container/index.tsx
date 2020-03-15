@@ -15,7 +15,12 @@ interface IContainerProps {
 }
 
 export const Container = ({ children }: IContainerProps) => {
-  return (
+  const isOnSignup = window.location.pathname.includes("/signup");
+  const withoutTemplate = isOnSignup;
+
+  return withoutTemplate ? (
+    <>{children}</>
+  ) : (
     <>
       <AppNavigation />
       <Content>{children}</Content>

@@ -10,7 +10,12 @@ import * as serviceWorker from "./serviceWorker";
 const theme = {
   ...primer,
   space: [0, 8, 16, 20, 32, 64],
-  fontSizes: [10, 12, 16, 24, 48]
+  fontSizes: [10, 12, 16, 24, 48],
+  lineHeights: {
+    condensedUltra: 1,
+    condensed: 1.2,
+    default: 1.5
+  }
 }
 
 ReactDOM.render(

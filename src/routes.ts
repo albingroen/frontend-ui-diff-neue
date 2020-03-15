@@ -1,6 +1,12 @@
-import { Dashboard } from "./views";
+import { Dashboard, Signup } from "./views";
 
 export default [
+  {
+    path: '/signup',
+    exact: true,
+    component: Signup,
+    name: 'Signup'
+  },
   {
     path: '/',
     exact: true,
