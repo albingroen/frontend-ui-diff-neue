@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Redirect } from "react-router-dom";
 import messages from "./messages";
 import styled from "styled-components";
 import { Heading, Text, Button, Flex, Box } from "@primer/components";
@@ -8,6 +9,7 @@ import { signupMethods, SignupMethod } from "./signupMethods";
 import { Logo } from "../../components";
 import features from "./features";
 import { Chunk } from "../../types";
+import { AppContext, IAppContext } from "../../context";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -41,7 +43,9 @@ const Icon = styled.div`
 `;
 
 export const Signup: React.FC = () => {
-  return (
+  const { logIn, loggedIn }: IAppContext = React.useContext(AppContext);
+
+  return !loggedIn ? (
     <Wrapper>
       <Sidebar>
         <Logo width="35px" />
@@ -60,7 +64,12 @@ export const Signup: React.FC = () => {
 
         <Flex my={2} flexDirection="column">
           {signupMethods.map((method: SignupMethod) => (
-            <Button variant="large" key={method.name.id} my={1}>
+            <Button
+              onClick={() => logIn()}
+              variant="large"
+              key={method.name.id}
+              my={1}
+            >
               <FormattedMessage {...method.name} />
               <Icon>
                 <FontAwesomeIcon icon={method.icon} />
@@ -92,5 +101,7 @@ export const Signup: React.FC = () => {
         </Flex>
       </Other>
     </Wrapper>
+  ) : (
+    <Redirect to="/" />
   );
 };
