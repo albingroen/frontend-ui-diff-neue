@@ -20,10 +20,16 @@ const Sidebar = styled.div`
 
 const Side = () => {
   React.useEffect(() => {
-    const { code } = queryString.parse(window.location.search);
+    const { code, method } = queryString.parse(window.location.search);
 
     if (code && typeof code === "string") {
-      auth.github.signup(code);
+      switch (method) {
+        case 'github':
+          auth.github.signup(code);
+          break;
+        case 'gitlab':
+          auth.gitlab.signup(code);
+      }
     }
   }, []);
 

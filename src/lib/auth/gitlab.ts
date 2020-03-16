@@ -2,7 +2,7 @@ import { request } from "..";
 import { login } from ".";
 
 export const getAuthUrl = async () => {
-  const authUrl = await request.get("/login/github");
+  const authUrl = await request.get("/login/gitlab");
   return authUrl?.data?.url || null;
 };
 
@@ -11,7 +11,7 @@ export const signup = async (code?: string) => {
     let data;
 
     try {
-      const signupResult = await request.post("/auth/github", { code });
+      const signupResult = await request.post("/auth/gitlab", { code });
       data = signupResult.data;
     } catch (err) {
       return new Error("Could not sign up");
@@ -22,6 +22,7 @@ export const signup = async (code?: string) => {
     }
   } else {
     const ghAuthUrl = await getAuthUrl();
+    console.log(ghAuthUrl)
     if (ghAuthUrl) window.location.href = ghAuthUrl || "";
   }
 };

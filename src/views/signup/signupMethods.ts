@@ -23,7 +23,8 @@ export const signupMethods: SignupMethod[] = [
   },
   {
     name: messages.gitlab,
-    icon: faGitlab
+    icon: faGitlab,
+    onClick: () => auth.gitlab.signup()
   },
   {
     name: messages.google,

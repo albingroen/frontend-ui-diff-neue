@@ -1,4 +1,5 @@
 import github from './github'
+import gitlab from './gitlab'
 
 export const loggedIn =
   window.localStorage.getItem("userId") && window.localStorage.getItem("token");
@@ -19,7 +20,8 @@ const auth = {
   login,
   logout,
   loggedIn,
-  github
+  github,
+  gitlab
 }
 
 export default auth
