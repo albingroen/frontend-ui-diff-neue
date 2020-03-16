@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { AppNavigation } from "./components/app-navigation";
+import { loggedIn } from "../../lib/auth";
 
 const Content = styled.div`
   min-height: 100vh;
@@ -16,7 +17,7 @@ interface IContainerProps {
 
 export const Container: React.FC<IContainerProps> = ({ children }) => {
   const isOnSignup = window.location.pathname.includes("/signup");
-  const withoutTemplate = isOnSignup;
+  const withoutTemplate = isOnSignup || !loggedIn;
 
   return withoutTemplate ? (
     <>{children}</>

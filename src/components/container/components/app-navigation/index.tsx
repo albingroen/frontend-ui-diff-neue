@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Header } from "../../../header";
 import styled from "styled-components";
-import { ButtonPrimary } from "@primer/components";
+import { ButtonPrimary, Button } from "@primer/components";
 import { translateAppNavigationLists } from "./lib";
+import { logout } from "../../../../lib/auth";
 
 export const NavigationItem = styled.li`
   list-style-type: none;
@@ -55,6 +56,11 @@ export const AppNavigation: React.FC = () => {
         {
           value: <ButtonPrimary>New project</ButtonPrimary>,
           link: "/new-project",
+          key: 1,
+          active: true
+        },
+        {
+          value: <Button onClick={() => logout()}>Log ut</Button>,
           key: 1,
           active: true
         }

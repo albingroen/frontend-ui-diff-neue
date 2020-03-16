@@ -13,19 +13,21 @@ const Icon = styled.div`
 `;
 
 interface ISignupMethodButtonProps {
-  method: SignupMethod
-  index: number
-  onClick: () => void
+  method: SignupMethod;
+  onClick: () => void;
 }
 
-const SignupMethodButton: React.FC<ISignupMethodButtonProps> = ({ method, index, onClick }) => {
+const SignupMethodButton: React.FC<ISignupMethodButtonProps> = ({
+  method,
+  onClick
+}) => {
   return (
     <Button
-      disabled={index !== 0}
+      disabled={!method.onClick}
       variant="large"
       key={method.name.id}
       my={1}
-      onClick={() => index === 0 && onClick()}
+      onClick={onClick}
     >
       <FormattedMessage {...method.name} />
       <Icon>

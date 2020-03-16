@@ -7,16 +7,19 @@ import {
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import messages from "./messages";
 import { MessageDescriptor } from "react-intl";
+import auth from "../../lib/auth";
 
 export interface SignupMethod {
   name: MessageDescriptor;
   icon: IconDefinition;
+  onClick?: () => void
 }
 
 export const signupMethods: SignupMethod[] = [
   {
     name: messages.github,
-    icon: faGithub
+    icon: faGithub,
+    onClick: () => auth.github.signup()
   },
   {
     name: messages.gitlab,

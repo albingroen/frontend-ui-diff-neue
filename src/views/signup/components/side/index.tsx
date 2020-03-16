@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getGhAuthUrl } from "../../../../lib/auth";
+import queryString from "query-string";
 import { Logo } from "../../../../components";
 import { Heading, Flex, Text } from "@primer/components";
 import { FormattedMessage } from "react-intl";
@@ -7,6 +7,7 @@ import messages from "../../messages";
 import { signupMethods, SignupMethod } from "../../signupMethods";
 import SignupMethodButton from "./components/signup-method-button";
 import styled from "styled-components";
+import auth from "../../../../lib/auth";
 
 const Sidebar = styled.div`
   height: 100vh;
@@ -18,25 +19,13 @@ const Sidebar = styled.div`
 `;
 
 const Side = () => {
-  // Store auth url
-  const [ghAuthUrl, setGhAuthUrl] = React.useState();
-
-  // Get gh auth url on mount
   React.useEffect(() => {
-    (async () => {
-      const newGhAuthUrl = await getGhAuthUrl();
-      if (newGhAuthUrl) {
-        setGhAuthUrl(newGhAuthUrl);
-      }
-    })();
-  }, []);
+    const { code } = queryString.parse(window.location.search);
 
-  // Navigate to gh auth page
-  const handleClickButton = () => {
-    if (ghAuthUrl) {
-      window.location.replace(ghAuthUrl || "");
+    if (code && typeof code === "string") {
+      auth.github.signup(code);
     }
-  };
+  }, []);
 
   return (
     <Sidebar>
@@ -53,12 +42,11 @@ const Side = () => {
       </Heading>
 
       <Flex my={2} flexDirection="column">
-        {signupMethods.map((method: SignupMethod, i: number) => (
+        {signupMethods.map((method: SignupMethod) => (
           <SignupMethodButton
-            onClick={handleClickButton}
+            onClick={() => method.onClick && method.onClick()}
             key={method.name.id}
             method={method}
-            index={i}
           />
         ))}
       </Flex>
