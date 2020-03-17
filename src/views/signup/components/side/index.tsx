@@ -29,6 +29,9 @@ const Side = () => {
           break;
         case 'gitlab':
           auth.gitlab.signup(code);
+          break;
+        case 'google':
+          auth.google.signup(code);
       }
     }
   }, []);

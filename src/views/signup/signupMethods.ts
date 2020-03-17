@@ -28,7 +28,8 @@ export const signupMethods: SignupMethod[] = [
   },
   {
     name: messages.google,
-    icon: faGoogle
+    icon: faGoogle,
+    onClick: () => auth.google.signup()
   },
   {
     name: messages.email,
