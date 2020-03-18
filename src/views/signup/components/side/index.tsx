@@ -22,17 +22,8 @@ const Side = () => {
   React.useEffect(() => {
     const { code, method } = queryString.parse(window.location.search);
 
-    if (code && typeof code === "string") {
-      switch (method) {
-        case 'github':
-          auth.github.signup(code);
-          break;
-        case 'gitlab':
-          auth.gitlab.signup(code);
-          break;
-        case 'google':
-          auth.google.signup(code);
-      }
+    if (code && typeof code === "string" && typeof method === "string") {
+      auth.social.signup(method, code);
     }
   }, []);
 
@@ -46,7 +37,7 @@ const Side = () => {
       <Text py={3} as="p" lineHeight={1.5}>
         <FormattedMessage {...messages.lede} />
       </Text>
-      <Heading color="green.5" mt={2} fontSize={3}>
+      <Heading mt={2} fontSize={3}>
         <FormattedMessage {...messages.subHeading} />
       </Heading>
 

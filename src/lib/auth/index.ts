@@ -1,6 +1,4 @@
-import github from './github'
-import gitlab from './gitlab'
-import google from './google'
+import social from './social'
 
 export const loggedIn =
   window.localStorage.getItem("userId") && window.localStorage.getItem("token");
@@ -21,9 +19,7 @@ const auth = {
   login,
   logout,
   loggedIn,
-  github,
-  gitlab,
-  google
+  social
 }
 
 export default auth

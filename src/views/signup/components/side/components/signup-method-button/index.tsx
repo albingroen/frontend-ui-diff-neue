@@ -27,6 +27,7 @@ const SignupMethodButton: React.FC<ISignupMethodButtonProps> = ({
       variant="large"
       key={method.name.id}
       my={1}
+      style={method.style}
       onClick={onClick}
     >
       <FormattedMessage {...method.name} />
