@@ -20,7 +20,7 @@ export const signup = async (method: string, code?: string) => {
     }
 
     if (data) {
-      login(data?.user?._id, headers["x-token"]);
+      login(data?.user?._id, headers["x-token"], headers["x-refresh-token"]);
     }
   } else {
     const ghAuthUrl = await getAuthUrl(method);
