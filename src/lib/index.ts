@@ -1,28 +1,22 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { getEnv } from "../config/env";
 
 const apiBaseUrl = getEnv();
 
-const tokens = {
-  "x-token": localStorage.getItem("token"),
-  "x-refresh-token": localStorage.getItem("refreshToken")
-};
-
 export const request = {
-  get: (path: string) =>
+  get: (path: string, config?: AxiosRequestConfig) =>
     axios.get(apiBaseUrl + path, {
-      headers: { ...tokens }
+      ...config,
+      withCredentials: true
     }),
-  post: (path: string, body: any) =>
+  post: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      headers: {
-        ...tokens
-      },
+      ...config,
+      withCredentials: true
     }),
-  put: (path: string, body: any) =>
+  put: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      headers: {
-        ...tokens
-      }
+      ...config,
+      withCredentials: true
     })
 };

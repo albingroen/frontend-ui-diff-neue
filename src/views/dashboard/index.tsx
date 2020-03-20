@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Heading } from "@primer/components";
-import { UserContext, IUserContext } from "../../context/userContext";
 import { request } from "../../lib";
+// import { UserContext, IUserContext } from "../../context/userContext";
+// import { request } from "../../lib";
 
 export const Dashboard: React.FC = () => {
-  const { userId } = React.useContext<IUserContext>(UserContext);
+  // const { userId } = React.useContext<IUserContext>(UserContext);
 
   React.useEffect(() => {
     request.get('/users').then((res) => {
@@ -14,7 +15,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <Heading>Welcome, {userId}</Heading>
+      <Heading>Welcome</Heading>
     </div>
   );
 };
