@@ -7,7 +7,7 @@ import { SignupMethod } from "../../../../signupMethods";
 
 const Icon = styled.div`
   position: absolute;
-  right: ${props => props?.theme?.space[2]}px;
+  left: ${props => props?.theme?.space[2]}px;
   top: 50%;
   transform: translateY(-50%);
 `;
@@ -30,10 +30,10 @@ const SignupMethodButton: React.FC<ISignupMethodButtonProps> = ({
       style={method.style}
       onClick={onClick}
     >
-      <FormattedMessage {...method.name} />
       <Icon>
         <FontAwesomeIcon icon={method.icon} />
       </Icon>
+      <FormattedMessage {...method.name} />
     </Button>
   );
 };

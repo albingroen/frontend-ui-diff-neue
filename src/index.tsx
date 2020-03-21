@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { theme as primer } from '@primer/components'
+import { theme as primer } from "@primer/components";
 import { ThemeProvider } from "styled-components";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { IntlProvider } from "react-intl";
 
 // a theme with custom spacing and font sizes
 const theme = {
@@ -16,11 +17,13 @@ const theme = {
     condensed: 1.2,
     default: 1.5
   }
-}
+};
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <IntlProvider locale="en">
+      <App />
+    </IntlProvider>
   </ThemeProvider>,
   document.getElementById("root")
 );

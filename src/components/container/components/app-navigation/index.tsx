@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Header } from "../../../header";
 import styled from "styled-components";
-import { ButtonPrimary, Button } from "@primer/components";
 import { translateAppNavigationLists } from "./lib";
-import { logout } from "../../../../lib/auth";
+import { useIntl } from "react-intl";
+import getNavigationItems from "./navigation-items";
 
 export const NavigationItem = styled.li`
   list-style-type: none;
@@ -14,58 +14,9 @@ export const NavigationItem = styled.li`
 `;
 
 export const AppNavigation: React.FC = () => {
-  const appNavigationItems = [
-    {
-      key: 1,
-      items: [
-        {
-          value: "Projects",
-          link: "/",
-          key: 1,
-          active: window.location.pathname === "/"
-        },
-        {
-          value: "Members",
-          link: "/members",
-          key: 2,
-          active: window.location.pathname === "/members"
-        },
-        {
-          value: "Audit log",
-          link: "/audit-log",
-          key: 3,
-          active: window.location.pathname === "/audit-log"
-        },
-        {
-          value: "Team settings",
-          link: "/team-settings",
-          key: 4,
-          active: window.location.pathname === "/team-settings"
-        },
-        {
-          value: "Billing",
-          link: "/billing",
-          key: 5,
-          active: window.location.pathname === "/billing"
-        }
-      ]
-    },
-    {
-      key: 2,
-      items: [
-        {
-          value: <ButtonPrimary>New project</ButtonPrimary>,
-          link: "/new-project",
-          key: 1,
-          active: true
-        },
-        {
-          value: <Button onClick={() => logout()}>Log ut</Button>,
-          key: 1,
-          active: true
-        }
-      ]
-    }
-  ];
-  return <Header lists={translateAppNavigationLists(appNavigationItems)} />;
+  const intl = useIntl();
+
+  return (
+    <Header lists={translateAppNavigationLists(getNavigationItems(intl))} />
+  );
 };

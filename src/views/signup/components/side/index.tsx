@@ -19,7 +19,7 @@ const Sidebar = styled.div`
 const Side = () => {
   return (
     <Sidebar>
-      <Logo width="35px" />
+      <Logo withLink width="35px" />
       <Heading my={3}>
         <FormattedMessage {...messages.heading} />
       </Heading>

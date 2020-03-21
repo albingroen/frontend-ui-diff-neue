@@ -2,7 +2,7 @@ import { defineMessages } from "react-intl";
 
 export default defineMessages({
   heading: {
-    defaultMessage: "Signup to ui-diff",
+    defaultMessage: "Sign up now",
     id: "signup.heading"
   },
   lede: {
@@ -20,19 +20,19 @@ export default defineMessages({
     id: "signup.policy"
   },
   github: {
-    defaultMessage: "Get started with GitHub",
+    defaultMessage: "Sign up with GitHub",
     id: "signup.github"
   },
   gitlab: {
-    defaultMessage: "Get going with GitLab",
+    defaultMessage: "Sign up with GitLab",
     id: "signup.gitlab"
   },
   google: {
-    defaultMessage: "Sign up using Google",
+    defaultMessage: "Sign up with Google",
     id: "signup.google"
   },
   email: {
-    defaultMessage: "Prefer email & password",
+    defaultMessage: "Email & Password",
     id: "signup.email"
   },
   feature1: {
