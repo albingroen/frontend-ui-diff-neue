@@ -20,22 +20,20 @@ const ErrorWrapper = styled.div`
   }
 `
 const ErrorContainer = styled.div`
-  background-color: ${props => props?.theme?.colors?.red[6]};
-  color: ${props => props?.theme?.colors.white};
+  background-color: ${(props) => props?.theme?.colors?.red[6]};
+  color: ${(props) => props?.theme?.colors.white};
   border-radius: 5px;
-  padding: ${props => props?.theme?.space[3]}px;
+  padding: ${(props) => props?.theme?.space[3]}px;
 `
 
 interface IErrorProps {
   error: string
 }
 
-const Error: React.FC<IErrorProps> = ({ error }) => {
-  return (
-    <ErrorWrapper>
-      <ErrorContainer>{error}</ErrorContainer>
-    </ErrorWrapper>
-  )
-}
+const Error: React.FC<IErrorProps> = ({ error }) => (
+  <ErrorWrapper>
+    <ErrorContainer>{error}</ErrorContainer>
+  </ErrorWrapper>
+)
 
 export default Error

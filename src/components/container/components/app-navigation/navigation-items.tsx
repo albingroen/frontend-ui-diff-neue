@@ -1,9 +1,8 @@
 import * as React from 'react'
-import messages from "./messages";
-import ButtonPrimary from "@primer/components/src/ButtonPrimary";
-import { FormattedMessage, IntlShape } from "react-intl";
-import Button from "@primer/components/src/Button";
-import { logout } from '../../../../lib/auth';
+import { Button, ButtonPrimary } from '@primer/components'
+import { FormattedMessage, IntlShape } from 'react-intl'
+import messages from './messages'
+import { logout } from '../../../../lib/auth'
 
 export default (intl: IntlShape) => [
   {
@@ -11,33 +10,33 @@ export default (intl: IntlShape) => [
     items: [
       {
         value: intl.formatMessage(messages.projects),
-        link: "/",
+        link: '/',
         key: 1,
-        active: window.location.pathname === "/"
+        active: window.location.pathname === '/'
       },
       {
         value: intl.formatMessage(messages.members),
-        link: "/members",
+        link: '/members',
         key: 2,
-        active: window.location.pathname === "/members"
+        active: window.location.pathname === '/members'
       },
       {
         value: intl.formatMessage(messages.auditLog),
-        link: "/audit-log",
+        link: '/audit-log',
         key: 3,
-        active: window.location.pathname === "/audit-log"
+        active: window.location.pathname === '/audit-log'
       },
       {
         value: intl.formatMessage(messages.teamSettings),
-        link: "/team-settings",
+        link: '/team-settings',
         key: 4,
-        active: window.location.pathname === "/team-settings"
+        active: window.location.pathname === '/team-settings'
       },
       {
         value: intl.formatMessage(messages.billing),
-        link: "/billing",
+        link: '/billing',
         key: 5,
-        active: window.location.pathname === "/billing"
+        active: window.location.pathname === '/billing'
       }
     ]
   },
@@ -50,7 +49,7 @@ export default (intl: IntlShape) => [
             <FormattedMessage {...messages.newProject} />
           </ButtonPrimary>
         ),
-        link: "/new-project",
+        link: '/new-project',
         key: 1,
         active: true
       },
@@ -65,4 +64,4 @@ export default (intl: IntlShape) => [
       }
     ]
   }
-];
+]

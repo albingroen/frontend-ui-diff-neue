@@ -1,35 +1,38 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
+    jest: true
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    'plugin:react/recommended',
+    'standard'
   ],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: [
+    'react',
+    '@typescript-eslint'
+  ],
   rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "react/prop-types": "off",
-    "react/display-name": "off"
+    'react/prop-types': 'off',
+    'no-unused-vars': 'off',
+    'react/display-name': 'off',
+    '@typescript-eslint/no-unused-vars': 'error'
   },
   settings: {
     react: {
-      version: "detect"
+      version: 'detect'
     }
   }
-};
+}
