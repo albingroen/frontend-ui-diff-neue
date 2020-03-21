@@ -1,5 +1,4 @@
 import * as React from "react";
-import queryString from "query-string";
 import { Logo } from "../../../../components";
 import { Heading, Flex, Text } from "@primer/components";
 import { FormattedMessage } from "react-intl";
@@ -7,7 +6,6 @@ import messages from "../../messages";
 import { signupMethods, SignupMethod } from "../../signupMethods";
 import SignupMethodButton from "./components/signup-method-button";
 import styled from "styled-components";
-import auth from "../../../../lib/auth";
 
 const Sidebar = styled.div`
   height: 100vh;
@@ -19,14 +17,6 @@ const Sidebar = styled.div`
 `;
 
 const Side = () => {
-  React.useEffect(() => {
-    const { code, method } = queryString.parse(window.location.search);
-
-    if (code && typeof code === "string" && typeof method === "string") {
-      auth.social.signup(method, code);
-    }
-  }, []);
-
   return (
     <Sidebar>
       <Logo width="35px" />

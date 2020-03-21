@@ -1,21 +1,13 @@
 import * as React from "react";
 import { Heading } from "@primer/components";
-import { request } from "../../lib";
-// import { UserContext, IUserContext } from "../../context/userContext";
-// import { request } from "../../lib";
+import { IUserContext, UserContext } from "../../context/userContext";
 
 export const Dashboard: React.FC = () => {
-  // const { userId } = React.useContext<IUserContext>(UserContext);
-
-  React.useEffect(() => {
-    request.get('/users').then((res) => {
-      console.log(res)
-    })
-  }, [])
+  const { user } = React.useContext<IUserContext>(UserContext);
 
   return (
     <div>
-      <Heading>Welcome</Heading>
+      <Heading>Welcome, {user?.name}</Heading>
     </div>
   );
 };

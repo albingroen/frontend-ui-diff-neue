@@ -1,29 +1,51 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { UserContext } from "./context/userContext";
+import { UserContext, initialUser } from "./context/userContext";
 
 // Import components
 import { Container } from "./components";
 import { Signup, Dashboard } from "./views";
-import { loggedIn } from "./lib/auth";
+import { loggedIn, logout } from "./lib/auth";
+import { IUser } from "./types";
+import { request } from "./lib";
 
 // Render routes
 function App() {
-  const [{ userId, token }] = useState<{
-    userId: string | null;
-    token: string | null;
-  }>({
-    userId: localStorage.getItem("userId"),
-    token: localStorage.getItem("token")
-  });
+  const [isUserLoading, setIsUserLoading] = useState<boolean>();
+  const [user, setUser] = useState<IUser>(initialUser);
 
-  const userProviderValue = useMemo(() => ({ userId, token }), [userId, token]);
+  const userProviderValue = useMemo(() => user, [user]);
+
+  useEffect(() => {
+    if (loggedIn && !user._id) {
+      (async () => {
+        setIsUserLoading(true);
+
+        try {
+          const res = await request.get("/users");
+          setUser(res.data.user);
+          setIsUserLoading(false);
+        } catch {
+          await logout();
+          setIsUserLoading(false);
+        }
+      })();
+    }
+  }, [user]);
 
   return (
-    <UserContext.Provider value={userProviderValue}>
+    <UserContext.Provider
+      value={{
+        user: userProviderValue,
+        setUser: (newUser: IUser) => {
+          console.log("setUser()");
+          setUser(newUser);
+        }
+      }}
+    >
       <BrowserRouter>
         <Switch>
-          <Container>
+          <Container loading={isUserLoading}>
             <Route path="/" component={loggedIn ? Dashboard : Signup} exact />
             <PrivateRoute path="/members" component={Dashboard} exact />
           </Container>

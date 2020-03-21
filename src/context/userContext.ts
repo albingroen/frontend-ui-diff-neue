@@ -1,11 +1,22 @@
 import { createContext } from "react";
+import { IUser } from "../types";
+
+export const initialUser: IUser = {
+  _id: "",
+  name: "",
+  email: "",
+  avatar: "",
+  socialId: "",
+  createdAt: "",
+  updatedAt: ""
+};
 
 export type IUserContext = {
-  userId: string | null;
-  token: string | null
+  user: IUser
+  setUser: (newUser: IUser) => void
 };
 
 export const UserContext = createContext<IUserContext>({
-  userId: null,
-  token: null
+  user: initialUser,
+  setUser: () => {}
 });
