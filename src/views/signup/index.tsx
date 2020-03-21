@@ -14,14 +14,14 @@ const Wrapper = styled.div`
 `
 
 export const Signup: React.FC = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const { code, method } = queryString.parse(window.location.search)
+
+  const [isLoading, setIsLoading] = React.useState<boolean>()
   const [error, setError] = React.useState<Error | null>()
   const { setUser } = React.useContext(UserContext)
 
   React.useEffect(() => {
-    const { code, method } = queryString.parse(window.location.search)
-
-    if (code && typeof code === 'string' && typeof method === 'string') {
+    if (method && code && typeof method === 'string' && typeof code === 'string') {
       (async () => {
         setIsLoading(true)
         const res = await auth.social.signup(method, code)
@@ -35,13 +35,13 @@ export const Signup: React.FC = () => {
         }
       })()
     }
-  }, [setUser])
+  }, [setUser, code, method])
 
   return isLoading ? (
     <Loading />
   ) : (
     <Wrapper>
-      <Side />
+      <Side isEmail={method === 'email'} />
       <Right />
       {error && <Error error={error.message} />}
     </Wrapper>

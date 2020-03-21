@@ -17,3 +17,9 @@ export const request = {
     withCredentials: true
   })
 }
+
+export const errorMessages: {[key: string]: string} = {
+  'email-mismatch': 'This email already exists',
+  'lacking-password': 'Password is not secure enough',
+  'missing-credentials': 'Please fill in the required fields'
+}

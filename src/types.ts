@@ -1,4 +1,4 @@
-import { RouteProps } from "react-router-dom";
+import { RouteProps } from 'react-router-dom'
 
 export interface NamedRoute extends RouteProps {
   name: string;
@@ -15,3 +15,5 @@ export interface IUser {
   createdAt: string;
   updatedAt: string;
 }
+
+export type QueryString = string | string[] | null | undefined

@@ -1,16 +1,8 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import { Button } from '@primer/components'
 import { FormattedMessage } from 'react-intl'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SignupMethod } from '../../../../signupMethods'
-
-const Icon = styled.div`
-  position: absolute;
-  left: ${(props) => props?.theme?.space[2]}px;
-  top: 50%;
-  transform: translateY(-50%);
-`
+import ButtonIcon from '../../../../../../components/button-icon'
 
 interface ISignupMethodButtonProps {
   method: SignupMethod;
@@ -29,9 +21,7 @@ const SignupMethodButton: React.FC<ISignupMethodButtonProps> = ({
     style={method.style}
     onClick={onClick}
   >
-    <Icon>
-      <FontAwesomeIcon icon={method.icon} />
-    </Icon>
+    <ButtonIcon icon={method.icon} />
     <FormattedMessage {...method.name} />
   </Button>
 )

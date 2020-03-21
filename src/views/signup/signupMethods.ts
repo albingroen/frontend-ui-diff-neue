@@ -3,11 +3,11 @@ import {
   IconDefinition,
   faGitlab,
   faGoogle
-} from "@fortawesome/free-brands-svg-icons";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import messages from "./messages";
-import { MessageDescriptor } from "react-intl";
-import auth from "../../lib/auth";
+} from '@fortawesome/free-brands-svg-icons'
+import { faLock } from '@fortawesome/free-solid-svg-icons'
+import messages from './messages'
+import { MessageDescriptor } from 'react-intl'
+import auth from '../../lib/auth'
 
 export interface SignupMethod {
   name: MessageDescriptor;
@@ -24,7 +24,7 @@ export const signupMethods: SignupMethod[] = [
     style: {
       backgroundColor: '#222',
       borderColor: '#222',
-      color: 'white',
+      color: 'white'
     }
   },
   {
@@ -34,7 +34,7 @@ export const signupMethods: SignupMethod[] = [
     style: {
       backgroundColor: '#fb7135',
       borderColor: '#fb7135',
-      color: 'white',
+      color: 'white'
     }
   },
   {
@@ -44,11 +44,14 @@ export const signupMethods: SignupMethod[] = [
     style: {
       backgroundColor: '#4285f5',
       borderColor: '#4285f5',
-      color: 'white',
+      color: 'white'
     }
   },
   {
     name: messages.email,
-    icon: faLock
+    icon: faLock,
+    onClick: () => {
+      window.location.search = '?method=email'
+    }
   }
-];
+]
