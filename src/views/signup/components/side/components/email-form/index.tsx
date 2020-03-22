@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
-import { TextInput, ButtonPrimary, Text } from '@primer/components'
+import { TextInput, ButtonPrimary, Text, BorderBox } from '@primer/components'
 import styled from 'styled-components'
 import auth from '../../../../../../lib/auth'
 import { errorMessages } from '../../../../../../lib'
@@ -23,6 +23,7 @@ export interface IEmailFormValues {
 
 const EmailForm: React.FC = () => {
   const intl = useIntl()
+  const [submitted, setSubmitted] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string | null>()
   const [formState, { text, email, password }] = useFormState<IEmailFormValues>()
 
@@ -32,10 +33,18 @@ const EmailForm: React.FC = () => {
     const res = await auth.email.signup(formState.values)
     if (res instanceof Error) {
       setError(res?.message)
+    } else if (res) {
+      setSubmitted(true)
     }
   }
 
-  return (
+  return submitted ? (
+    <BorderBox bg="green.1" p={2}>
+      <Text lineHeight={1.5}>
+        <FormattedMessage {...messages.confirmation} />
+      </Text>
+    </BorderBox>
+  ) : (
     <Form onSubmit={onSubmit}>
       <TextInput variant="large" my={2} placeholder={intl.formatMessage(messages.placeholderName)} {...text('name')} />
       <TextInput variant="large" my={2} placeholder={intl.formatMessage(messages.placeholderEmail)} {...email('email')} required />

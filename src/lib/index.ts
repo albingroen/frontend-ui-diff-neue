@@ -22,5 +22,7 @@ export const errorMessages: {[key: string]: string} = {
   'email-mismatch': 'This email already exists',
   'lacking-password': 'Password is not secure enough',
   'missing-credentials': 'Please fill in the required fields',
-  'invalid-credentials': 'Email or password is incorrect'
+  'invalid-credentials': 'Email or password is incorrect',
+  'email-not-confirmed': 'Email is not verified yet',
+  'email-already-confirmed': 'Email is already verified'
 }

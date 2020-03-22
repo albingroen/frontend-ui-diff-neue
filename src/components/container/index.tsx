@@ -1,8 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { AppNavigation } from './components/app-navigation'
-import { loggedIn } from '../../lib/auth'
-import Loading from '../loading'
+import { Loading } from '../../components'
 
 const Content = styled.div`
   min-height: 100vh;
@@ -17,13 +16,8 @@ interface IContainerProps {
 }
 
 export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
-  const isOnSignup = window.location.pathname.includes('/signup')
-  const withoutTemplate = isOnSignup || !loggedIn
-
   return loading ? (
     <Loading />
-  ) : withoutTemplate ? (
-    <>{children}</>
   ) : (
     <>
       <AppNavigation />

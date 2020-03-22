@@ -6,7 +6,7 @@ import { UserContext, initialUser } from './context/userContext'
 
 // Import components
 import { Container } from './components'
-import { Signup, Dashboard, Login, Auth } from './views'
+import { Signup, Dashboard, Login, Auth, EmailConfirmation } from './views'
 import { loggedIn, logout } from './lib/auth'
 import { IUser } from './types'
 import { request } from './lib'
@@ -47,14 +47,15 @@ function App () {
     >
       <BrowserRouter>
         <Switch>
+          {/* Auth routes */}
+          <PublicRoute path="/auth" component={Auth} exact />
+          <PublicRoute path="/signup" component={Signup} exact />
+          <PublicRoute path="/login" component={Login} exact />
+          <PublicRoute path="/confirmation/:userId" component={EmailConfirmation} exact />
+
           <Container loading={isUserLoading}>
             {/* Main route */}
             <Route path="/" component={loggedIn ? Dashboard : () => <Redirect to="/login" />} exact />
-
-            {/* Auth routes */}
-            <Route path="/auth" component={loggedIn ? () => <Redirect to="/" /> : Auth} exact />
-            <Route path="/signup" component={loggedIn ? () => <Redirect to="/" /> : Signup} exact />
-            <Route path="/login" component={loggedIn ? () => <Redirect to="/" /> : Login} exact />
 
             {/* Private routes */}
             <PrivateRoute path="/members" component={Dashboard} exact />
@@ -63,6 +64,15 @@ function App () {
       </BrowserRouter>
     </UserContext.Provider>
   )
+}
+
+const PublicRoute = ({ component, ...rest }: any) => {
+  const routeComponent = (props: any) => (loggedIn ? (
+    <Redirect to={{ pathname: '/' }} />
+  ) : (
+    React.createElement(component, props)
+  ))
+  return <Route {...rest} render={routeComponent} />
 }
 
 const PrivateRoute = ({ component, ...rest }: any) => {

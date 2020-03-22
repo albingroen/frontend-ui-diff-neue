@@ -74,5 +74,9 @@ export default defineMessages({
     defaultMessage:
       'Password *',
     id: 'signup.placeholders.password'
+  },
+  confirmation: {
+    defaultMessage: 'A confirmation email with a link to verify your account has been sent to the entered email.',
+    id: 'signup.confirmation'
   }
 })

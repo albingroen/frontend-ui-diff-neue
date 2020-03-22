@@ -29,10 +29,8 @@ const Spinner = styled.div`
   }
 `
 
-const Loading = () => (
+export const Loading = () => (
   <LoadingBoundary>
     <Spinner />
   </LoadingBoundary>
 )
-
-export default Loading

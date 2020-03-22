@@ -1,6 +1,7 @@
 import { IEmailFormValues } from '../../views/signup/components/side/components/email-form'
 import { request } from '..'
 import { login as loginUser } from '.'
+import { AxiosResponse } from 'axios'
 
 export const signup = async ({ name, email, password }: IEmailFormValues) => {
   let data
@@ -13,7 +14,7 @@ export const signup = async ({ name, email, password }: IEmailFormValues) => {
   }
 
   if (data) {
-    loginUser()
+    return true
   }
 }
 
@@ -30,6 +31,21 @@ export const login = async ({ email, password }: { email: string, password: stri
   if (data) {
     loginUser()
   }
+}
+
+export const confirm = (userId: string): boolean => {
+  request.post(`/users/${userId}/confirm`)
+    .then((confirmRes: AxiosResponse) => {
+      if (confirmRes?.data?.user) {
+        return true
+      } else {
+        return false
+      }
+    }).catch(() => {
+      return false
+    })
+
+  return false
 }
 
 export default {
