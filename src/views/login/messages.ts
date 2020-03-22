@@ -54,5 +54,25 @@ export default defineMessages({
     defaultMessage:
       '✅ <strong>Detect regressions</strong>. Detect any unwanted changes on your app in seconds.',
     id: 'login.feature4'
+  },
+  ctaLogin: {
+    defaultMessage:
+      'Log in',
+    id: 'login.cta'
+  },
+  placeholderName: {
+    defaultMessage:
+      'Namn',
+    id: 'login.placeholders.name'
+  },
+  placeholderEmail: {
+    defaultMessage:
+      'Email *',
+    id: 'login.placeholders.email'
+  },
+  placeholderPassword: {
+    defaultMessage:
+      'Password *',
+    id: 'login.placeholders.password'
   }
 })
