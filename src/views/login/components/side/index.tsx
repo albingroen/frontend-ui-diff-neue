@@ -4,10 +4,10 @@ import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import { Logo } from '../../../../components'
 import messages from '../../messages'
-import { signupMethods, SignupMethod } from '../../signupMethods'
-import SignupMethodButton from './components/signup-method-button'
+import { signupMethods, SignupMethod } from '../../loginMethods'
 import EmailForm from './components/email-form'
 import { Link } from 'react-router-dom'
+import LoginMethodButton from '../../../signup/components/side/components/signup-method-button'
 
 const Sidebar = styled.div`
   height: 100vh;
@@ -39,7 +39,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
 
       <Flex my={2} flexDirection="column">
         {!isEmail ? signupMethods.map((method: SignupMethod) => (
-          <SignupMethodButton
+          <LoginMethodButton
             onClick={() => method.onClick && method.onClick()}
             key={method.name.id}
             method={method}
@@ -49,7 +49,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
         )}
       </Flex>
 
-      <Link to="/login">Already have an account? Log in here</Link>
+      <Link to="/signup">No account? Sign up here</Link>
 
       <Text lineHeight={1.5} color="gray.5" as="p" my={4} fontSize={1}>
         <FormattedMessage {...messages.policy} />

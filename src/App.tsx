@@ -6,7 +6,7 @@ import { UserContext, initialUser } from './context/userContext'
 
 // Import components
 import { Container } from './components'
-import { Signup, Dashboard } from './views'
+import { Signup, Dashboard, Login, Auth } from './views'
 import { loggedIn, logout } from './lib/auth'
 import { IUser } from './types'
 import { request } from './lib'
@@ -48,7 +48,15 @@ function App () {
       <BrowserRouter>
         <Switch>
           <Container loading={isUserLoading}>
-            <Route path="/" component={loggedIn ? Dashboard : Signup} exact />
+            {/* Main route */}
+            <Route path="/" component={loggedIn ? Dashboard : () => <Redirect to="/login" />} exact />
+
+            {/* Auth routes */}
+            <Route path="/auth" component={loggedIn ? () => <Redirect to="/" /> : Auth} exact />
+            <Route path="/signup" component={loggedIn ? () => <Redirect to="/" /> : Signup} exact />
+            <Route path="/login" component={loggedIn ? () => <Redirect to="/" /> : Login} exact />
+
+            {/* Private routes */}
             <PrivateRoute path="/members" component={Dashboard} exact />
           </Container>
         </Switch>
