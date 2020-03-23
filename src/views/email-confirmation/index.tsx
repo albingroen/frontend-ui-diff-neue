@@ -26,7 +26,7 @@ export const EmailConfirmation = (props: RouteComponentProps) => {
   useEffect(() => {
     (async () => {
       if (userId) {
-        const res = confirm(userId)
+        const res = await confirm(userId)
 
         if (res) {
           setIsSucess(true)
