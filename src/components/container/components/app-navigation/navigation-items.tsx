@@ -59,7 +59,7 @@ export default (intl: IntlShape) => [
             <FormattedMessage {...messages.logOut} />
           </Button>
         ),
-        key: 1,
+        key: 2,
         active: true
       }
     ]

@@ -19,7 +19,7 @@ export const translateAppNavigationLists = (lists: AppNavigation): Header => lis
         </NavigationItem>
       </Link>
     ) : (
-      <NavigationItem active={listItem.active}>
+      <NavigationItem key={listItem.key} active={listItem.active}>
         {listItem.value}
       </NavigationItem>
     )
