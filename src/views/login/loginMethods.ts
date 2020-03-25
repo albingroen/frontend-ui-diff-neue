@@ -16,7 +16,7 @@ export interface SignupMethod {
   style?: React.CSSProperties;
 }
 
-export const signupMethods: SignupMethod[] = [
+export const signupMethods = (history: any): SignupMethod[] => [
   {
     name: messages.github,
     icon: faGithub,
@@ -51,7 +51,10 @@ export const signupMethods: SignupMethod[] = [
     name: messages.email,
     icon: faLock,
     onClick: () => {
-      window.location.search = '?method=email'
+      history.push({
+        pathname: '/login',
+        search: '?method=email'
+      })
     }
   }
 ]

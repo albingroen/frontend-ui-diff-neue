@@ -7,7 +7,7 @@ import messages from '../../messages'
 import { signupMethods, SignupMethod } from '../../signupMethods'
 import SignupMethodButton from './components/signup-method-button'
 import EmailForm from './components/email-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const Sidebar = styled.div`
   height: 100vh;
@@ -23,6 +23,8 @@ interface ISideProps {
 }
 
 const Side: React.FC<ISideProps> = ({ isEmail }) => {
+  const history = useHistory()
+
   return (
     <Sidebar>
       <Logo withLink width="35px" />
@@ -38,7 +40,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
       </Heading>
 
       <Flex my={2} flexDirection="column">
-        {!isEmail ? signupMethods.map((method: SignupMethod) => (
+        {!isEmail ? signupMethods(history).map((method: SignupMethod) => (
           <SignupMethodButton
             onClick={() => method.onClick && method.onClick()}
             key={method.name.id}
