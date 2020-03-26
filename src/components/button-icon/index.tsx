@@ -14,12 +14,10 @@ interface IButtonIconProps {
   icon: IconProp
 }
 
-const ButtonIcon: React.FC<IButtonIconProps> = ({ icon }) => {
+export const ButtonIcon: React.FC<IButtonIconProps> = ({ icon }) => {
   return (
     <Icon>
       <FontAwesomeIcon icon={icon} />
     </Icon>
   )
 }
-
-export default ButtonIcon

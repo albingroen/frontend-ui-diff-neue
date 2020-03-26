@@ -74,5 +74,15 @@ export default defineMessages({
     defaultMessage:
       'Password *',
     id: 'login.placeholders.password'
+  },
+  forgotPassword: {
+    defaultMessage:
+      'Forgot your password?',
+    id: 'login.forgot-password'
+  },
+  noAccount: {
+    defaultMessage:
+      'No account? Sign up here',
+    id: 'login.no-account'
   }
 })

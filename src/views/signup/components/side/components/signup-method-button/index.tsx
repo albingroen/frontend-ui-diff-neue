@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button } from '@primer/components'
 import { FormattedMessage } from 'react-intl'
 import { SignupMethod } from '../../../../signupMethods'
-import ButtonIcon from '../../../../../../components/button-icon'
+import { ButtonIcon } from '../../../../../../components'
 
 interface ISignupMethodButtonProps {
   method: SignupMethod;

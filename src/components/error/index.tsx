@@ -30,10 +30,8 @@ interface IErrorProps {
   error: string
 }
 
-const Error: React.FC<IErrorProps> = ({ error }) => (
+export const Error: React.FC<IErrorProps> = ({ error }) => (
   <ErrorWrapper>
     <ErrorContainer>{error}</ErrorContainer>
   </ErrorWrapper>
 )
-
-export default Error

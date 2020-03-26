@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { AppNavigation } from './components/app-navigation'
-import { Loading } from '../../components'
+import { Loading } from '../../components/loading'
 
 const Content = styled.div`
   min-height: 100vh;

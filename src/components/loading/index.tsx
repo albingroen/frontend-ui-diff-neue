@@ -29,7 +29,7 @@ const Spinner = styled.div`
   }
 `
 
-export const Loading = () => (
+export const Loading: React.FC = () => (
   <LoadingBoundary>
     <Spinner />
   </LoadingBoundary>

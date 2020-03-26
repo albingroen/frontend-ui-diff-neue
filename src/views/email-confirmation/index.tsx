@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Heading, Text, ButtonPrimary, Button } from '@primer/components'
 import styled from 'styled-components'
 import { RouteComponentProps, Link } from 'react-router-dom'
-import { Loading } from '../../components'
+import { Loading } from '../../components/loading'
 import { login } from '../../lib/auth'
 import { confirm } from '../../lib/auth/email'
 

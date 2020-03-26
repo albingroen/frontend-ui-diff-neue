@@ -7,10 +7,14 @@ interface ILogoProps {
   withLink?: boolean
 }
 
+const LogoComponent: React.FC<{ width: string }> = ({ width }) => (
+  <UIDiffLogo width={width} height={width} style={{ borderRadius: '50%' }} />
+)
+
 export const Logo: React.FC<ILogoProps> = ({ width, withLink }) => (withLink ? (
   <Link to="/">
-    <UIDiffLogo width={width} height={width} style={{ borderRadius: '50%' }} />
+    <LogoComponent width={width} />
   </Link>
 ) : (
-  <UIDiffLogo width={width} height={width} style={{ borderRadius: '50%' }} />
+  <LogoComponent width={width} />
 ))

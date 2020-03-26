@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import auth from '../../../../../../lib/auth'
 import { errorMessages } from '../../../../../../lib'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../../../../components/button-icon'
+import { ButtonIcon } from '../../../../../../components'
 import { FormattedMessage, useIntl } from 'react-intl'
 import messages from '../../../../messages'
 
@@ -46,12 +46,31 @@ const EmailForm: React.FC = () => {
     </BorderBox>
   ) : (
     <Form onSubmit={onSubmit}>
-      <TextInput variant="large" my={2} placeholder={intl.formatMessage(messages.placeholderName)} {...text('name')} />
-      <TextInput variant="large" my={2} placeholder={intl.formatMessage(messages.placeholderEmail)} {...email('email')} required />
-      <TextInput variant="large" my={2} placeholder={intl.formatMessage(messages.placeholderPassword)} {...password('password')} required />
+      <TextInput
+        variant="large"
+        my={2}
+        placeholder={intl.formatMessage(messages.placeholderName)}
+        {...text('name')}
+      />
+      <TextInput
+        variant="large"
+        my={2}
+        placeholder={intl.formatMessage(messages.placeholderEmail)}
+        required
+        {...email('email')}
+      />
+      <TextInput
+        variant="large"
+        my={2}
+        placeholder={intl.formatMessage(messages.placeholderPassword)}
+        required
+        {...password('password')}
+      />
+
       {error && (
         <Text color="red.5" my={2}>{errorMessages[error]}</Text>
       )}
+
       <ButtonPrimary type="submit" variant="large" mt={2}>
         <ButtonIcon icon={faSignInAlt} /> <FormattedMessage {...messages.ctaSignup} />
       </ButtonPrimary>

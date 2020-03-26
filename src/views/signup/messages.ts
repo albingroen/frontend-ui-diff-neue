@@ -78,5 +78,10 @@ export default defineMessages({
   confirmation: {
     defaultMessage: 'A confirmation email with a link to verify your account has been sent to the entered email.',
     id: 'signup.confirmation'
+  },
+  noAccount: {
+    defaultMessage:
+      'No account? Sign up here',
+    id: 'signup.no-account'
   }
 })

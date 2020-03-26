@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Heading, Flex, Text } from '@primer/components'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { Logo } from '../../../../components'
+import { Logo } from '../../../../components/logo'
 import messages from '../../messages'
 import { signupMethods, SignupMethod } from '../../loginMethods'
 import EmailForm from './components/email-form'
@@ -51,7 +51,9 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
         )}
       </Flex>
 
-      <Link to="/signup">No account? Sign up here</Link>
+      <Link to="/signup">
+        <FormattedMessage {...messages.noAccount} />
+      </Link>
 
       <Text lineHeight={1.5} color="gray.5" as="p" my={4} fontSize={1}>
         <FormattedMessage {...messages.policy} />
