@@ -24,5 +24,10 @@ export const errorMessages: {[key: string]: string} = {
   'missing-credentials': 'Please fill in the required fields',
   'invalid-credentials': 'Email or password is incorrect',
   'email-not-confirmed': 'Email is not verified yet',
-  'email-already-confirmed': 'Email is already verified'
+  'email-already-confirmed': 'Email is already verified',
+  'passwords-not-matching': 'Passwords do not match',
+  'link-expired': 'This action has already expired',
+  'reset-password-link-expired': 'The possibility to reset your password has expired. Please request a new link and try again.',
+  unavailable: 'This is not longer available',
+  network: 'Something went wrong. Try again later'
 }

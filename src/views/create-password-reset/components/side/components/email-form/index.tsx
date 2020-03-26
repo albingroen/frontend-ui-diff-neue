@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
-import { TextInput, ButtonPrimary, Text, Box } from '@primer/components'
+import { TextInput, ButtonPrimary, Text, BorderBox } from '@primer/components'
 import styled from 'styled-components'
 import auth from '../../../../../../lib/auth'
 import { errorMessages } from '../../../../../../lib'
@@ -8,7 +8,6 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { ButtonIcon } from '../../../../../../components'
 import { FormattedMessage, useIntl } from 'react-intl'
 import messages from '../../../../messages'
-import { Link } from 'react-router-dom'
 
 const Form = styled.form`
   width: 100%;
@@ -17,53 +16,67 @@ const Form = styled.form`
 `
 
 export interface IEmailFormValues {
-  name: string
   email: string
-  password: string
 }
 
 const EmailForm: React.FC = () => {
   const intl = useIntl()
   const [error, setError] = React.useState<string | null>()
-  const [formState, { email, password }] = useFormState<IEmailFormValues>()
+  const [isLoading, setIsLoading] = React.useState<boolean>()
+  const [isSubmitted, setIsSubmitted] = React.useState<boolean>()
+  const [formState, { email }] = useFormState<IEmailFormValues>()
 
   const onSubmit = async (e: any) => {
     e.preventDefault()
+    setIsLoading(true)
     setError(null)
-    const res = await auth.email.login(formState.values)
+
+    const { email } = formState.values
+
+    if (!email) {
+      setIsLoading(false)
+      return setError('missing-credentials')
+    }
+
+    const res = await auth.email.createPasswordReset(formState.values)
+
+    setIsLoading(false)
+
     if (res instanceof Error) {
       setError(res?.message)
+    } else {
+      setIsSubmitted(true)
     }
   }
 
-  return (
+  return isSubmitted ? (
+    <BorderBox bg="green.1" p={2}>
+      <Text lineHeight={1.5}>
+        <FormattedMessage {...messages.confirmation} />
+      </Text>
+    </BorderBox>
+  ) : (
     <Form onSubmit={onSubmit}>
+
       <TextInput
         variant="large"
         my={2}
         placeholder={intl.formatMessage(messages.placeholderEmail)}
         {...email('email')} required
       />
-      <TextInput
-        variant="large"
-        my={2}
-        placeholder={intl.formatMessage(messages.placeholderPassword)}
-        {...password('password')}
-        required
-      />
 
       {error && (
         <Text color="red.5" my={2}>{errorMessages[error]}</Text>
       )}
 
-      <Box my={2}>
-        <Link to="/reset-password">
-          <FormattedMessage {...messages.forgotPassword} />
-        </Link>
-      </Box>
-
       <ButtonPrimary type="submit" variant="large" mt={2}>
-        <ButtonIcon icon={faSignInAlt} /> <FormattedMessage {...messages.ctaLogin} />
+        <ButtonIcon icon={faSignInAlt} />
+
+        {isLoading ? (
+          <FormattedMessage {...messages.ctaLoading} />
+        ) : (
+          <FormattedMessage {...messages.cta} />
+        )}
       </ButtonPrimary>
     </Form>
   )

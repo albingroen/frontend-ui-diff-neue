@@ -32,6 +32,39 @@ export const login = async ({ email, password }: { email: string, password: stri
   }
 }
 
+export const resetPassword = async (
+  { newPassword, confirmedPassword, passwordResetId }:
+  { newPassword: string, confirmedPassword: string, passwordResetId: string }
+) => {
+  let data
+
+  try {
+    const resetResult = await request.post('/auth/email/reset/confirm', { newPassword, confirmedPassword, passwordResetId })
+    data = resetResult.data
+  } catch (err) {
+    return new Error(err?.response?.data?.error)
+  }
+
+  if (data) {
+    return true
+  }
+}
+
+export const createPasswordReset = async ({ email }: { email: string }) => {
+  let data
+
+  try {
+    const resetResult = await request.post('/auth/email/reset/create', { email })
+    data = resetResult.data
+  } catch (err) {
+    return new Error(err?.response?.data?.error)
+  }
+
+  if (data) {
+    return true
+  }
+}
+
 export const confirm = async (userId: string) => {
   const res = await request.post(`/users/${userId}/confirm`)
 
@@ -44,5 +77,7 @@ export const confirm = async (userId: string) => {
 
 export default {
   signup,
-  login
+  login,
+  resetPassword,
+  createPasswordReset
 }

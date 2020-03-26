@@ -1,7 +1,7 @@
-import { translateAppNavigationLists } from './lib'
+import { transformAppNavigationLists } from './lib'
 
 test('transform object structure to header input structure', () => {
-  const headerLists = translateAppNavigationLists([
+  const headerLists = transformAppNavigationLists([
     {
       key: 1,
       items: [

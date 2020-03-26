@@ -8,7 +8,7 @@ import {
   AppNavigationListItem
 } from './types'
 
-export const translateAppNavigationLists = (lists: AppNavigation): Header => lists.map((list: AppNavigationList) => ({
+export const transformAppNavigationLists = (lists: AppNavigation): Header => lists.map((list: AppNavigationList) => ({
   key: list.key,
   items: list.items.map((listItem: AppNavigationListItem) => ({
     key: listItem.key,

@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { useIntl } from 'react-intl'
 import { Header } from '../../../header'
-import { translateAppNavigationLists } from './lib'
+import { transformAppNavigationLists } from './lib'
 import getNavigationItems from './navigation-items'
 
 export const NavigationItem = styled.li`
@@ -16,6 +16,6 @@ export const AppNavigation: React.FC = () => {
   const intl = useIntl()
 
   return (
-    <Header lists={translateAppNavigationLists(getNavigationItems(intl))} />
+    <Header lists={transformAppNavigationLists(getNavigationItems(intl))} />
   )
 }
