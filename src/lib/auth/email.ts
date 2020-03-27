@@ -1,6 +1,6 @@
-import { IEmailFormValues } from '../../views/signup/components/side/components/email-form'
 import { request } from '..'
 import { login as loginUser } from '.'
+import { IEmailFormValues } from '../../views/signup/components/side/components/email-form'
 
 export const signup = async ({ name, email, password }: IEmailFormValues) => {
   let data

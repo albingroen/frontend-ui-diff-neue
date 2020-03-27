@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
-import { TextInput, ButtonPrimary, Text } from '@primer/components'
+import { TextInput, ButtonPrimary, Text, Button, Flex } from '@primer/components'
 import styled from 'styled-components'
 import auth from '../../../../../../lib/auth'
-import { errorMessages } from '../../../../../../lib'
+import { errorMessages, request } from '../../../../../../lib'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
-import { ButtonIcon } from '../../../../../../components'
+import { ButtonIcon, Loading } from '../../../../../../components'
 import { FormattedMessage, useIntl } from 'react-intl'
 import messages from '../../../../messages'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 const Form = styled.form`
   width: 100%;
@@ -33,27 +33,38 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
     history.push('/reset-password')
   }
 
-  const [isLoading, setIsLoading] = React.useState<boolean>()
-  const [error, setError] = React.useState<string | null>()
+  const [fetchIsLoading, setFetchIsLoading] = React.useState<boolean>(true)
+  const [fetchError, setFetchError] = React.useState<string | null>()
+  const [postIsLoading, setPostIsLoading] = React.useState<boolean>()
+  const [postError, setPostError] = React.useState<string | null>()
   const [formState, { password }] = useFormState<IEmailFormValues>()
+
+  React.useEffect(() => {
+    request.get(`/auth/email/reset/${passwordResetId}`)
+      .catch(() => {
+        setFetchError('link-expired')
+      })
+
+    setFetchIsLoading(false)
+  }, [passwordResetId])
 
   const onSubmit = async (e: any) => {
     e.preventDefault()
-    setIsLoading(true)
-    setError(null)
+    setPostIsLoading(true)
+    setPostError(null)
 
     const { newPassword, confirmedPassword } = formState.values
 
     if (newPassword !== confirmedPassword) {
-      setIsLoading(false)
-      return setError('passwords-not-matching')
+      setPostIsLoading(false)
+      return setPostError('passwords-not-matching')
     }
 
     const res = await auth.email.resetPassword({ ...formState.values, passwordResetId })
 
     if (res instanceof Error) {
-      setIsLoading(false)
-      setError(res?.message)
+      setPostIsLoading(false)
+      setPostError(res?.message)
     } else {
       history.push({
         pathname: '/login',
@@ -62,7 +73,16 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
     }
   }
 
-  return (
+  return fetchIsLoading ? (
+    <Loading />
+  ) : fetchError ? (
+    <Flex flexDirection="column">
+      <Text my={2} color="red.5">{errorMessages[fetchError]}</Text>
+      <Link to="/reset-password">
+        <Button style={{ width: '100%' }} variant="large">Requst a new link</Button>
+      </Link>
+    </Flex>
+  ) : (
     <Form onSubmit={onSubmit}>
       <TextInput
         variant="large"
@@ -78,14 +98,14 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
         required
       />
 
-      {error && (
-        <Text color="red.5" my={2}>{errorMessages[error]}</Text>
+      {postError && (
+        <Text color="red.5" my={2}>{errorMessages[postError]}</Text>
       )}
 
       <ButtonPrimary type="submit" variant="large" mt={2}>
         <ButtonIcon icon={faSignInAlt} />
 
-        {isLoading ? (
+        {postIsLoading ? (
           <FormattedMessage {...messages.ctaLoading} />
         ) : (
           <FormattedMessage {...messages.cta} />

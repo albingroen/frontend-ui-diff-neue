@@ -17,3 +17,10 @@ export interface IUser {
 }
 
 export type QueryString = string | string[] | null | undefined
+
+export interface IPasswordReset {
+  _user: string
+  validThru: Date
+  createdAt: Date
+  updatedAt: Date
+}

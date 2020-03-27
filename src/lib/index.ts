@@ -26,7 +26,7 @@ export const errorMessages: {[key: string]: string} = {
   'email-not-confirmed': 'Email is not verified yet',
   'email-already-confirmed': 'Email is already verified',
   'passwords-not-matching': 'Passwords do not match',
-  'link-expired': 'This action has already expired',
+  'link-expired': 'This link has unfortunately expired',
   'reset-password-link-expired': 'The possibility to reset your password has expired. Please request a new link and try again.',
   unavailable: 'This is not longer available',
   network: 'Something went wrong. Try again later'
