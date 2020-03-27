@@ -2,12 +2,12 @@ import * as React from 'react'
 import { Heading, Flex, Text } from '@primer/components'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { Logo } from '../../../../components/logo'
+import { Logo } from '../../../../components/design/logo'
 import messages from '../../messages'
-import { signupMethods, SignupMethod } from '../../loginMethods'
+import { loginMethods, LoginMethod } from '../../loginMethods'
 import EmailForm from './components/email-form'
 import { Link, useHistory } from 'react-router-dom'
-import LoginMethodButton from '../../../signup/components/side/components/signup-method-button'
+import LoginMethodButton from '../../../../components/design/auth-button'
 
 const Sidebar = styled.div`
   height: 100vh;
@@ -40,7 +40,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
       </Heading>
 
       <Flex my={2} flexDirection="column">
-        {!isEmail ? signupMethods(history).map((method: SignupMethod) => (
+        {!isEmail ? loginMethods(history).map((method: LoginMethod) => (
           <LoginMethodButton
             onClick={() => method.onClick && method.onClick()}
             key={method.name.id}

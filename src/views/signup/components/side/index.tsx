@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Heading, Flex, Text } from '@primer/components'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { Logo } from '../../../../components/logo'
+import { Logo } from '../../../../components/design/logo'
 import messages from '../../messages'
 import { signupMethods, SignupMethod } from '../../signupMethods'
-import SignupMethodButton from './components/signup-method-button'
+import SignupMethodButton from '../../../../components/design/auth-button'
 import EmailForm from './components/email-form'
 import { Link, useHistory } from 'react-router-dom'
 
@@ -52,7 +52,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
       </Flex>
 
       <Link to="/login">
-        <FormattedMessage {...messages.noAccount} />
+        <FormattedMessage {...messages.alreadyHaveAccount} />
       </Link>
 
       <Text lineHeight={1.5} color="gray.5" as="p" my={4} fontSize={1}>

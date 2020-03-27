@@ -1,7 +1,7 @@
 import * as React from 'react'
 import queryString from 'query-string'
 import { useHistory } from 'react-router-dom'
-import { Loading } from '../../components/loading'
+import { Loading } from '../../components/design/loading'
 import { Error } from '../../components'
 import auth from '../../lib/auth'
 

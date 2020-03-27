@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button, ButtonPrimary } from '@primer/components'
 import { FormattedMessage, IntlShape } from 'react-intl'
 import messages from './messages'
-import { logout } from '../../../../lib/auth'
+import { logout } from '../../../../../lib/auth'
 
 export default (intl: IntlShape) => [
   {

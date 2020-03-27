@@ -12,9 +12,9 @@ const Wrapper = styled.div`
 `
 
 export const Signup: React.FC = () => {
-  const { code, method } = queryString.parse(window.location.search)
-
   const { setUser } = React.useContext(UserContext)
+
+  const { code, method } = queryString.parse(window.location.search)
 
   React.useEffect(() => {
     if (method && code && typeof method === 'string' && typeof code === 'string') {

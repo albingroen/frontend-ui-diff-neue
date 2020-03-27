@@ -9,14 +9,14 @@ import messages from './messages'
 import { MessageDescriptor } from 'react-intl'
 import auth from '../../lib/auth'
 
-export interface SignupMethod {
+export interface LoginMethod {
   name: MessageDescriptor;
   icon: IconDefinition;
   onClick?: () => void;
   style?: React.CSSProperties;
 }
 
-export const signupMethods = (history: any): SignupMethod[] => [
+export const loginMethods = (history: any): LoginMethod[] => [
   {
     name: messages.github,
     icon: faGithub,

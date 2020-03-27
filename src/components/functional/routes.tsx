@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { Auth, Signup, Login, EmailConfirmation, Dashboard, ResetPassword, CreatePasswordReset } from '../../views'
-import { Container } from '../container'
+import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
 
 interface IRoutesProps {

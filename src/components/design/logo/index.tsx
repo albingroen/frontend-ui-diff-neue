@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { ReactComponent as UIDiffLogo } from '../../static/logo.svg'
+import { ReactComponent as UIDiffLogo } from '../../../static/logo.svg'
 
 interface ILogoProps {
   width: string;
