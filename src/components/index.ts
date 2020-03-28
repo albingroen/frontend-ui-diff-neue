@@ -1,6 +1,7 @@
 export { ButtonIcon } from './design/button-icon'
 export { Container } from './design/container'
 export { Error } from './design/error'
+export { Footer } from './design/footer'
 export { Header } from './design/header'
 export { Loading } from './design/loading'
 export { Logo } from './design/logo'
