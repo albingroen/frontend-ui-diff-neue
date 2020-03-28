@@ -7,10 +7,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <Heading>
-        Welcome,
-        {user?.name}
-      </Heading>
+      <Heading>Welcome, {user?.name}</Heading>
     </div>
   )
 }

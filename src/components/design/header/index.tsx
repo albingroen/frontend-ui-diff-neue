@@ -3,15 +3,15 @@ import styled from 'styled-components'
 import { IHeaderList, IHeaderListItem, Header as IHeader } from './types'
 
 const HeaderRoot = styled.nav`
-  background-color: ${(props) => props?.theme?.colors?.black};
-  width: 100%;
+  background-color: #222;
+  height: 70px;
 `
 
 const HeaderListWrapper = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  height: 70px;
 `
 
 const HeaderList = styled.ul`
@@ -19,10 +19,6 @@ const HeaderList = styled.ul`
   display: flex;
   align-items: center;
   padding: 0 ${(props) => props?.theme?.space[2]}px;
-
-  &:first-child {
-    padding-left: 0px;
-  }
 
   &:last-child {
     padding-right: 0px;

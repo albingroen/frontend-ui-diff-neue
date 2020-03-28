@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { Button, ButtonPrimary } from '@primer/components'
+import { ButtonPrimary } from '@primer/components'
 import { FormattedMessage, IntlShape } from 'react-intl'
 import messages from './messages'
-import { logout } from '../../../../../lib/auth'
 
 export default (intl: IntlShape) => [
   {
@@ -51,15 +50,6 @@ export default (intl: IntlShape) => [
         ),
         link: '/new-project',
         key: 1,
-        active: true
-      },
-      {
-        value: (
-          <Button onClick={() => logout()}>
-            <FormattedMessage {...messages.logOut} />
-          </Button>
-        ),
-        key: 2,
         active: true
       }
     ]

@@ -10,8 +10,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  background-color: #f7f7f7;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f6f9;
+  color: #222;
 }
 
 code {
@@ -20,7 +22,8 @@ code {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: inherit;
 }
 
 hr {
