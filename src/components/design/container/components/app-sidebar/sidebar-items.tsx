@@ -15,15 +15,13 @@ const Item = styled.div`
   text-align: center;
   height: 100%;
   width: 100%;
-
   &:hover {
     opacity: 0.75;
   }
 
   ${(props: IItemProps) => props.active && css`
     opacity: 1;
-    color: ${props => props?.theme?.colors?.green[5]};
-    
+    color: ${props => props?.theme?.colors?.green[4]};
     &:hover {
       opacity: 1;
     }

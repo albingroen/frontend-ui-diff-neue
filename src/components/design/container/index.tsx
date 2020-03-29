@@ -58,13 +58,15 @@ export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
   return loading ? (
     <Loading />
   ) : (
-    <Flex>
-      <AppSidebar />
-      <Flex flexDirection="column" style={{ width: '100%' }} >
-        <AppNavigation />
-        <Content>{children}</Content>
-        <Footer lists={getFooterLists(intl)} />
+    <>
+      <Flex>
+        <AppSidebar />
+        <Flex flexDirection="column" style={{ width: '100%' }} >
+          <AppNavigation />
+          <Content>{children}</Content>
+        </Flex>
       </Flex>
-    </Flex>
+      <Footer lists={getFooterLists(intl)} />
+    </>
   )
 }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { BorderBox, Text, Flex, Heading, ButtonPrimary } from '@primer/components'
 import { defineMessages, FormattedMessage } from 'react-intl'
+import { Link } from 'react-router-dom'
 
 const messages = defineMessages({
   heading: {
@@ -26,9 +27,12 @@ const NewProject = () => (
       <Text opacity={0.5} mt={1} mb={3}>
         <FormattedMessage {...messages.lede} />
       </Text>
-      <ButtonPrimary variant="medium">
-        <FormattedMessage {...messages.cta} />
-      </ButtonPrimary>
+
+      <Link to="/new-project">
+        <ButtonPrimary variant="medium">
+          <FormattedMessage {...messages.cta} />
+        </ButtonPrimary>
+      </Link>
     </Flex>
   </BorderBox>
 )

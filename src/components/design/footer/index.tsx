@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
 `
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: calc(1200px - 100px);
   margin: 0 auto;
   padding: ${(props) => props?.theme?.space[2]}px;
 `
