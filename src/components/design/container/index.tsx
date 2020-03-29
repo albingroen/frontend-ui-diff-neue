@@ -6,10 +6,12 @@ import { Loading } from '../loading'
 import { Flex } from '@primer/components'
 
 const Content = styled.div`
-  flex: 1;
   height: calc(100vh - 70px);
   padding: ${(props) => props?.theme?.space[4]}px;
   overflow-y:scroll;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 `
 
 interface IContainerProps {
