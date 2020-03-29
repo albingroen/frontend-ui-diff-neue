@@ -44,7 +44,7 @@ export default (intl: IntlShape) => [
     items: [
       {
         value: (
-          <ButtonPrimary>
+          <ButtonPrimary mr={2}>
             <FormattedMessage {...messages.newProject} />
           </ButtonPrimary>
         ),

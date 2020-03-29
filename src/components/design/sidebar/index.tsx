@@ -27,7 +27,7 @@ const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: 1.75em;
   text-align: center;
   cursor: pointer;
 `
@@ -35,15 +35,16 @@ const LogoWrapper = styled.div`
 const LogoutButton = styled.div`
   position: absolute;
   color: black;
-  font-size: 1.35em;
+  font-size: 1em;
   bottom: 1.5rem;
-  opacity: 0.6;
+  opacity: 0.35;
   text-align: center;
   cursor: pointer;
   transition: ${styles.transition};
   &:hover {
     color: ${(props) => props?.theme?.colors?.red[6]};
     transition: ${styles.transition};
+    opacity: 1;
   }
 `
 
