@@ -4,6 +4,9 @@ import { AppNavigation } from './components/app-navigation'
 import { AppSidebar } from './components/app-sidebar'
 import { Loading } from '../loading'
 import { Flex } from '@primer/components'
+import { Footer } from '../footer'
+import { useIntl, IntlShape } from 'react-intl'
+import messages from './messages'
 
 const Content = styled.div`
   height: calc(100vh - 70px);
@@ -12,6 +15,7 @@ const Content = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 100px;
 `
 
 interface IContainerProps {
@@ -19,45 +23,47 @@ interface IContainerProps {
   loading?: boolean;
 }
 
-// const getFooterLists = (intl: IntlShape) => {
-//   return [
-//     {
-//       items: [
-//         {
-//           text: intl.formatMessage(messages.footerItemDocs),
-//           href: '/documentation'
-//         },
-//         {
-//           text: intl.formatMessage(messages.footerItemPricing),
-//           href: '/pricing'
-//         },
-//         {
-//           text: intl.formatMessage(messages.footerItemSupport),
-//           href: '/support'
-//         },
-//         {
-//           text: intl.formatMessage(messages.footerItemNews),
-//           href: '/news'
-//         },
-//         {
-//           text: intl.formatMessage(messages.footerItemTerms),
-//           href: '/terms'
-//         }
-//       ]
-//     }
-//   ]
-// }
+const getFooterLists = (intl: IntlShape) => {
+  return [
+    {
+      items: [
+        {
+          text: intl.formatMessage(messages.footerItemDocs),
+          href: '/documentation'
+        },
+        {
+          text: intl.formatMessage(messages.footerItemPricing),
+          href: '/pricing'
+        },
+        {
+          text: intl.formatMessage(messages.footerItemSupport),
+          href: '/support'
+        },
+        {
+          text: intl.formatMessage(messages.footerItemNews),
+          href: '/news'
+        },
+        {
+          text: intl.formatMessage(messages.footerItemTerms),
+          href: '/terms'
+        }
+      ]
+    }
+  ]
+}
 
 export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
+  const intl = useIntl()
+
   return loading ? (
     <Loading />
   ) : (
-    <Flex style={{ height: '100vh' }}>
+    <Flex>
       <AppSidebar />
-      <Flex flexDirection="column" style={{ width: '100%' }}>
-
+      <Flex flexDirection="column" style={{ width: '100%' }} >
         <AppNavigation />
         <Content>{children}</Content>
+        <Footer lists={getFooterLists(intl)} />
       </Flex>
     </Flex>
   )
