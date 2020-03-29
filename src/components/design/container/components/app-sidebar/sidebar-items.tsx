@@ -2,11 +2,16 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Tooltip } from '@primer/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTachometerAlt, faChartBar, faUserFriends, faImages } from '@fortawesome/free-solid-svg-icons'
+import {
+  faTachometerAlt,
+  faChartBar,
+  faUserFriends,
+  faImages
+} from '@fortawesome/free-solid-svg-icons'
 import styled, { css } from 'styled-components'
 
 interface IItemProps {
-  active?: boolean
+  active?: boolean;
 }
 
 const Item = styled.div`
@@ -19,13 +24,15 @@ const Item = styled.div`
     opacity: 0.75;
   }
 
-  ${(props: IItemProps) => props.active && css`
-    opacity: 1;
-    color: ${props => props?.theme?.colors?.green[4]};
-    &:hover {
+  ${(props: IItemProps) =>
+    props.active &&
+    css`
       opacity: 1;
-    }
-  `}
+      color: ${(props) => props?.theme?.colors?.green[4]};
+      &:hover {
+        opacity: 1;
+      }
+    `}
 `
 
 const tooltipStyle = {
@@ -85,7 +92,6 @@ const getSidebarItems = (location: { pathname: string }) => {
       ),
       key: 4
     }
-
   ]
 }
 

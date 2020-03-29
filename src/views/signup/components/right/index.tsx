@@ -1,8 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {
-  Flex, Heading, Text, Box
-} from '@primer/components'
+import { Flex, Heading, Text, Box } from '@primer/components'
 import { MessageDescriptor, FormattedMessage } from 'react-intl'
 import { Chunk } from '../../../../types'
 import features from './features'

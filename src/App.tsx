@@ -7,7 +7,7 @@ import { request } from './lib'
 import Routes from './components/functional/routes'
 
 const getProjectsById = (projects?: IProject[]) => {
-  const projectsById: {[key: string]: IProject} = {}
+  const projectsById: { [key: string]: IProject } = {}
 
   if (projects) {
     projects.forEach((project: IProject) => {
@@ -29,7 +29,8 @@ const App: React.FC = () => {
   const [projects, setProjects] = useState<IProject[]>()
   const [loading, setLoading] = useState(initialLoadingState)
 
-  const projectIds: string[] = projects?.map((project: IProject) => project._id) || []
+  const projectIds: string[] =
+    projects?.map((project: IProject) => project._id) || []
   const projectsById = getProjectsById(projects)
 
   useEffect(() => {
@@ -62,7 +63,10 @@ const App: React.FC = () => {
   }, [user])
 
   const userProviderValue = useMemo(() => user, [user])
-  const projectsProviderValue = useMemo(() => ({ projects: projectIds, projectsById }), [projectIds, projectsById])
+  const projectsProviderValue = useMemo(
+    () => ({ projects: projectIds, projectsById }),
+    [projectIds, projectsById]
+  )
 
   return (
     <UserContext.Provider value={{ user: userProviderValue, setUser }}>

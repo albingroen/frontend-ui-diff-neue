@@ -17,9 +17,9 @@ const Form = styled.form`
 `
 
 export interface IEmailFormValues {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 const EmailForm: React.FC = () => {
@@ -42,7 +42,8 @@ const EmailForm: React.FC = () => {
         variant="large"
         my={2}
         placeholder={intl.formatMessage(messages.placeholderEmail)}
-        {...email('email')} required
+        {...email('email')}
+        required
       />
       <TextInput
         variant="large"
@@ -53,7 +54,9 @@ const EmailForm: React.FC = () => {
       />
 
       {error && (
-        <Text color="red.5" my={2}>{errorMessages[error]}</Text>
+        <Text color="red.5" my={2}>
+          {errorMessages[error]}
+        </Text>
       )}
 
       <Box my={2}>
@@ -63,7 +66,8 @@ const EmailForm: React.FC = () => {
       </Box>
 
       <ButtonPrimary type="submit" variant="large" mt={2}>
-        <ButtonIcon icon={faSignInAlt} /> <FormattedMessage {...messages.ctaLogin} />
+        <ButtonIcon icon={faSignInAlt} />{' '}
+        <FormattedMessage {...messages.ctaLogin} />
       </ButtonPrimary>
     </Form>
   )

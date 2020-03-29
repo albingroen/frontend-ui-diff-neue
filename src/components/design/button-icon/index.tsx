@@ -11,7 +11,7 @@ const Icon = styled.div`
 `
 
 interface IButtonIconProps {
-  icon: IconProp
+  icon: IconProp;
 }
 
 export const ButtonIcon: React.FC<IButtonIconProps> = ({ icon }) => {

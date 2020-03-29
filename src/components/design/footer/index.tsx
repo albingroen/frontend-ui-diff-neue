@@ -4,7 +4,7 @@ import { IFooterList, IFooterListItem, IFooterProps } from './types'
 import { Flex, Text } from '@primer/components'
 
 const FooterWrapper = styled.footer`
-  background-color: ${props => props?.theme?.colors?.black};
+  background-color: ${(props) => props?.theme?.colors?.black};
 `
 
 const FooterContent = styled.div`
@@ -21,7 +21,8 @@ const FooterList = styled.ul`
 const FooterListItem = styled.a`
   color: white;
   list-style-type: none;
-  padding: ${(props) => `${props?.theme?.space[3]}px ${props?.theme?.space[2]}px`};
+  padding: ${(props) =>
+    `${props?.theme?.space[3]}px ${props?.theme?.space[2]}px`};
   opacity: 0.5;
   cursor: pointer;
 
@@ -52,7 +53,9 @@ export const Footer: React.FC<IFooterProps> = ({ lists }) => (
       ))}
 
       <Flex py={2}>
-        <Text color="white" opacity={0.5}>© 2020 ui-diff</Text>
+        <Text color="white" opacity={0.5}>
+          © 2020 ui-diff
+        </Text>
       </Flex>
     </FooterContent>
   </FooterWrapper>

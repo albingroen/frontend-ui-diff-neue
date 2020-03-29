@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { BorderBox, Text, Flex, Heading, ButtonPrimary } from '@primer/components'
+import {
+  BorderBox,
+  Text,
+  Flex,
+  Heading,
+  ButtonPrimary
+} from '@primer/components'
 import { defineMessages, FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 

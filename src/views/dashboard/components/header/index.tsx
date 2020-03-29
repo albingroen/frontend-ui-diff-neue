@@ -10,13 +10,14 @@ const messages = defineMessages({
     id: 'dashboard.header.heading'
   },
   lede: {
-    defaultMessage: 'Welcome back to ui-diff. Start by creating a project to get started.',
+    defaultMessage:
+      'Welcome back to ui-diff. Start by creating a project to get started.',
     id: 'dashboard.header.lede'
   }
 })
 
 interface IHeaderProps {
-  user: IUser
+  user: IUser;
 }
 
 const Header: React.FC<IHeaderProps> = ({ user }) => (

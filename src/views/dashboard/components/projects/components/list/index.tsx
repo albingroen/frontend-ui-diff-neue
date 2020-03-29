@@ -4,7 +4,7 @@ import { Grid } from '@primer/components'
 import Project from '../project'
 
 interface IListProps {
-  projects: IProject[]
+  projects: IProject[];
 }
 
 const List: React.FC<IListProps> = ({ projects }) => (

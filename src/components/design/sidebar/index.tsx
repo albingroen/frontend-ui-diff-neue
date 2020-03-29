@@ -13,7 +13,7 @@ const SidebarWrapper = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding-bottom: ${props => props?.theme?.space[2]}px;
+  padding-bottom: ${(props) => props?.theme?.space[2]}px;
   max-width: 80px;
   position: relative;
   height: 100vh;
@@ -42,7 +42,7 @@ const LogoutButton = styled.div`
   cursor: pointer;
   transition: ${styles.transition};
   &:hover {
-    color: ${props => props?.theme?.colors?.red[6]};
+    color: ${(props) => props?.theme?.colors?.red[6]};
     transition: ${styles.transition};
   }
 `
@@ -50,18 +50,19 @@ const LogoutButton = styled.div`
 export const Sidebar: React.FC<ISidebarProps> = ({ items }) => {
   return (
     <SidebarWrapper>
-      <Link to="/" style={{
-        width: '100%',
-        marginBottom: '1rem'
-      }}>
+      <Link
+        to="/"
+        style={{
+          width: '100%',
+          marginBottom: '1rem'
+        }}
+      >
         <LogoWrapper>
           <h4>U</h4>
         </LogoWrapper>
       </Link>
       {items.map((item: ISideBarItem) => (
-        <React.Fragment key={item.key}>
-          {item.node}
-        </React.Fragment>
+        <React.Fragment key={item.key}>{item.node}</React.Fragment>
       ))}
 
       <LogoutButton onClick={() => logout()}>

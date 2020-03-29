@@ -4,8 +4,8 @@ import { Card } from '../../../../../../components'
 import { Link } from 'react-router-dom'
 
 interface IHeaderProps {
-  onSearch: (value: string) => void
-  search?: string
+  onSearch: (value: string) => void;
+  search?: string;
 }
 
 const Header: React.FC<IHeaderProps> = ({ search, onSearch }) => (
@@ -13,7 +13,7 @@ const Header: React.FC<IHeaderProps> = ({ search, onSearch }) => (
     <Flex alignItems="stretch" justifyContent="space-between">
       <TextInput
         value={search}
-        onChange={e => onSearch(e.target.value)}
+        onChange={(e) => onSearch(e.target.value)}
         placeholder="Search projects"
       />
 

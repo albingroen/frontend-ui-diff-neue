@@ -25,9 +25,7 @@ const Project: React.FC<IProject> = (project) => (
       <Flex justifyContent="space-between" alignItems="center" mb={1}>
         <Heading fontSize={2}>
           <FontAwesomeIcon icon={faImages} />
-          <span style={{ marginLeft: '0.75rem' }}>
-            {project?.name}
-          </span>
+          <span style={{ marginLeft: '0.75rem' }}>{project?.name}</span>
         </Heading>
         <Label dropshadow variant="large" outline>
           <FormattedMessage

@@ -13,8 +13,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props?.theme?.colors?.black};
-  color: ${props => props?.theme?.colors?.white};
+  background-color: ${(props) => props?.theme?.colors?.black};
+  color: ${(props) => props?.theme?.colors?.white};
 `
 
 export const EmailConfirmation = (props: RouteComponentProps) => {
@@ -39,40 +39,27 @@ export const EmailConfirmation = (props: RouteComponentProps) => {
 
   return isSuccess ? (
     <Container>
-      <Heading mt={2}>
-        Your email has now been confirmed
-      </Heading>
+      <Heading mt={2}>Your email has now been confirmed</Heading>
       <Text mt={2}>
         Your email has now been confirmed and your account can now be used!
       </Text>
-      <ButtonPrimary
-        variant="large"
-        my={4}
-        onClick={() => login()}
-      >
-          Log in now
+      <ButtonPrimary variant="large" my={4} onClick={() => login()}>
+        Log in now
       </ButtonPrimary>
     </Container>
-  ) : (
-    isError ? (
-      <Container>
-        <Heading mt={2} color="red.3">
-          This link is not valid anymore
-        </Heading>
-        <Text mt={2}>
-          For some reason this link is not valid anymore,
-        </Text>
-        <Link to="/">
-          <Button
-            variant="large"
-            my={4}
-          >
+  ) : isError ? (
+    <Container>
+      <Heading mt={2} color="red.3">
+        This link is not valid anymore
+      </Heading>
+      <Text mt={2}>For some reason this link is not valid anymore,</Text>
+      <Link to="/">
+        <Button variant="large" my={4}>
           Go to home
-          </Button>
-        </Link>
-      </Container>
-    ) : (
-      <Loading />
-    )
+        </Button>
+      </Link>
+    </Container>
+  ) : (
+    <Loading />
   )
 }

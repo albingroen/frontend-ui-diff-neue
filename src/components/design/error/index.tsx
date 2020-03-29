@@ -27,7 +27,7 @@ const ErrorContainer = styled.div`
 `
 
 interface IErrorProps {
-  error: string
+  error: string;
 }
 
 export const Error: React.FC<IErrorProps> = ({ error }) => (

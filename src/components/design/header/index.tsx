@@ -34,11 +34,11 @@ export const Header: React.FC<IHeaderProps> = ({ lists }) => (
   <HeaderRoot>
     <HeaderListWrapper>
       {lists &&
-          lists.map((list: IHeaderList) => (
-            <HeaderList key={list.key}>
-              {list.items?.map((listItem: IHeaderListItem) => listItem.node)}
-            </HeaderList>
-          ))}
+        lists.map((list: IHeaderList) => (
+          <HeaderList key={list.key}>
+            {list.items?.map((listItem: IHeaderListItem) => listItem.node)}
+          </HeaderList>
+        ))}
     </HeaderListWrapper>
   </HeaderRoot>
 )

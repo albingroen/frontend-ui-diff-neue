@@ -6,15 +6,14 @@ import Header from './components/header'
 import List from './components/list'
 
 interface IProjectsProps {
-  projects: IProject[]
+  projects: IProject[];
 }
 
 const Projects: React.FC<IProjectsProps> = ({ projects }) => {
   const [search, setSearch] = React.useState<string>()
 
-  const filterProjects = (project: IProject) => (
+  const filterProjects = (project: IProject) =>
     project.name.toLowerCase().includes(search?.toLowerCase() || '')
-  )
 
   return (
     <Box>

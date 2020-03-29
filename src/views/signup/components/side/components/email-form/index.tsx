@@ -16,16 +16,18 @@ const Form = styled.form`
 `
 
 export interface IEmailFormValues {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 const EmailForm: React.FC = () => {
   const intl = useIntl()
   const [submitted, setSubmitted] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string | null>()
-  const [formState, { text, email, password }] = useFormState<IEmailFormValues>()
+  const [formState, { text, email, password }] = useFormState<
+    IEmailFormValues
+  >()
 
   const onSubmit = async (e: any) => {
     e.preventDefault()
@@ -68,11 +70,14 @@ const EmailForm: React.FC = () => {
       />
 
       {error && (
-        <Text color="red.5" my={2}>{errorMessages[error]}</Text>
+        <Text color="red.5" my={2}>
+          {errorMessages[error]}
+        </Text>
       )}
 
       <ButtonPrimary type="submit" variant="large" mt={2}>
-        <ButtonIcon icon={faSignInAlt} /> <FormattedMessage {...messages.ctaSignup} />
+        <ButtonIcon icon={faSignInAlt} />{' '}
+        <FormattedMessage {...messages.ctaSignup} />
       </ButtonPrimary>
     </Form>
   )

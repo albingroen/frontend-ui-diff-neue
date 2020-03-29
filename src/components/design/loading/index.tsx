@@ -11,7 +11,7 @@ const LoadingBoundary = styled.div`
   align-items: center;
   top: 0;
   left: 0;
-  zIndex: 2;
+  zindex: 2;
 `
 
 const Spinner = styled.div`

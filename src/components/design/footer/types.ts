@@ -1,13 +1,13 @@
 export interface IFooterProps {
-  lists: IFooterList[]
+  lists: IFooterList[];
 }
 
 export interface IFooterListItem {
-  text: string
-  link?: string
-  href?: string
+  text: string;
+  link?: string;
+  href?: string;
 }
 
 export interface IFooterList {
-  items: IFooterListItem[]
+  items: IFooterListItem[];
 }

@@ -5,4 +5,4 @@ export default [
   messages.feature2,
   messages.feature3,
   messages.feature4,
-]
+];

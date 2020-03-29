@@ -1,4 +1,4 @@
-export type Header = IHeaderList[]
+export type Header = IHeaderList[];
 
 export interface IHeaderList {
   key: number;

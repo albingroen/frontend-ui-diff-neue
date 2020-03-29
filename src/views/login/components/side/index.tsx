@@ -19,7 +19,7 @@ const Sidebar = styled.div`
 `
 
 interface ISideProps {
-  isEmail?: boolean
+  isEmail?: boolean;
 }
 
 const Side: React.FC<ISideProps> = ({ isEmail }) => {
@@ -40,13 +40,15 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
       </Heading>
 
       <Flex my={2} flexDirection="column">
-        {!isEmail ? loginMethods(history).map((method: LoginMethod) => (
-          <LoginMethodButton
-            onClick={() => method.onClick && method.onClick()}
-            key={method.name.id}
-            method={method}
-          />
-        )) : (
+        {!isEmail ? (
+          loginMethods(history).map((method: LoginMethod) => (
+            <LoginMethodButton
+              onClick={() => method.onClick && method.onClick()}
+              key={method.name.id}
+              method={method}
+            />
+          ))
+        ) : (
           <EmailForm />
         )}
       </Flex>

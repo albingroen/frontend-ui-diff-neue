@@ -4,14 +4,18 @@ import { css } from 'glamor'
 import styles from '../../../lib/styles'
 
 interface ICardProps {
-  children: React.ReactNode
-  clickable?: boolean
-  bordered?: boolean
-  shadowed?: boolean
+  children: React.ReactNode;
+  clickable?: boolean;
+  bordered?: boolean;
+  shadowed?: boolean;
 }
 
 export const Card: React.FC<ICardProps> = ({
-  children, clickable, bordered, shadowed, ...rest
+  children,
+  clickable,
+  bordered,
+  shadowed,
+  ...rest
 }) => {
   const Component = bordered ? BorderBox : Box
 
@@ -19,7 +23,7 @@ export const Card: React.FC<ICardProps> = ({
     <Component
       p={3}
       bg="white"
-      {...(css({
+      {...css({
         transition: styles.transition,
         boxShadow: shadowed && styles.boxShadow,
         borderRadius: styles.borderRadius,
@@ -33,7 +37,7 @@ export const Card: React.FC<ICardProps> = ({
           background: '#f5f0f0',
           transition: styles.transition
         }
-      }))}
+      })}
       {...rest}
     >
       {children}

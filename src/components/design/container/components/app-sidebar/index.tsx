@@ -6,7 +6,5 @@ import getSidebarItems from './sidebar-items'
 export const AppSidebar = () => {
   const location = useLocation()
 
-  return (
-    <Sidebar items={getSidebarItems(location)} />
-  )
+  return <Sidebar items={getSidebarItems(location)} />
 }
