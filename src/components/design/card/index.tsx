@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Box, BorderBox } from '@primer/components'
-import { css } from 'glamor'
-import styles from '../../../lib/styles'
+import { Box } from '@primer/components'
+import styled, { css } from 'styled-components'
 
 interface ICardProps {
   children: React.ReactNode;
@@ -10,37 +9,44 @@ interface ICardProps {
   shadowed?: boolean;
 }
 
+const StyledBox = styled(Box)`
+  transition: ${props => props?.theme?.transitions?.default};
+  border-radius: ${props => props?.theme?.radii[2]};
+
+  ${(props: ICardProps) => props?.shadowed && css`
+    box-shadow: ${(tprops: any) => tprops?.theme?.shadows?.small};
+  `}
+
+  ${(props: ICardProps) => props?.clickable && css`
+    &:hover {
+      background: #f9f9f9;
+      transition: ${(tprops: any) => tprops?.theme.transitions?.default};
+    }
+
+    &:active {
+      background: #f5f0f0;
+      transition: ${(tprops: any) => tprops?.theme?.transitions?.default};
+    }
+  `}
+`
+
 export const Card: React.FC<ICardProps> = ({
   children,
   clickable,
-  bordered,
   shadowed,
   ...rest
 }) => {
-  const Component = bordered ? BorderBox : Box
-
   return (
-    <Component
+    <StyledBox
+      clickable={clickable}
+      shadowed={shadowed}
       p={3}
       bg="white"
       {...css({
-        transition: styles.transition,
-        boxShadow: shadowed && styles.boxShadow,
-        borderRadius: styles.borderRadius,
-
-        '&:hover': clickable && {
-          background: '#f9f9f9',
-          transition: styles.transition
-        },
-
-        '&:active': clickable && {
-          background: '#f5f0f0',
-          transition: styles.transition
-        }
       })}
       {...rest}
     >
       {children}
-    </Component>
+    </StyledBox>
   )
 }

@@ -5,7 +5,6 @@ import { ISidebarProps, ISideBarItem } from './types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { logout } from '../../../lib/auth'
-import styles from '../../../lib/styles'
 
 const SidebarWrapper = styled.div`
   background-color: #eef0f2;
@@ -40,10 +39,10 @@ const LogoutButton = styled.div`
   opacity: 0.35;
   text-align: center;
   cursor: pointer;
-  transition: ${styles.transition};
+  transition: ${props => props?.theme?.transitions?.default};
   &:hover {
     color: ${(props) => props?.theme?.colors?.red[6]};
-    transition: ${styles.transition};
+    transition: ${props => props?.theme?.transitions?.default};
     opacity: 1;
   }
 `
