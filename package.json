@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --ignore-pattern '/build/*'",
     "lint:fix": "yarn lint --fix"
   },
   "eslintConfig": {
