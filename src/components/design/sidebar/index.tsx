@@ -5,6 +5,7 @@ import { ISidebarProps, ISideBarItem } from './types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { logout } from '../../../lib/auth'
+import { Tooltip } from '@primer/components'
 
 const SidebarWrapper = styled.div`
   background-color: #eef0f2;
@@ -39,10 +40,10 @@ const LogoutButton = styled.div`
   opacity: 0.35;
   text-align: center;
   cursor: pointer;
-  transition: ${props => props?.theme?.transitions?.default};
+  transition: ${(props) => props?.theme?.transitions?.default};
   &:hover {
     color: ${(props) => props?.theme?.colors?.red[6]};
-    transition: ${props => props?.theme?.transitions?.default};
+    transition: ${(props) => props?.theme?.transitions?.default};
     opacity: 1;
   }
 `
@@ -66,7 +67,9 @@ export const Sidebar: React.FC<ISidebarProps> = ({ items }) => {
       ))}
 
       <LogoutButton onClick={() => logout()}>
-        <FontAwesomeIcon icon={faPowerOff} />
+        <Tooltip aria-label="Log out">
+          <FontAwesomeIcon icon={faPowerOff} />
+        </Tooltip>
       </LogoutButton>
     </SidebarWrapper>
   )

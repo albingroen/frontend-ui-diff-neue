@@ -9,6 +9,26 @@ import {
   faImages
 } from '@fortawesome/free-solid-svg-icons'
 import styled, { css } from 'styled-components'
+import { IntlShape, defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  tooltipDashboard: {
+    defaultMessage: 'Dashboard',
+    id: 'component.container.component.app-sidebar.tooltips.dashboard'
+  },
+  tooltipStatistics: {
+    defaultMessage: 'Statistics',
+    id: 'component.container.component.app-sidebar.tooltips.statistics'
+  },
+  tooltipTeams: {
+    defaultMessage: 'Teams',
+    id: 'component.container.component.app-sidebar.tooltips.teams'
+  },
+  tooltipAllImages: {
+    defaultMessage: 'All images',
+    id: 'component.container.component.app-sidebar.tooltips.all-images'
+  }
+})
 
 interface IItemProps {
   active?: boolean;
@@ -40,13 +60,16 @@ const tooltipStyle = {
   padding: '0 0.75rem'
 }
 
-const getSidebarItems = (location: { pathname: string }) => {
+const getSidebarItems = (intl: IntlShape, location: { pathname: string }) => {
   const { pathname } = location
 
   return [
     {
       node: (
-        <Tooltip style={tooltipStyle} aria-label="Dashboard">
+        <Tooltip
+          style={tooltipStyle}
+          aria-label={intl.formatMessage(messages.tooltipDashboard)}
+        >
           <Link to="/">
             <Item active={pathname === '/'}>
               <FontAwesomeIcon icon={faTachometerAlt} />
@@ -58,7 +81,10 @@ const getSidebarItems = (location: { pathname: string }) => {
     },
     {
       node: (
-        <Tooltip style={tooltipStyle} aria-label="Statistics">
+        <Tooltip
+          style={tooltipStyle}
+          aria-label={intl.formatMessage(messages.tooltipStatistics)}
+        >
           <Link to="/statistics">
             <Item active={pathname === '/statistics'}>
               <FontAwesomeIcon icon={faChartBar} />
@@ -70,7 +96,10 @@ const getSidebarItems = (location: { pathname: string }) => {
     },
     {
       node: (
-        <Tooltip style={tooltipStyle} aria-label="Teams">
+        <Tooltip
+          style={tooltipStyle}
+          aria-label={intl.formatMessage(messages.tooltipTeams)}
+        >
           <Link to="/teams">
             <Item active={pathname === '/teams'}>
               <FontAwesomeIcon icon={faUserFriends} />
@@ -82,7 +111,10 @@ const getSidebarItems = (location: { pathname: string }) => {
     },
     {
       node: (
-        <Tooltip style={tooltipStyle} aria-label="All images">
+        <Tooltip
+          style={tooltipStyle}
+          aria-label={intl.formatMessage(messages.tooltipAllImages)}
+        >
           <Link to="/images">
             <Item active={pathname === '/images'}>
               <FontAwesomeIcon icon={faImages} />
