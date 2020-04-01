@@ -1,22 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react'
+import { getProjects, getProjectsById, getProjectIds } from './lib/projects'
 import { UserContext, initialUser } from './context/userContext'
 import { ProjectsContext } from './context/projectsContext'
 import { loggedIn, logout } from './lib/auth'
 import { IUser, IProject } from './types'
-import { request } from './lib'
 import Routes from './components/functional/routes'
-
-const getProjectsById = (projects?: IProject[]) => {
-  const projectsById: { [key: string]: IProject } = {}
-
-  if (projects) {
-    projects.forEach((project: IProject) => {
-      projectsById[project._id] = project
-    })
-  }
-
-  return projectsById
-}
+import { getUser } from './lib/user'
 
 const initialLoadingState = {
   user: false,
@@ -29,8 +18,7 @@ const App: React.FC = () => {
   const [projects, setProjects] = useState<IProject[]>()
   const [loading, setLoading] = useState(initialLoadingState)
 
-  const projectIds: string[] =
-    projects?.map((project: IProject) => project._id) || []
+  const projectIds = getProjectIds(projects)
   const projectsById = getProjectsById(projects)
 
   useEffect(() => {
@@ -41,15 +29,15 @@ const App: React.FC = () => {
 
         try {
           // Fetch current user if authed
-          const res = await request.get('/users')
-          setUser(res.data.user)
+          const newUser = await getUser()
+          setUser(newUser)
 
           // Disable user loading state
           setLoading({ user: false, projects: true })
 
           // Fetch and set projects belonging to user
-          const projectsRes = await request.get('/projects')
-          setProjects(projectsRes.data.projects)
+          const newProjects = await getProjects()
+          setProjects(newProjects)
 
           // Disable projects loading state
           setLoading(initialLoadingState)
