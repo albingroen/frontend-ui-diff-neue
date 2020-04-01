@@ -12,8 +12,8 @@ export const initialUser: IUser = {
 }
 
 export type IUserContext = {
-  user: IUser
-  setUser: (newUser: IUser) => void
+  user: IUser;
+  setUser: (newUser: IUser) => void;
 };
 
 export const UserContext = createContext<IUserContext>({

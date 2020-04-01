@@ -56,32 +56,28 @@ export default defineMessages({
     id: 'signup.feature4'
   },
   ctaSignup: {
-    defaultMessage:
-      'Sign up',
+    defaultMessage: 'Sign up',
     id: 'signup.cta'
   },
   placeholderName: {
-    defaultMessage:
-      'Namn',
+    defaultMessage: 'Namn',
     id: 'signup.placeholders.name'
   },
   placeholderEmail: {
-    defaultMessage:
-      'Email *',
+    defaultMessage: 'Email *',
     id: 'signup.placeholders.email'
   },
   placeholderPassword: {
-    defaultMessage:
-      'Password *',
+    defaultMessage: 'Password *',
     id: 'signup.placeholders.password'
   },
   confirmation: {
-    defaultMessage: 'A confirmation email with a link to verify your account has been sent to the entered email.',
+    defaultMessage:
+      'A confirmation email with a link to verify your account has been sent to the entered email.',
     id: 'signup.confirmation'
   },
   alreadyHaveAccount: {
-    defaultMessage:
-      'Already have an account? Log in here',
+    defaultMessage: 'Already have an account? Log in here',
     id: 'signup.already-have-account'
   }
 })

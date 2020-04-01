@@ -1,4 +1,4 @@
-export type AppNavigation = AppNavigationList[]
+export type AppNavigation = AppNavigationList[];
 
 export interface AppNavigationList {
   key: number;

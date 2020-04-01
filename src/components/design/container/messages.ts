@@ -20,5 +20,5 @@ export default defineMessages({
   footerItemTerms: {
     defaultMessage: 'Terms',
     id: 'components.design.container.footer.lists.items.terms'
-  },
+  }
 })

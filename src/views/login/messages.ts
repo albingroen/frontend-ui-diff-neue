@@ -56,33 +56,27 @@ export default defineMessages({
     id: 'login.feature4'
   },
   ctaLogin: {
-    defaultMessage:
-      'Log in',
+    defaultMessage: 'Log in',
     id: 'login.cta'
   },
   placeholderName: {
-    defaultMessage:
-      'Namn',
+    defaultMessage: 'Namn',
     id: 'login.placeholders.name'
   },
   placeholderEmail: {
-    defaultMessage:
-      'Email *',
+    defaultMessage: 'Email *',
     id: 'login.placeholders.email'
   },
   placeholderPassword: {
-    defaultMessage:
-      'Password *',
+    defaultMessage: 'Password *',
     id: 'login.placeholders.password'
   },
   forgotPassword: {
-    defaultMessage:
-      'Forgot your password?',
+    defaultMessage: 'Forgot your password?',
     id: 'login.forgot-password'
   },
   noAccount: {
-    defaultMessage:
-      'No account? Sign up here',
+    defaultMessage: 'No account? Sign up here',
     id: 'login.no-account'
   }
 })

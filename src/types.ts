@@ -16,11 +16,33 @@ export interface IUser {
   updatedAt: string;
 }
 
-export type QueryString = string | string[] | null | undefined
+export type QueryString = string | string[] | null | undefined;
 
 export interface IPasswordReset {
-  _user: string
-  validThru: Date
-  createdAt: Date
-  updatedAt: Date
+  _user: string;
+  validThru: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IImage {
+  _id: string;
+  diff: boolean;
+  default: string;
+  small: string;
+  large: string;
+  publicId: string;
+  name: string;
+  env: string;
+}
+
+export interface IProject {
+  _id: string;
+  name: string;
+  _createdBy: string;
+  apiKey: string;
+  createdAt: Date;
+  updatedAt: Date;
+  images?: IImage[];
+  _team?: string;
 }

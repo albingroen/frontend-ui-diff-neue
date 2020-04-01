@@ -11,8 +11,7 @@ export default defineMessages({
     id: 'reset-password.lede'
   },
   subHeading: {
-    defaultMessage:
-      'Choose a new password',
+    defaultMessage: 'Choose a new password',
     id: 'reset-password.sub-heading'
   },
   feature1: {

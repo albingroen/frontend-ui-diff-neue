@@ -12,7 +12,12 @@ export const Auth: React.FC = () => {
   const [error, setError] = React.useState<Error | null>()
 
   React.useEffect(() => {
-    if (method && code && typeof method === 'string' && typeof code === 'string') {
+    if (
+      method &&
+      code &&
+      typeof method === 'string' &&
+      typeof code === 'string'
+    ) {
       (async () => {
         const res = await auth.social.signup(method, code)
 
@@ -30,9 +35,7 @@ export const Auth: React.FC = () => {
   return (
     <>
       <Loading />
-      {error && (
-        <Error error={error.message} />
-      )}
+      {error && <Error error={error.message} />}
     </>
   )
 }

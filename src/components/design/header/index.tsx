@@ -12,6 +12,7 @@ const HeaderListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 70px;
+  max-width: 1200px;
 `
 
 const HeaderList = styled.ul`
@@ -33,11 +34,11 @@ export const Header: React.FC<IHeaderProps> = ({ lists }) => (
   <HeaderRoot>
     <HeaderListWrapper>
       {lists &&
-          lists.map((list: IHeaderList) => (
-            <HeaderList key={list.key}>
-              {list.items?.map((listItem: IHeaderListItem) => listItem.node)}
-            </HeaderList>
-          ))}
+        lists.map((list: IHeaderList) => (
+          <HeaderList key={list.key}>
+            {list.items?.map((listItem: IHeaderListItem) => listItem.node)}
+          </HeaderList>
+        ))}
     </HeaderListWrapper>
   </HeaderRoot>
 )

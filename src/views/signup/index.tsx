@@ -17,7 +17,12 @@ export const Signup: React.FC = () => {
   const { code, method } = queryString.parse(window.location.search)
 
   React.useEffect(() => {
-    if (method && code && typeof method === 'string' && typeof code === 'string') {
+    if (
+      method &&
+      code &&
+      typeof method === 'string' &&
+      typeof code === 'string'
+    ) {
       (async () => {
         await auth.social.signup(method, code)
       })()

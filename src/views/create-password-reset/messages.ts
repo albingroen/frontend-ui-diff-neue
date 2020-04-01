@@ -11,8 +11,7 @@ export default defineMessages({
     id: 'reset-password.lede'
   },
   subHeading: {
-    defaultMessage:
-      'Enter your email',
+    defaultMessage: 'Enter your email',
     id: 'reset-password.sub-heading'
   },
   feature1: {
@@ -48,7 +47,8 @@ export default defineMessages({
     id: 'reset-password.labels.your-email'
   },
   confirmation: {
-    defaultMessage: 'You have now submitted a request to reset your password. If we found the email you entered in our systems, you will receive a email shortly, describing how to reset your password.',
+    defaultMessage:
+      'You have now submitted a request to reset your password. If we found the email you entered in our systems, you will receive a email shortly, describing how to reset your password.',
     id: 'reset-password.confirmation'
   }
 })

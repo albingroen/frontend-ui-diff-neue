@@ -17,7 +17,12 @@ export const Login: React.FC = () => {
   const { setUser } = React.useContext(UserContext)
 
   React.useEffect(() => {
-    if (method && code && typeof method === 'string' && typeof code === 'string') {
+    if (
+      method &&
+      code &&
+      typeof method === 'string' &&
+      typeof code === 'string'
+    ) {
       (async () => {
         await auth.social.signup(method, code)
       })()

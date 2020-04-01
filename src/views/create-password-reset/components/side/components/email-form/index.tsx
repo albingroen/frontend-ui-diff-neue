@@ -16,7 +16,7 @@ const Form = styled.form`
 `
 
 export interface IEmailFormValues {
-  email: string
+  email: string;
 }
 
 const EmailForm: React.FC = () => {
@@ -57,16 +57,18 @@ const EmailForm: React.FC = () => {
     </BorderBox>
   ) : (
     <Form onSubmit={onSubmit}>
-
       <TextInput
         variant="large"
         my={2}
         placeholder={intl.formatMessage(messages.placeholderEmail)}
-        {...email('email')} required
+        {...email('email')}
+        required
       />
 
       {error && (
-        <Text color="red.5" my={2}>{errorMessages[error]}</Text>
+        <Text color="red.5" my={2}>
+          {errorMessages[error]}
+        </Text>
       )}
 
       <ButtonPrimary type="submit" variant="large" mt={2}>

@@ -1,6 +1,12 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
-import { TextInput, ButtonPrimary, Text, Button, Flex } from '@primer/components'
+import {
+  TextInput,
+  ButtonPrimary,
+  Text,
+  Button,
+  Flex
+} from '@primer/components'
 import styled from 'styled-components'
 import auth from '../../../../../../lib/auth'
 import { errorMessages, request } from '../../../../../../lib'
@@ -17,12 +23,12 @@ const Form = styled.form`
 `
 
 export interface IEmailFormValues {
-  newPassword: string
-  confirmedPassword: string
+  newPassword: string;
+  confirmedPassword: string;
 }
 
 interface IEmailFormProps {
-  passwordResetId: string
+  passwordResetId: string;
 }
 
 const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
@@ -40,10 +46,9 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
   const [formState, { password }] = useFormState<IEmailFormValues>()
 
   React.useEffect(() => {
-    request.get(`/auth/email/reset/${passwordResetId}`)
-      .catch(() => {
-        setFetchError('link-expired')
-      })
+    request.get(`/auth/email/reset/${passwordResetId}`).catch(() => {
+      setFetchError('link-expired')
+    })
 
     setFetchIsLoading(false)
   }, [passwordResetId])
@@ -60,7 +65,10 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
       return setPostError('passwords-not-matching')
     }
 
-    const res = await auth.email.resetPassword({ ...formState.values, passwordResetId })
+    const res = await auth.email.resetPassword({
+      ...formState.values,
+      passwordResetId
+    })
 
     if (res instanceof Error) {
       setPostIsLoading(false)
@@ -77,9 +85,13 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
     <Loading />
   ) : fetchError ? (
     <Flex flexDirection="column">
-      <Text my={2} color="red.5">{errorMessages[fetchError]}</Text>
+      <Text my={2} color="red.5">
+        {errorMessages[fetchError]}
+      </Text>
       <Link to="/reset-password">
-        <Button style={{ width: '100%' }} variant="large">Requst a new link</Button>
+        <Button style={{ width: '100%' }} variant="large">
+          Requst a new link
+        </Button>
       </Link>
     </Flex>
   ) : (
@@ -88,7 +100,8 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
         variant="large"
         my={2}
         placeholder={intl.formatMessage(messages.placeholderNewPassword)}
-        {...password('newPassword')} required
+        {...password('newPassword')}
+        required
       />
       <TextInput
         variant="large"
@@ -99,7 +112,9 @@ const EmailForm: React.FC<IEmailFormProps> = ({ passwordResetId }) => {
       />
 
       {postError && (
-        <Text color="red.5" my={2}>{errorMessages[postError]}</Text>
+        <Text color="red.5" my={2}>
+          {errorMessages[postError]}
+        </Text>
       )}
 
       <ButtonPrimary type="submit" variant="large" mt={2}>

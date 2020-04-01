@@ -16,6 +16,9 @@ const theme = {
     condensedUltra: 1,
     condensed: 1.2,
     default: 1.5
+  },
+  transitions: {
+    default: '0.15s ease-in-out 0s'
   }
 }
 
