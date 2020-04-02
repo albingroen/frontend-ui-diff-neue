@@ -7,7 +7,8 @@ import {
   EmailConfirmation,
   Dashboard,
   ResetPassword,
-  CreatePasswordReset
+  CreatePasswordReset,
+  NewProject
 } from '../../views'
 import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
@@ -50,13 +51,7 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
 
           {/* Private routes */}
           <PrivateRoute path="/members" component={Dashboard} exact />
-
-          {/* Catch-all route */}
-          <Route
-            path="*"
-            component={() => <Redirect to={loggedIn ? '/' : '/login'} />}
-            exact
-          />
+          <PrivateRoute path="/new-project" component={NewProject} exact />
         </Container>
       </Switch>
     </BrowserRouter>
