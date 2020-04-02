@@ -14,6 +14,7 @@ export interface IUser {
   socialId: string;
   createdAt: string;
   updatedAt: string;
+  teams?: ITeam[]
 }
 
 export type QueryString = string | string[] | null | undefined;
@@ -45,4 +46,18 @@ export interface IProject {
   updatedAt: Date;
   images?: IImage[];
   _team?: string;
+}
+
+export interface ITeamMember {
+  _id: string
+  _member: string
+  role: string
+}
+
+export interface ITeam {
+  _id: string;
+  name: string;
+  members: ITeamMember[];
+  createdAt: Date
+  updatedAt: Date
 }
