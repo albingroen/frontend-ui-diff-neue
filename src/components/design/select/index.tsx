@@ -12,28 +12,35 @@ interface ISelectProps {
   value?: string
   title: string
   ariaLabel: string
-  onChange: (value: string) => void
+  onChange: (value?: string) => void
 }
 
 export const Select: React.FC<ISelectProps> = ({ title, value, ariaLabel, options, onChange }) => (
   <Dropdown
-    value={value}
+    value={value || ''}
     style={{ minWidth: '125px' }}
     aria-label={ariaLabel}
     title={title}
     key={value}
   >
-    <Dropdown.Menu direction="sw" >
-      {options.map((option: IOption) => (
-        <Dropdown.Item
-          key={option.key}
-          value={option.value}
-          style={{ cursor: 'pointer' }}
-          onClick={() => onChange(option.value)}
-        >
-          {option.text}
-        </Dropdown.Item>
-      ))}
+    <Dropdown.Menu direction="sw">
+      {options.map((option: IOption) => {
+        const isChosen = option.value === value
+
+        return (
+          <Dropdown.Item
+            p={1}
+            key={option.key}
+            value={option.value}
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              onChange(isChosen ? undefined : option.value)
+            }}
+          >
+            {option.text}
+          </Dropdown.Item>
+        )
+      })}
     </Dropdown.Menu>
   </Dropdown>
 )

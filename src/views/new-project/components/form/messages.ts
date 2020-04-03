@@ -18,5 +18,15 @@ export default defineMessages({
   projectNamePlaceholder: {
     defaultMessage: 'Project name',
     id: 'new-project.sections.project-name.placeholder'
+  },
+
+  cta: {
+    defaultMessage: 'Create proejct',
+    id: 'new-project.cta'
+  },
+
+  ctaLoading: {
+    defaultMessage: 'Creating project...',
+    id: 'new-project.cta-loading'
   }
 })
