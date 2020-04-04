@@ -14,7 +14,9 @@ const Form = () => {
   const teamsAndUserById = getTeamsAndUserById(user, teamsById)
 
   // State
-  const [chosenTeam, setChosenTeam] = React.useState<string | undefined>(user._id)
+  const [chosenTeam, setChosenTeam] = React.useState<string | undefined>(
+    user._id
+  )
   const [name, setName] = React.useState<string>()
 
   // On submit
@@ -41,10 +43,8 @@ const Form = () => {
           <TextInput
             ml={3}
             value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder={
-              intl.formatMessage(messages.projectNamePlaceholder)
-            }
+            onChange={(e) => setName(e.target.value)}
+            placeholder={intl.formatMessage(messages.projectNamePlaceholder)}
           />
         </Flex>
       </Section>

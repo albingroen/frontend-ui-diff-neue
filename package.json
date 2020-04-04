@@ -31,7 +31,8 @@
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --ignore-pattern '/build/*'",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn format && yarn lint --fix",
+    "format": "prettier --write ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,7 +71,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.3"
+    "husky": "^4.2.3",
+    "prettier": "^2.0.2"
   },
   "husky": {
     "hooks": {

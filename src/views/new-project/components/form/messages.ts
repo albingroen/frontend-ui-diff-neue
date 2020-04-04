@@ -6,7 +6,8 @@ export default defineMessages({
     id: 'new-project.sections.owner-name-title'
   },
   ownerNameLede: {
-    defaultMessage: 'Choose wether this project belongs to a team, and choose a name.',
+    defaultMessage:
+      'Choose wether this project belongs to a team, and choose a name.',
     id: 'new-project.sections.owner-name-lede'
   },
 

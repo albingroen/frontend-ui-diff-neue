@@ -57,7 +57,10 @@ const App: React.FC = () => {
   }, [user])
 
   const userProviderValue = useMemo(() => user, [user])
-  const teamsProviderValue = useMemo(() => ({ teams: teamIds, teamsById }), [teamIds, teamsById])
+  const teamsProviderValue = useMemo(() => ({ teams: teamIds, teamsById }), [
+    teamIds,
+    teamsById
+  ])
   const projectsProviderValue = useMemo(
     () => ({ projects: projectIds, projectsById }),
     [projectIds, projectsById]

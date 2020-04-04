@@ -4,21 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 interface IOption {
-  text: string
-  value: string
-  key: string | number
+  text: string;
+  value: string;
+  key: string | number;
 }
 
 interface ISelectProps {
-  options: IOption[]
-  value?: string
-  title: string
-  ariaLabel: string
-  onChange: (value?: string) => void
+  options: IOption[];
+  value?: string;
+  title: string;
+  ariaLabel: string;
+  onChange: (value?: string) => void;
 }
 
 export const Select: React.FC<ISelectProps> = ({
-  title, value, ariaLabel, options, onChange
+  title,
+  value,
+  ariaLabel,
+  options,
+  onChange
 }) => (
   <Dropdown
     value={value || ''}

@@ -7,7 +7,7 @@ interface ICardProps {
   clickable?: boolean;
   bordered?: boolean;
   shadowed?: boolean;
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 }
 
 const StyledBox = styled(Box)`
