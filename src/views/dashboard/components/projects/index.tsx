@@ -13,7 +13,7 @@ const Projects: React.FC<IProjectsProps> = ({ projects }) => {
   const [search, setSearch] = React.useState<string>()
 
   const filterProjects = (project: IProject) =>
-    project.name.toLowerCase().includes(search?.toLowerCase() || '')
+    project?.name?.toLowerCase().includes(search?.toLowerCase() || '')
 
   return (
     <Box>

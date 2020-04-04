@@ -1,5 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { getProjects, getProjectsById, getProjectIds } from './lib/projects'
+import {
+  getProjects,
+  getProjectsById,
+  getProjectIds,
+  createProject
+} from './lib/projects'
 import { UserContext, initialUser } from './context/userContext'
 import { TeamsContext } from './context/teamsContext'
 import { ProjectsContext } from './context/projectsContext'
@@ -18,7 +23,7 @@ const initialLoadingState = {
 const App: React.FC = () => {
   const [teams, setTeams] = useState<ITeam[]>()
   const [user, setUser] = useState<IUser>(initialUser)
-  const [projects, setProjects] = useState<IProject[]>()
+  const [projects, setProjects] = useState<IProject[]>([])
   const [loading, setLoading] = useState(initialLoadingState)
 
   const projectIds = getProjectIds(projects)
@@ -61,9 +66,21 @@ const App: React.FC = () => {
     teamIds,
     teamsById
   ])
+
   const projectsProviderValue = useMemo(
-    () => ({ projects: projectIds, projectsById }),
-    [projectIds, projectsById]
+    () => ({
+      projectsById,
+      projects: projectIds,
+      createProject: async (owner: string, name: string) => {
+        const project = await createProject(owner, name)
+
+        if (project) {
+          setProjects([...projects, project])
+          return project
+        }
+      }
+    }),
+    [projectIds, projectsById, projects]
   )
 
   return (
