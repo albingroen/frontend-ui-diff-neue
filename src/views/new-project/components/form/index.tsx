@@ -3,22 +3,18 @@ import { TextInput, Flex, ButtonPrimary } from '@primer/components'
 import { Section, Select } from '../../../../components'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { TeamsContext } from '../../../../context/teamsContext'
-import { ITeam, IUser } from '../../../../types'
 import { UserContext } from '../../../../context/userContext'
+import { getTeamsAndUserById, getDropdownTitle, teamsToOptions } from './lib'
 import messages from './messages'
 
 const Form = () => {
   const intl = useIntl()
   const { user } = React.useContext(UserContext)
   const { teamsById } = React.useContext(TeamsContext)
-
-  const teamsAndUserById = {
-    ...teamsById,
-    [user._id]: user
-  }
+  const teamsAndUserById = getTeamsAndUserById(user, teamsById)
 
   // State
-  const [chosenTeam, setChosenTeam] = React.useState<string | undefined>()
+  const [chosenTeam, setChosenTeam] = React.useState<string | undefined>(user._id)
   const [name, setName] = React.useState<string>()
 
   // On submit
@@ -35,14 +31,8 @@ const Form = () => {
               ariaLabel="owner"
               onChange={(newValue?: string) => setChosenTeam(newValue)}
               value={chosenTeam}
-              title={
-                chosenTeam ? teamsAndUserById[chosenTeam].name : intl.formatMessage(messages.belongsToTitle)
-              }
-              options={
-                Object.values(teamsAndUserById).map((team: ITeam | IUser) => (
-                  { key: team._id, value: team._id, text: team.name }
-                ))
-              }
+              title={getDropdownTitle(teamsAndUserById, intl, chosenTeam)}
+              options={teamsToOptions(teamsAndUserById)}
             />
           </Flex>
 
@@ -57,8 +47,8 @@ const Form = () => {
             }
           />
         </Flex>
-
       </Section>
+
       <ButtonPrimary>
         <FormattedMessage {...messages.cta} />
       </ButtonPrimary>

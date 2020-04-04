@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Dropdown } from '@primer/components'
+import { Dropdown, Flex, Text } from '@primer/components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 interface IOption {
   text: string
@@ -15,7 +17,9 @@ interface ISelectProps {
   onChange: (value?: string) => void
 }
 
-export const Select: React.FC<ISelectProps> = ({ title, value, ariaLabel, options, onChange }) => (
+export const Select: React.FC<ISelectProps> = ({
+  title, value, ariaLabel, options, onChange
+}) => (
   <Dropdown
     value={value || ''}
     style={{ minWidth: '125px' }}
@@ -24,20 +28,30 @@ export const Select: React.FC<ISelectProps> = ({ title, value, ariaLabel, option
     key={value}
   >
     <Dropdown.Menu direction="sw">
-      {options.map((option: IOption) => {
+      {options.map((option: IOption, i: number) => {
         const isChosen = option.value === value
+        const last = options.length - 1
 
         return (
           <Dropdown.Item
-            p={1}
             key={option.key}
             value={option.value}
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              borderBottom: i !== last ? '1px solid #eee' : 'none',
+              padding: '0.65rem',
+              fontSize: '1em'
+            }}
             onClick={() => {
               onChange(isChosen ? undefined : option.value)
             }}
           >
-            {option.text}
+            <Flex pl={isChosen ? 0 : 2} alignItems="center">
+              <Text fontSize={1} mr={1}>
+                {isChosen && <FontAwesomeIcon icon={faCheck} />}
+              </Text>
+              {option.text}
+            </Flex>
           </Dropdown.Item>
         )
       })}

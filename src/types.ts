@@ -61,3 +61,5 @@ export interface ITeam {
   createdAt: Date
   updatedAt: Date
 }
+
+export type TeamsById = {[key: string]: ITeam | IUser}
