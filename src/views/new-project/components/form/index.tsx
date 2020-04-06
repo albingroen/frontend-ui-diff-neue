@@ -33,7 +33,7 @@ function reducer (state: IState, action: Action): IState {
     case 'SUCCESS':
       return { loading: false }
     case 'FAIL':
-      return { loading: false, error: action.payload }
+      return { ...state, loading: false, error: action.payload }
     default:
       return state
   }
@@ -67,6 +67,8 @@ const Form = () => {
       } catch (err) {
         dispatch({ type: 'FAIL', payload: err.message })
       }
+    } else {
+      dispatch({ type: 'FAIL', payload: 'missing-credentials' })
     }
   }
 
@@ -89,6 +91,7 @@ const Form = () => {
           <span>/</span>
 
           <TextInput
+            required
             ml={3}
             value={state.name || ''}
             onChange={(e) =>
@@ -100,7 +103,7 @@ const Form = () => {
       </Section>
 
       {state.error && (
-        <Box my={2}>
+        <Box mb={3}>
           <Text color="red.5">
             {errorMessages[state.error] || errorMessages.network}
           </Text>

@@ -21,16 +21,19 @@ const initialLoadingState = {
 
 // Render routes
 const App: React.FC = () => {
+  // State management
   const [teams, setTeams] = useState<ITeam[]>()
   const [user, setUser] = useState<IUser>(initialUser)
   const [projects, setProjects] = useState<IProject[]>([])
   const [loading, setLoading] = useState(initialLoadingState)
 
+  // Frequently used variables
   const projectIds = getProjectIds(projects)
   const projectsById = getProjectsById(projects)
   const teamIds = getTeamIds(teams)
   const teamsById = getTeamsById(teams)
 
+  // Fetch user and projects on app mount
   useEffect(() => {
     if (loggedIn && !user._id) {
       (async () => {
@@ -61,23 +64,26 @@ const App: React.FC = () => {
     }
   }, [user])
 
+  // Values using memo hooks to only update
+  // when depedency values are changing.
   const userProviderValue = useMemo(() => user, [user])
   const teamsProviderValue = useMemo(() => ({ teams: teamIds, teamsById }), [
     teamIds,
     teamsById
   ])
-
   const projectsProviderValue = useMemo(
     () => ({
       projectsById,
       projects: projectIds,
       createProject: async (owner: string, name: string) => {
+        // Create project
         const project = await createProject(owner, name)
 
-        if (project) {
-          setProjects([...projects, project])
-          return project
-        }
+        // Set projects
+        setProjects([...projects, project])
+
+        // Return project
+        return project
       }
     }),
     [projectIds, projectsById, projects]

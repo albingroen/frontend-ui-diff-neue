@@ -11,10 +11,10 @@ interface IOption {
 
 interface ISelectProps {
   options: IOption[];
-  value?: string;
   title: string;
   ariaLabel: string;
   onChange: (value?: string) => void;
+  value?: string;
 }
 
 export const Select: React.FC<ISelectProps> = ({
