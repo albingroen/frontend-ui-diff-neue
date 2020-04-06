@@ -28,3 +28,8 @@ export const getProjectsById = (projects?: IProject[]) => {
 
   return projectsById
 }
+
+export const createProject = async (owner: string, name: string) => {
+  const res = await request.post('/projects', { name, team: owner })
+  return res.data.project
+}

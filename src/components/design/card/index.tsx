@@ -7,6 +7,7 @@ interface ICardProps {
   clickable?: boolean;
   bordered?: boolean;
   shadowed?: boolean;
+  style?: React.CSSProperties;
 }
 
 const StyledBox = styled(Box)`
@@ -38,7 +39,7 @@ export const Card: React.FC<ICardProps> = ({
   children,
   clickable,
   shadowed,
-  ...rest
+  style
 }) => {
   return (
     <StyledBox
@@ -46,8 +47,7 @@ export const Card: React.FC<ICardProps> = ({
       shadowed={shadowed}
       p={3}
       bg="white"
-      {...css({})}
-      {...rest}
+      style={style}
     >
       {children}
     </StyledBox>
