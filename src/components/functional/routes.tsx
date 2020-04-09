@@ -2,6 +2,7 @@ import * as React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import {
   Auth,
+  Billing,
   Signup,
   Login,
   EmailConfirmation,
@@ -52,6 +53,7 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           {/* Private routes */}
           <PrivateRoute path="/members" component={Dashboard} exact />
           <PrivateRoute path="/new-project" component={NewProject} exact />
+          <PrivateRoute path="/billing" component={Billing} exact />
         </Container>
       </Switch>
     </BrowserRouter>

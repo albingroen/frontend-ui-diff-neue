@@ -6,7 +6,8 @@ import {
   faTachometerAlt,
   faChartBar,
   faUserFriends,
-  faImages
+  faImages,
+  faWallet
 } from '@fortawesome/free-solid-svg-icons'
 import styled, { css } from 'styled-components'
 import { IntlShape, defineMessages } from 'react-intl'
@@ -27,6 +28,10 @@ const messages = defineMessages({
   tooltipAllImages: {
     defaultMessage: 'All images',
     id: 'component.container.component.app-sidebar.tooltips.all-images'
+  },
+  tooltipBilling: {
+    defaultMessage: 'Billing',
+    id: 'component.container.component.app-sidebar.tooltips.billing'
   }
 })
 
@@ -123,6 +128,21 @@ const getSidebarItems = (intl: IntlShape, location: { pathname: string }) => {
         </Tooltip>
       ),
       key: 4
+    },
+    {
+      node: (
+        <Tooltip
+          style={tooltipStyle}
+          aria-label={intl.formatMessage(messages.tooltipBilling)}
+        >
+          <Link to="/billing">
+            <Item active={pathname === '/billing'}>
+              <FontAwesomeIcon icon={faWallet} />
+            </Item>
+          </Link>
+        </Tooltip>
+      ),
+      key: 5
     }
   ]
 }

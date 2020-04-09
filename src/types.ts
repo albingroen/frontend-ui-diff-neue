@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { RouteProps } from 'react-router-dom'
 
 export interface NamedRoute extends RouteProps {
@@ -50,7 +51,7 @@ export interface IProject {
 
 export interface ITeamMember {
   _id: string;
-  _member: string;
+  _user: string;
   role: string;
 }
 
@@ -60,6 +61,29 @@ export interface ITeam {
   members: ITeamMember[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IPlan {
+  id: string;
+  object: string;
+  active: boolean;
+  aggregate_usage: boolean;
+  amount: number;
+  amount_decimal: string;
+  billing_scheme: string;
+  created: number;
+  currency: string;
+  interval: string;
+  interval_count: number;
+  livemode: boolean;
+  metadata: { [key: string]: any };
+  nickname: string;
+  product: string;
+  tiers: unknown;
+  tiers_mode: unknown;
+  transform_usage: unknown;
+  trial_period_days: number;
+  usage_type: string;
 }
 
 export type TeamsById = { [key: string]: ITeam | IUser };

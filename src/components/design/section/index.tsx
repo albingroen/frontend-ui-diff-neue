@@ -20,7 +20,7 @@ export const Section = ({
 
       <hr />
 
-      <Text mt={2}>
+      <Text my={2}>
         <FormattedMessage {...lede} />
       </Text>
     </Flex>

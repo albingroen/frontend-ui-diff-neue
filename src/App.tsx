@@ -67,10 +67,13 @@ const App: React.FC = () => {
   // Values using memo hooks to only update
   // when depedency values are changing.
   const userProviderValue = useMemo(() => user, [user])
-  const teamsProviderValue = useMemo(() => ({ teams: teamIds, teamsById }), [
-    teamIds,
-    teamsById
-  ])
+  const teamsProviderValue = useMemo(
+    () => ({
+      teams: teamIds,
+      teamsById
+    }),
+    [teamIds, teamsById]
+  )
   const projectsProviderValue = useMemo(
     () => ({
       projectsById,
