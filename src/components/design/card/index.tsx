@@ -30,6 +30,8 @@ const StyledBox = styled(Box)`
   ${(props: ICardProps) =>
     props?.clickable &&
     css`
+      cursor: pointer;
+
       &:hover {
         background: #f9f9f9;
         transition: ${(tprops: any) => tprops?.theme.transitions?.default};

@@ -51,7 +51,7 @@ export interface IProject {
 
 export interface ITeamMember {
   _id: string;
-  _user: string;
+  _user: string | IUser;
   role: string;
 }
 
@@ -61,6 +61,7 @@ export interface ITeam {
   members: ITeamMember[];
   createdAt: Date;
   updatedAt: Date;
+  logo: string;
 }
 
 export interface IPlan {
