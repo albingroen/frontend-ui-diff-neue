@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { Heading, Flex, Text, ButtonPrimary, Label } from '@primer/components'
 import { FormattedNumber, defineMessages, FormattedMessage } from 'react-intl'
-import { Card } from '../card'
 import { IPlan } from '../../../types'
-import styled from 'styled-components'
+import { Card } from '../card'
 
 const messages = defineMessages({
   userLimit: {
@@ -29,15 +28,9 @@ interface IPricePlan {
   style?: React.CSSProperties;
 }
 
-const PricePlanCard = styled(Card)`
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-`
-
 export const PricePlan: React.FC<IPricePlan> = ({ plan, style }) => {
   return (
-    <PricePlanCard shadowed style={style} bordered>
+    <Card style={style} bordered>
       <Flex alignItems="flex-start" justifyContent="space-between">
         <Heading lineHeight={0.875} mb={2}>
           {plan?.nickname}
@@ -78,6 +71,6 @@ export const PricePlan: React.FC<IPricePlan> = ({ plan, style }) => {
           {...(plan?.id === 'free' ? messages.ctaFree : messages.cta)}
         />
       </ButtonPrimary>
-    </PricePlanCard>
+    </Card>
   )
 }
