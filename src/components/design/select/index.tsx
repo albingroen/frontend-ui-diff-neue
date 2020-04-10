@@ -42,10 +42,10 @@ export const Select: React.FC<ISelectProps> = ({
             value={option.value}
             style={{
               cursor: 'pointer',
-              borderBottom: i !== last ? '1px solid #eee' : 'none',
-              padding: '0.65rem',
-              fontSize: '1em'
+              borderBottom: i !== last ? '1px solid #eee' : 'none'
             }}
+            p="0.65rem"
+            fontSize="1em"
             onClick={() => {
               onChange(isChosen ? undefined : option.value)
             }}

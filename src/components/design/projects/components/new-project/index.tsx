@@ -12,20 +12,20 @@ import { Link } from 'react-router-dom'
 const messages = defineMessages({
   heading: {
     defaultMessage: 'Time to start a new project?',
-    id: 'dashboard.projects.new-project.heading'
+    id: 'component.projects.new-project.heading'
   },
   lede: {
     defaultMessage: 'Click the button to start a new project.',
-    id: 'dashboard.projects.new-project.lede'
+    id: 'component.projects.new-project.lede'
   },
   cta: {
     defaultMessage: 'New project',
-    id: 'dashboard.projects.new-project.cta'
+    id: 'component.projects.new-project.cta'
   }
 })
 
 const NewProject = () => (
-  <BorderBox mt={4} style={{ borderStyle: 'dashed' }} p={5}>
+  <BorderBox mt={4} p={5} borderStyle="dashed">
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
       <Heading fontSize={3}>
         <FormattedMessage {...messages.heading} />

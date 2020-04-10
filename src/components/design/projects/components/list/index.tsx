@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IProject } from '../../../../../../types'
+import { IProject } from '../../../../../types'
 import { Grid } from '@primer/components'
 import Project from '../project'
 

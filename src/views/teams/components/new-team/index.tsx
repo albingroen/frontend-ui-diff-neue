@@ -25,7 +25,7 @@ const messages = defineMessages({
 })
 
 const NewTeam = () => (
-  <BorderBox mt={4} style={{ borderStyle: 'dashed' }} p={5}>
+  <BorderBox mt={4} p={5} borderStyle="dashed">
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
       <Heading fontSize={3}>
         <FormattedMessage {...messages.heading} />

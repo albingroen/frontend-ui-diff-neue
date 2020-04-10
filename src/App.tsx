@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import * as React from 'react'
 import {
   getProjects,
   getProjectsById,
@@ -10,9 +10,9 @@ import { TeamsContext } from './context/teamsContext'
 import { ProjectsContext } from './context/projectsContext'
 import { loggedIn, logout } from './lib/auth'
 import { IUser, IProject, ITeam } from './types'
-import Routes from './components/functional/routes'
-import { getUser } from './lib/user'
 import { getTeamIds, getTeamsById } from './lib/teams'
+import { getUser } from './lib/user'
+import Routes from './components/functional/routes'
 
 const initialLoadingState = {
   user: false,
@@ -22,10 +22,10 @@ const initialLoadingState = {
 // Render routes
 const App: React.FC = () => {
   // State management
-  const [teams, setTeams] = useState<ITeam[]>()
-  const [user, setUser] = useState<IUser>(initialUser)
-  const [projects, setProjects] = useState<IProject[]>([])
-  const [loading, setLoading] = useState(initialLoadingState)
+  const [teams, setTeams] = React.useState<ITeam[]>()
+  const [user, setUser] = React.useState<IUser>(initialUser)
+  const [projects, setProjects] = React.useState<IProject[]>([])
+  const [loading, setLoading] = React.useState(initialLoadingState)
 
   // Frequently used variables
   const projectIds = getProjectIds(projects)
@@ -34,7 +34,7 @@ const App: React.FC = () => {
   const teamsById = getTeamsById(teams)
 
   // Fetch user and projects on app mount
-  useEffect(() => {
+  React.useEffect(() => {
     if (loggedIn && !user._id) {
       (async () => {
         // Set loading states to true
@@ -67,15 +67,15 @@ const App: React.FC = () => {
 
   // Values using memo hooks to only update
   // when depedency values are changing.
-  const userProviderValue = useMemo(() => user, [user])
-  const teamsProviderValue = useMemo(
+  const userProviderValue = React.useMemo(() => user, [user])
+  const teamsProviderValue = React.useMemo(
     () => ({
       teams: teamIds,
       teamsById
     }),
     [teamIds, teamsById]
   )
-  const projectsProviderValue = useMemo(
+  const projectsProviderValue = React.useMemo(
     () => ({
       projectsById,
       projects: projectIds,

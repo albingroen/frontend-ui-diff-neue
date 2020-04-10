@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Heading, Text } from '@primer/components'
 import { FormattedMessage, defineMessages } from 'react-intl'
 import { ViewHeader } from '../../../../components'

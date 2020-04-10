@@ -61,7 +61,7 @@ export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
     <>
       <Flex>
         <AppSidebar />
-        <Flex flexDirection="column" style={{ width: '100%' }}>
+        <Flex flexDirection="column" width="100%">
           <AppNavigation />
           <Content>{children}</Content>
         </Flex>

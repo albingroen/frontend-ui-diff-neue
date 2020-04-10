@@ -15,23 +15,12 @@ export default (intl: IntlShape, user: IUser) => [
         active: window.location.pathname === '/'
       },
       {
-        value: intl.formatMessage(messages.members),
-        link: '/members',
-        key: 2,
-        active: window.location.pathname === '/members'
-      },
-      {
         value: intl.formatMessage(messages.auditLog),
         link: '/audit-log',
         key: 3,
         active: window.location.pathname === '/audit-log'
       },
-      {
-        value: intl.formatMessage(messages.teamSettings),
-        link: '/team-settings',
-        key: 4,
-        active: window.location.pathname === '/team-settings'
-      },
+
       {
         value: intl.formatMessage(messages.billing),
         link: '/billing',

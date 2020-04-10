@@ -1,7 +1,7 @@
-import { ViewHeader } from '../../../../components'
-import React from 'react'
-import { Heading, Text } from '@primer/components'
+import * as React from 'react'
 import { FormattedMessage, defineMessages } from 'react-intl'
+import { Heading, Text } from '@primer/components'
+import { ViewHeader } from '../../../../components'
 import { IUser } from '../../../../types'
 
 const messages = defineMessages({

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import { theme as primer } from '@primer/components'
 import { ThemeProvider } from 'styled-components'

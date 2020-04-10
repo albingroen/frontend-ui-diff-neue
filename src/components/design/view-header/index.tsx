@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Box } from '@primer/components'
 import { Divider } from '../..'
 
 interface IViewHeader {
@@ -8,9 +7,9 @@ interface IViewHeader {
 
 export const ViewHeader: React.FC<IViewHeader> = ({ children }) => {
   return (
-    <Box>
-      <Box>{children}</Box>
+    <div>
+      <div>{children}</div>
       <Divider />
-    </Box>
+    </div>
   )
 }

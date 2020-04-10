@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Heading, Text, ButtonPrimary, Button } from '@primer/components'
+import * as React from 'react'
 import styled from 'styled-components'
 import { RouteComponentProps, Link } from 'react-router-dom'
+import { Heading, Text, ButtonPrimary, Button } from '@primer/components'
 import { Loading } from '../../components/design/loading'
-import { login } from '../../lib/auth'
 import { confirm } from '../../lib/auth/email'
+import { login } from '../../lib/auth'
 
 const Container = styled.div`
   height: 100vh;
@@ -20,10 +20,10 @@ const Container = styled.div`
 export const EmailConfirmation = (props: RouteComponentProps) => {
   const { match } = props
   const userId = (match as any).params.userId
-  const [isError, setIsError] = useState<boolean>(false)
-  const [isSuccess, setIsSucess] = useState<boolean>(false)
+  const [isError, setIsError] = React.useState<boolean>(false)
+  const [isSuccess, setIsSucess] = React.useState<boolean>(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       if (userId) {
         const res = await confirm(userId)

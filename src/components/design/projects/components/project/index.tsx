@@ -1,21 +1,21 @@
 import * as React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import { defineMessages, FormattedMessage } from 'react-intl'
 import { Text, Flex, Heading, Label } from '@primer/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
-import { IProject } from '../../../../../../types'
-import { defineMessages, FormattedMessage } from 'react-intl'
-import { Card } from '../../../../../../components'
+import { IProject } from '../../../../../types'
+import { Card } from '../../../..'
 
 const messages = defineMessages({
   lastUpdated: {
     defaultMessage: 'Last updated on {date} ({dateFromNow})',
-    id: 'dashboard.projects.project.last-updated'
+    id: 'component.projects.project.last-updated'
   },
   imageAmount: {
     defaultMessage: '{amount} images',
-    id: 'dashboard.projects.project.image-amount'
+    id: 'component.projects.project.image-amount'
   }
 })
 

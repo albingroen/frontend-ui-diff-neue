@@ -1,11 +1,11 @@
 import * as React from 'react'
+import Header from './components/header'
+import Projects from '../../components/design/projects'
 import { IUserContext, UserContext } from '../../context/userContext'
 import {
   ProjectsContext,
   IProjectsContext
 } from '../../context/projectsContext'
-import Header from './components/header'
-import Projects from './components/projects'
 
 export const Dashboard: React.FC = () => {
   const { user } = React.useContext<IUserContext>(UserContext)
@@ -16,7 +16,11 @@ export const Dashboard: React.FC = () => {
   return (
     <div>
       <Header user={user} />
-      <Projects projects={projects?.map((id: string) => projectsById[id])} />
+      <Projects
+        includeCreateNew
+        includeFilter
+        projects={projects?.map((id: string) => projectsById[id])}
+      />
     </div>
   )
 }

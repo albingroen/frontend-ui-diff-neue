@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ITeam, ITeamMember } from '../../../../types'
 import { Card } from '../../../../components'
-import { Flex, Avatar, Box, Heading, AvatarStack } from '@primer/components'
+import { Flex, Avatar, Heading, AvatarStack } from '@primer/components'
 import { FormattedMessage, defineMessages } from 'react-intl'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
@@ -41,7 +41,7 @@ const Team: React.FC<ITeamProps> = ({ team }) => (
             </Heading>
           </Flex>
 
-          <Box>
+          <div>
             <Heading mb={1} fontSize={1} fontWeight="normal">
               <FormattedMessage
                 {...(team.members.length === 1
@@ -61,7 +61,7 @@ const Team: React.FC<ITeamProps> = ({ team }) => (
                 ) : null
               )}
             </AvatarStack>
-          </Box>
+          </div>
         </Flex>
       </Flex>
     </Card>
