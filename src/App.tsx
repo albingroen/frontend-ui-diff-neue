@@ -57,6 +57,7 @@ const App: React.FC = () => {
           setLoading(initialLoadingState)
         } catch {
           // Log out and disable all loading states
+          alert('logout')
           await logout()
           setLoading(initialLoadingState)
         }

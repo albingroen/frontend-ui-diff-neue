@@ -18,7 +18,7 @@ const StyledBox = styled(Box)`
   ${(props: ICardProps) =>
     props?.shadowed &&
     css`
-      box-shadow: ${(tprops: any) => tprops?.theme?.shadows?.small};
+      box-shadow: 0 2px 4px 0 rgba(14, 30, 37, 0.12);
     `}
 
   ${(props: ICardProps) =>
