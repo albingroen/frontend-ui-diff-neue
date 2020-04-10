@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl'
 import { Text, Flex, Heading, Label } from '@primer/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
-import { IProject } from '../../../../../types'
+import { IProject, ITeam } from '../../../../../types'
 import { Card } from '../../../..'
 
 const messages = defineMessages({
@@ -16,10 +16,19 @@ const messages = defineMessages({
   imageAmount: {
     defaultMessage: '{amount} images',
     id: 'component.projects.project.image-amount'
+  },
+  belonger: {
+    defaultMessage: 'Belongs to <strong>{belonger}</strong>',
+    id: 'component.projects.project.belonger'
   }
 })
 
-const Project: React.FC<IProject> = (project) => (
+interface IProjectProps {
+  project: IProject;
+  teamsById?: { [key: string]: ITeam };
+}
+
+const Project: React.FC<IProjectProps> = ({ project, teamsById }) => (
   <Link to={`/projects/${project?._id}`}>
     <Card shadowed clickable>
       <Flex justifyContent="space-between" alignItems="center" mb={1}>
@@ -36,15 +45,31 @@ const Project: React.FC<IProject> = (project) => (
           />
         </Label>
       </Flex>
-      <Text fontSize="14px" opacity={0.75}>
-        <FormattedMessage
-          {...messages.lastUpdated}
-          values={{
-            date: moment(project?.updatedAt).format('MMM DD'),
-            dateFromNow: moment(project?.updatedAt).fromNow()
-          }}
-        />
-      </Text>
+      <Flex alignItems="center" justifyContent="space-between" mt={2}>
+        <Text fontSize="14px" opacity={0.75}>
+          <FormattedMessage
+            {...messages.lastUpdated}
+            values={{
+              date: moment(project?.updatedAt).format('MMM DD'),
+              dateFromNow: moment(project?.updatedAt).fromNow()
+            }}
+          />
+        </Text>
+
+        {teamsById && project._team && teamsById[project._team] && (
+          <Text fontSize="14px" opacity={0.75}>
+            <FormattedMessage
+              {...messages.belonger}
+              values={{
+                belonger: teamsById[project._team].name,
+                strong: (chunks: string[] | React.ReactElement[]) => (
+                  <strong>{chunks}</strong>
+                )
+              }}
+            />
+          </Text>
+        )}
+      </Flex>
     </Card>
   </Link>
 )

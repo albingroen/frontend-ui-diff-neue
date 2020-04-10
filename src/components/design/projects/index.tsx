@@ -3,6 +3,7 @@ import { IProject } from '../../../types'
 import NewProject from './components/new-project'
 import Header from './components/header'
 import List from './components/list'
+import { TeamsContext } from '../../../context/teamsContext'
 
 interface IProjectsProps {
   projects: IProject[];
@@ -15,6 +16,8 @@ const Projects: React.FC<IProjectsProps> = ({
   includeFilter,
   includeCreateNew
 }) => {
+  const { teamsById } = React.useContext(TeamsContext)
+
   const [search, setSearch] = React.useState<string>()
 
   const filterProjects = (project: IProject) =>
@@ -26,6 +29,7 @@ const Projects: React.FC<IProjectsProps> = ({
         <>
           {includeFilter && <Header onSearch={setSearch} search={search} />}
           <List
+            teamsById={teamsById}
             projects={
               includeFilter ? projects.filter(filterProjects) : projects
             }
