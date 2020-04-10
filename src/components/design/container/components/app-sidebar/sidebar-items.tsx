@@ -6,8 +6,7 @@ import {
   faTachometerAlt,
   faChartBar,
   faUserFriends,
-  faImages,
-  faWallet
+  faImages
 } from '@fortawesome/free-solid-svg-icons'
 import styled, { css } from 'styled-components'
 import { IntlShape, defineMessages } from 'react-intl'
@@ -128,21 +127,6 @@ const getSidebarItems = (intl: IntlShape, location: { pathname: string }) => {
         </Tooltip>
       ),
       key: 4
-    },
-    {
-      node: (
-        <Tooltip
-          style={tooltipStyle}
-          aria-label={intl.formatMessage(messages.tooltipBilling)}
-        >
-          <Link to="/billing">
-            <Item active={pathname === '/billing'}>
-              <FontAwesomeIcon icon={faWallet} />
-            </Item>
-          </Link>
-        </Tooltip>
-      ),
-      key: 5
     }
   ]
 }

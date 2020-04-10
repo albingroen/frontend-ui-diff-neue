@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { ButtonPrimary } from '@primer/components'
-import { FormattedMessage, IntlShape } from 'react-intl'
+import { Avatar } from '@primer/components'
+import { IntlShape } from 'react-intl'
 import messages from './messages'
+import { IUser } from '../../../../../types'
 
-export default (intl: IntlShape) => [
+export default (intl: IntlShape, user: IUser) => [
   {
     key: 1,
     items: [
@@ -44,11 +45,13 @@ export default (intl: IntlShape) => [
     items: [
       {
         value: (
-          <ButtonPrimary mr={2}>
-            <FormattedMessage {...messages.newProject} />
-          </ButtonPrimary>
+          <Avatar
+            size={35}
+            alt="profile"
+            style={{ borderRadius: '50%' }}
+            src={user.avatar}
+          />
         ),
-        link: '/new-project',
         key: 1,
         active: true
       }

@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl'
 import { Header } from '../../../header'
 import { transformAppNavigationLists } from './lib'
 import getNavigationItems from './navigation-items'
+import { UserContext } from '../../../../../context/userContext'
 
 export const NavigationItem = styled.li`
   list-style-type: none;
@@ -14,9 +15,12 @@ export const NavigationItem = styled.li`
 `
 
 export const AppNavigation: React.FC = () => {
+  const { user } = React.useContext(UserContext)
   const intl = useIntl()
 
   return (
-    <Header lists={transformAppNavigationLists(getNavigationItems(intl))} />
+    <Header
+      lists={transformAppNavigationLists(getNavigationItems(intl, user))}
+    />
   )
 }
