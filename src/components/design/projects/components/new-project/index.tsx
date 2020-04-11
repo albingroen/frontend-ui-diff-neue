@@ -25,7 +25,7 @@ const messages = defineMessages({
 })
 
 const NewProject = () => (
-  <BorderBox mt={4} p={5} borderStyle="dashed">
+  <BorderBox mt={3} p={5} borderStyle="dashed">
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
       <Heading fontSize={3}>
         <FormattedMessage {...messages.heading} />

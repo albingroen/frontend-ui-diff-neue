@@ -9,12 +9,14 @@ interface IProjectsProps {
   projects: IProject[];
   includeFilter?: boolean;
   includeCreateNew?: boolean;
+  includeBelonger?: boolean;
 }
 
 const Projects: React.FC<IProjectsProps> = ({
   projects,
   includeFilter,
-  includeCreateNew
+  includeCreateNew,
+  includeBelonger
 }) => {
   const { teamsById } = React.useContext(TeamsContext)
 
@@ -29,6 +31,7 @@ const Projects: React.FC<IProjectsProps> = ({
         <>
           {includeFilter && <Header onSearch={setSearch} search={search} />}
           <List
+            includeBelonger={includeBelonger}
             teamsById={teamsById}
             projects={
               includeFilter ? projects.filter(filterProjects) : projects

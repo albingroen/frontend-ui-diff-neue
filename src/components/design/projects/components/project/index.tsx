@@ -26,9 +26,14 @@ const messages = defineMessages({
 interface IProjectProps {
   project: IProject;
   teamsById?: { [key: string]: ITeam };
+  includeBelonger?: boolean;
 }
 
-const Project: React.FC<IProjectProps> = ({ project, teamsById }) => (
+const Project: React.FC<IProjectProps> = ({
+  project,
+  teamsById,
+  includeBelonger
+}) => (
   <Link to={`/projects/${project?._id}`}>
     <Card shadowed clickable>
       <Flex justifyContent="space-between" alignItems="center" mb={1}>
@@ -56,7 +61,10 @@ const Project: React.FC<IProjectProps> = ({ project, teamsById }) => (
           />
         </Text>
 
-        {teamsById && project._team && teamsById[project._team] && (
+        {teamsById &&
+          project._team &&
+          teamsById[project._team] &&
+          includeBelonger && (
           <Text fontSize="14px" opacity={0.75}>
             <FormattedMessage
               {...messages.belonger}
