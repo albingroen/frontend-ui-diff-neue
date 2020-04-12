@@ -23,6 +23,7 @@ interface IVerticalMenuItemProps {
 }
 
 const VerticalMenuItem = styled.div`
+  min-width: 300px;
   padding: 0.75rem;
   font-size: 1em;
   border-bottom: 1px solid #eee;

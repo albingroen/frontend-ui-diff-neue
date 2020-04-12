@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Heading, Flex, Text, ButtonPrimary, Label } from '@primer/components'
+import { Heading, Flex, Text, ButtonPrimary } from '@primer/components'
 import { FormattedNumber, defineMessages, FormattedMessage } from 'react-intl'
 import { IPlan } from '../../../types'
 import { Card } from '../card'
@@ -32,20 +32,14 @@ export const PricePlan: React.FC<IPricePlan> = ({ plan, style }) => {
   return (
     <Card style={style} bordered>
       <Flex alignItems="flex-start" justifyContent="space-between">
-        <Heading lineHeight={0.875} mb={2}>
+        <Heading fontSize={3} lineHeight={0.875} mb={2}>
           {plan?.nickname}
         </Heading>
-        <Label variant="large" outline>
-          <FormattedMessage
-            {...messages.userLimit}
-            values={{
-              userLimit: plan?.metadata?.userLimit
-            }}
-          />
-        </Label>
       </Flex>
 
-      <Text lineHeight={1.5}>{plan?.metadata?.description}</Text>
+      <Text opacity={0.75} lineHeight={1.5}>
+        {plan?.metadata?.description}
+      </Text>
 
       <Flex alignItems="center" my={3}>
         <Heading mr={1}>
@@ -66,7 +60,7 @@ export const PricePlan: React.FC<IPricePlan> = ({ plan, style }) => {
         </Heading>
       </Flex>
 
-      <ButtonPrimary variant="large" style={{ width: '100%' }}>
+      <ButtonPrimary style={{ width: '100%' }}>
         <FormattedMessage
           {...(plan?.id === 'free' ? messages.ctaFree : messages.cta)}
         />
