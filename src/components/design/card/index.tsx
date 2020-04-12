@@ -9,11 +9,13 @@ interface ICardProps {
   bordered?: boolean;
   shadowed?: boolean;
   style?: React.CSSProperties;
+  withoutPadding?: boolean;
 }
 
 const StyledBox = styled(Box)`
   transition: ${(props) => props?.theme?.transitions?.default};
   border-radius: ${(props) => props?.theme?.radii[2]};
+  overflow: hidden;
 
   ${(props: ICardProps) =>
     props?.shadowed &&
@@ -25,6 +27,12 @@ const StyledBox = styled(Box)`
     props?.bordered &&
     css`
       border: 1px solid ${(props) => props?.theme?.colors?.border?.grayLight};
+    `}
+
+  ${(props: ICardProps) =>
+    props?.withoutPadding &&
+    css`
+      padding: 0;
     `}
 
   ${(props: ICardProps) =>
@@ -50,7 +58,8 @@ export const Card: React.FC<ICardProps> = ({
   className,
   shadowed,
   bordered,
-  style
+  style,
+  withoutPadding
 }) => {
   return (
     <StyledBox
@@ -61,6 +70,7 @@ export const Card: React.FC<ICardProps> = ({
       style={style}
       className={className}
       bordered={bordered}
+      withoutPadding={withoutPadding}
     >
       {children}
     </StyledBox>

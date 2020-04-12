@@ -3,6 +3,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom'
 import { TeamsContext } from '../../context/teamsContext'
 import { Loading } from '../../components'
 import Header from './components/header'
+import Content from './components/content'
 
 export const TeamSettings: React.FC<RouteComponentProps> = (props) => {
   const { id } = props.match.params as any
@@ -19,6 +20,7 @@ export const TeamSettings: React.FC<RouteComponentProps> = (props) => {
   return team ? (
     <div>
       <Header team={team} />
+      <Content team={team} />
     </div>
   ) : (
     <Loading />

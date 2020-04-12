@@ -60,9 +60,8 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           <PrivateRoute path="/teams" component={Teams} exact />
           <PrivateRoute path="/teams/:id" component={Team} exact />
           <PrivateRoute
-            path="/teams/:id/settings"
+            path="/teams/:id/settings/:section"
             component={TeamSettings}
-            exact
           />
         </Container>
       </Switch>

@@ -42,7 +42,7 @@ const Header: React.FC<IHeaderProps> = ({ team }) => (
       </Flex>
 
       <Tooltip aria-label="Team settings">
-        <Link to={`/teams/${team?._id}/settings`}>
+        <Link to={`/teams/${team?._id}/settings/general`}>
           <StyledLink as="p" p={0} m={0} color="gray.4" fontSize={2}>
             <FontAwesomeIcon icon={faCog} />
           </StyledLink>
