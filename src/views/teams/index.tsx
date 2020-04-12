@@ -7,6 +7,10 @@ import NewTeam from './components/new-team'
 export const Teams = () => {
   const { teams, teamsById } = React.useContext(TeamsContext)
 
+  React.useEffect(() => {
+    document.title = 'Your teams'
+  }, [])
+
   return (
     <div>
       <Header />

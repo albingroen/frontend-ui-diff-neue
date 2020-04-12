@@ -8,6 +8,7 @@ interface IListProps {
 }
 
 const List: React.FC<IListProps> = ({ teams }) => {
+  console.log(teams)
   return (
     <Grid mt={3} gridTemplateColumns="repeat(3, auto)" gridGap={3}>
       {teams.map((team: ITeam) => (

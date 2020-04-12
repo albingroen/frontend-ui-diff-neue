@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Grid, Heading } from '@primer/components'
-import { RouteComponentProps, Redirect } from 'react-router-dom'
+import { Grid, Heading, Flex, Link as StyledLink } from '@primer/components'
+import { RouteComponentProps, Redirect, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImages, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { ProjectsContext } from '../../context/projectsContext'
@@ -18,6 +18,14 @@ const messages = defineMessages({
   members: {
     defaultMessage: 'Members ({amount})',
     id: 'team.members'
+  },
+  notFound: {
+    defaultMessage: 'Team not found...',
+    id: 'team.not-found'
+  },
+  manageMembers: {
+    defaultMessage: 'Manage',
+    id: 'team.members.manage'
   }
 })
 
@@ -25,6 +33,10 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
   const { id } = props.match.params as any
   const { teamsById } = React.useContext(TeamsContext)
   const { projectsById, projects } = React.useContext(ProjectsContext)
+
+  React.useEffect(() => {
+    document.title = teamsById[id]?.name || ''
+  }, [id, teamsById])
 
   if (teamsById) {
     if (Object.keys(teamsById)?.length) {
@@ -69,15 +81,22 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
         </div>
 
         <div>
-          <Heading fontSize={2} mb={3}>
-            <FontAwesomeIcon icon={faUsers} />
-            <span style={{ marginLeft: '0.75rem' }}>
-              <FormattedMessage
-                {...messages.members}
-                values={{ amount: team?.members?.length || 0 }}
-              />
-            </span>
-          </Heading>
+          <Flex alignItems="center" justifyContent="space-between" mb={3}>
+            <Heading fontSize={2}>
+              <FontAwesomeIcon icon={faUsers} />
+              <span style={{ marginLeft: '0.75rem' }}>
+                <FormattedMessage
+                  {...messages.members}
+                  values={{ amount: team?.members?.length || 0 }}
+                />
+              </span>
+            </Heading>
+            <Link to={`/teams/${team?._id}/members`}>
+              <StyledLink as="p" fontSize={2}>
+                <FormattedMessage {...messages.manageMembers} />
+              </StyledLink>
+            </Link>
+          </Flex>
           <Members members={team?.members} />
         </div>
       </Grid>

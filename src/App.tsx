@@ -83,6 +83,10 @@ const App: React.FC = () => {
         // Create project
         const project = await createProject(owner, name)
 
+        console.log({
+          project
+        })
+
         // Set projects
         setProjects([...projects, project])
 

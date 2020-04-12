@@ -13,6 +13,10 @@ export const Dashboard: React.FC = () => {
     ProjectsContext
   )
 
+  React.useEffect(() => {
+    document.title = 'ui-diff'
+  }, [])
+
   return (
     <div>
       <Header user={user} />

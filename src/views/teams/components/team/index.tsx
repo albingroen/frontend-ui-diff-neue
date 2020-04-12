@@ -56,7 +56,7 @@ const Team: React.FC<ITeamProps> = ({ team }) => (
                   <img
                     src={member._user.avatar}
                     alt={member._user.name}
-                    key={member._id}
+                    key={member._user._id}
                   />
                 ) : null
               )}

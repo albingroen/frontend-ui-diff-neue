@@ -20,7 +20,7 @@ const Projects: React.FC<IProjectsProps> = ({
 }) => {
   const { teamsById } = React.useContext(TeamsContext)
 
-  const [search, setSearch] = React.useState<string>()
+  const [search, setSearch] = React.useState<string>('')
 
   const filterProjects = (project: IProject) =>
     project?.name?.toLowerCase().includes(search?.toLowerCase() || '')

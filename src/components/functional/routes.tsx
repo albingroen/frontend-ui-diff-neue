@@ -11,7 +11,8 @@ import {
   CreatePasswordReset,
   NewProject,
   Teams,
-  Team
+  Team,
+  TeamSettings
 } from '../../views'
 import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
@@ -58,6 +59,11 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           <PrivateRoute path="/billing" component={Billing} exact />
           <PrivateRoute path="/teams" component={Teams} exact />
           <PrivateRoute path="/teams/:id" component={Team} exact />
+          <PrivateRoute
+            path="/teams/:id/settings"
+            component={TeamSettings}
+            exact
+          />
         </Container>
       </Switch>
     </BrowserRouter>

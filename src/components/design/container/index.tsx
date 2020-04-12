@@ -12,6 +12,7 @@ const Content = styled.div`
   height: calc(100vh - 70px);
   padding: ${(props) => props?.theme?.space[4]}px;
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;

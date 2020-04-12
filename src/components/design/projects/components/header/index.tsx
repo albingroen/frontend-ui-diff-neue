@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 interface IHeaderProps {
   onSearch: (value: string) => void;
-  search?: string;
+  search: string;
 }
 
 const Header: React.FC<IHeaderProps> = ({ search, onSearch }) => (
