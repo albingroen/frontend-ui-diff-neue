@@ -11,6 +11,7 @@ export interface IUser {
   _id: string;
   name: string;
   email: string;
+  stripeCustomerId: string;
   avatar: string;
   socialId: string;
   createdAt: string;
@@ -62,6 +63,7 @@ export interface ITeam {
   createdAt: Date;
   updatedAt: Date;
   logo: string;
+  stripeCustomerId: string;
 }
 
 export interface IPlan {
@@ -85,6 +87,45 @@ export interface IPlan {
   transform_usage: unknown;
   trial_period_days: number;
   usage_type: string;
+}
+
+export interface ISubscription {
+  id: string;
+  object: string;
+  application_fee_percent?: any;
+  billing_cycle_anchor: number;
+  billing_thresholds?: any;
+  cancel_at?: any;
+  cancel_at_period_end: boolean;
+  canceled_at?: any;
+  collection_method: string;
+  created: number;
+  current_period_end: number;
+  current_period_start: number;
+  customer: string;
+  days_until_due?: any;
+  default_payment_method?: any;
+  default_source?: any;
+  default_tax_rates: any[];
+  discount?: any;
+  ended_at?: any;
+  items: any;
+  latest_invoice?: any;
+  livemode: boolean;
+  metadata: { [key: string]: any };
+  next_pending_invoice_item_invoice?: any;
+  pause_collection?: any;
+  pending_invoice_item_interval?: any;
+  pending_setup_intent?: any;
+  pending_update?: any;
+  plan: IPlan;
+  quantity: number;
+  schedule?: any;
+  start_date: number;
+  status: string;
+  tax_percent?: any;
+  trial_end?: any;
+  trial_start?: any;
 }
 
 export type TeamsById = { [key: string]: ITeam | IUser };

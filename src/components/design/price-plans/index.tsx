@@ -10,7 +10,11 @@ const PricePlansWrapper = styled.div`
   justify-conten: space-between;
 `
 
-export const PricePlans: React.FC = () => {
+interface PricePlansProps {
+  currentPlan?: IPlan;
+}
+
+export const PricePlans: React.FC<PricePlansProps> = ({ currentPlan }) => {
   const [loading, setLoading] = React.useState<boolean>(false)
   const [plans, setPlans] = React.useState<IPlan[]>([])
 
@@ -29,6 +33,7 @@ export const PricePlans: React.FC = () => {
     <PricePlansWrapper>
       {plans.map((plan: IPlan, i: number) => (
         <PricePlan
+          isActive={plan.id === currentPlan?.id}
           style={{
             margin: '0 0.5rem',
             marginLeft: i === 0 ? '0' : '0.5rem',

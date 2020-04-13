@@ -8,7 +8,8 @@ export const initialUser: IUser = {
   avatar: '',
   socialId: '',
   createdAt: '',
-  updatedAt: ''
+  updatedAt: '',
+  stripeCustomerId: ''
 }
 
 export type IUserContext = {

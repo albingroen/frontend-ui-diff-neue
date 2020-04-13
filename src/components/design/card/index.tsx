@@ -10,6 +10,8 @@ interface ICardProps {
   shadowed?: boolean;
   style?: React.CSSProperties;
   withoutPadding?: boolean;
+  borderColor?: string;
+  isActive?: boolean;
 }
 
 const StyledBox = styled(Box)`
@@ -36,6 +38,12 @@ const StyledBox = styled(Box)`
     `}
 
   ${(props: ICardProps) =>
+    props.isActive &&
+    css`
+      border-color: ${(themeProps) => themeProps?.theme?.colors?.green[5]};
+    `}
+
+  ${(props: ICardProps) =>
     props?.clickable &&
     css`
       cursor: pointer;
@@ -59,7 +67,8 @@ export const Card: React.FC<ICardProps> = ({
   shadowed,
   bordered,
   style,
-  withoutPadding
+  withoutPadding,
+  isActive
 }) => {
   return (
     <StyledBox
@@ -71,6 +80,7 @@ export const Card: React.FC<ICardProps> = ({
       className={className}
       bordered={bordered}
       withoutPadding={withoutPadding}
+      isActive={isActive}
     >
       {children}
     </StyledBox>
