@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { IPlan } from '../../../types'
-import { request } from '../../../lib'
 import { PricePlan } from '../..'
+import { getProductPlans } from '../../../lib/billing'
 
 const PricePlansWrapper = styled.div`
   display: flex;
@@ -15,23 +15,17 @@ interface PricePlansProps {
 }
 
 export const PricePlans: React.FC<PricePlansProps> = ({ currentPlan }) => {
-  const [loading, setLoading] = React.useState<boolean>(false)
   const [plans, setPlans] = React.useState<IPlan[]>([])
 
   React.useEffect(() => {
     (async () => {
-      setLoading(true)
-      const plansRes = await request.get('/billing/plans')
-      setPlans(plansRes?.data?.plans?.data)
-      setLoading(false)
+      setPlans(await getProductPlans())
     })()
   }, [])
 
-  return loading ? (
-    <p>Loading...</p>
-  ) : (
+  return (
     <PricePlansWrapper>
-      {plans.map((plan: IPlan, i: number) => (
+      {plans?.map((plan: IPlan, i: number) => (
         <PricePlan
           isActive={plan.id === currentPlan?.id}
           style={{

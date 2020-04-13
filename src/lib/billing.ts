@@ -5,6 +5,12 @@ export const stripeProducts = {
   default: 'prod_H3ntkTvqvQPyoA'
 }
 
+export const getProductPlans = async () => {
+  const plansRes = await request.get('/billing/plans')
+
+  return plansRes?.data?.plans?.data
+}
+
 export const getSubscriptions = async ({
   user,
   team
