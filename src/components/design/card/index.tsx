@@ -17,7 +17,6 @@ interface ICardProps {
 const StyledBox = styled(Box)`
   transition: ${(props) => props?.theme?.transitions?.default};
   border-radius: ${(props) => props?.theme?.radii[2]};
-  overflow: hidden;
 
   ${(props: ICardProps) =>
     props?.shadowed &&

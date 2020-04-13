@@ -25,11 +25,17 @@ const messages = defineMessages({
 
 interface IPricePlan {
   plan: IPlan;
+  onSelectPlan?: (plan: IPlan) => void;
   isActive?: boolean;
   style?: React.CSSProperties;
 }
 
-export const PricePlan: React.FC<IPricePlan> = ({ isActive, plan, style }) => {
+export const PricePlan: React.FC<IPricePlan> = ({
+  isActive,
+  plan,
+  onSelectPlan,
+  style
+}) => {
   return (
     <Card bordered isActive={isActive} style={style}>
       <Flex alignItems="flex-start" justifyContent="space-between">
@@ -61,7 +67,15 @@ export const PricePlan: React.FC<IPricePlan> = ({ isActive, plan, style }) => {
         </Heading>
       </Flex>
 
-      <ButtonPrimary disabled={isActive} style={{ width: '100%' }}>
+      <ButtonPrimary
+        disabled={isActive}
+        style={{ width: '100%' }}
+        onClick={() => {
+          if (onSelectPlan) {
+            onSelectPlan(plan)
+          }
+        }}
+      >
         <FormattedMessage
           {...(plan?.id === 'free' ? messages.ctaFree : messages.cta)}
         />

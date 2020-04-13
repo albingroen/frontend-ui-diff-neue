@@ -5,7 +5,7 @@ import { PricePlans, Section } from '../../components'
 import { defineMessages, FormattedMessage } from 'react-intl'
 import { UserContext } from '../../context/userContext'
 import { getSubscriptions, getSubscription } from '../../lib/billing'
-import { ISubscription } from '../../types'
+import { ISubscription, IPlan } from '../../types'
 import { Link } from 'react-router-dom'
 
 const messages = defineMessages({
@@ -29,13 +29,21 @@ export const Billing: React.FC = () => {
   const [subscription, setSubscription] = React.useState<ISubscription>()
 
   React.useEffect(() => {
-    (async () => {
-      const subscriptions = await getSubscriptions({ user })
-      setSubscription(getSubscription(subscriptions))
-    })()
+    const runAsync = async () => {
+      const res = await getSubscriptions({ user })
+      setSubscription(getSubscription(res))
+    }
+
+    if (user?._id) {
+      runAsync()
+    }
   }, [user])
 
-  return (
+  const onSelectPlan = (plan: IPlan) => {
+    console.log(plan)
+  }
+
+  return subscription ? (
     <div>
       <Header />
       <Section
@@ -59,8 +67,11 @@ export const Billing: React.FC = () => {
           </Text>
         </Box>
 
-        <PricePlans currentPlan={subscription?.plan} />
+        <PricePlans
+          onSelectPlan={onSelectPlan}
+          currentPlan={subscription.plan}
+        />
       </Section>
     </div>
-  )
+  ) : null
 }
