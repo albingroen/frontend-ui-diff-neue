@@ -1,5 +1,4 @@
 export { Auth } from './auth'
-export { Billing } from './billing'
 export { CreatePasswordReset } from './create-password-reset'
 export { Dashboard } from './dashboard'
 export { EmailConfirmation } from './email-confirmation'

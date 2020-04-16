@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Heading, Flex, Text, ButtonPrimary } from '@primer/components'
+import { Heading, Flex, Text, ButtonPrimary, Box } from '@primer/components'
 import { FormattedNumber, defineMessages, FormattedMessage } from 'react-intl'
 import { IPlan } from '../../../types'
 import { Card } from '../card'
@@ -20,6 +20,10 @@ const messages = defineMessages({
   ctaFree: {
     defaultMessage: 'Get started now',
     id: 'component.design.price-plan.cta'
+  },
+  currentPlan: {
+    defaultMessage: 'This is your current plan',
+    id: 'component.design.price-plan.current-plan'
   }
 })
 
@@ -67,19 +71,26 @@ export const PricePlan: React.FC<IPricePlan> = ({
         </Heading>
       </Flex>
 
-      <ButtonPrimary
-        disabled={isActive}
-        style={{ width: '100%' }}
-        onClick={() => {
-          if (onSelectPlan) {
-            onSelectPlan(plan)
-          }
-        }}
-      >
-        <FormattedMessage
-          {...(plan?.id === 'free' ? messages.ctaFree : messages.cta)}
-        />
-      </ButtonPrimary>
+      {!isActive ? (
+        <ButtonPrimary
+          style={{ width: '100%' }}
+          onClick={() => {
+            if (onSelectPlan) {
+              onSelectPlan(plan)
+            }
+          }}
+        >
+          <FormattedMessage
+            {...(plan?.id === 'free' ? messages.ctaFree : messages.cta)}
+          />
+        </ButtonPrimary>
+      ) : (
+        <Box py={1}>
+          <Text color="green.5">
+            <FormattedMessage {...messages.currentPlan} />
+          </Text>
+        </Box>
+      )}
     </Card>
   )
 }

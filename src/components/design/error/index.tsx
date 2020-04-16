@@ -24,6 +24,7 @@ const ErrorContainer = styled.div`
   color: ${(props) => props?.theme?.colors.white};
   border-radius: 5px;
   padding: ${(props) => props?.theme?.space[3]}px;
+  line-height: 150%;
 `
 
 interface IErrorProps {

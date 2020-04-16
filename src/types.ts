@@ -128,4 +128,60 @@ export interface ISubscription {
   trial_start?: any;
 }
 
+export interface IPaymentMethodAddress {
+  city?: any;
+  country?: any;
+  line1?: any;
+  line2?: any;
+  postal_code: string;
+  state?: any;
+}
+
+export interface IPaymentMethodBillingDetails {
+  address: IPaymentMethodAddress;
+  email: string;
+  name?: any;
+  phone: string;
+}
+
+export interface IPaymentMethodChecks {
+  address_line1_check?: any;
+  address_postal_code_check?: any;
+  cvc_check: string;
+}
+
+export interface IPaymentMethodThreeDSecureUsage {
+  supported: boolean;
+}
+
+export interface IPaymentMethodCard {
+  brand: string;
+  checks: IPaymentMethodChecks;
+  country: string;
+  exp_month: number;
+  exp_year: number;
+  fingerprint: string;
+  funding: string;
+  generated_from?: any;
+  last4: string;
+  three_d_secure_usage: IPaymentMethodThreeDSecureUsage;
+  wallet?: any;
+}
+
+export interface Metadata {
+  order_id: string;
+}
+
+export interface IPaymentMethod {
+  id: string;
+  object: string;
+  billing_details: IPaymentMethodBillingDetails;
+  card: IPaymentMethodCard;
+  created: number;
+  customer?: any;
+  livemode: boolean;
+  metadata: Metadata;
+  type: string;
+}
+
 export type TeamsById = { [key: string]: ITeam | IUser };

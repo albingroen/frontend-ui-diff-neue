@@ -1,4 +1,4 @@
-import { IUser, ITeam, ISubscription } from '../types'
+import { IUser, ITeam, ISubscription, IPaymentMethod } from '../types'
 import { request } from '.'
 
 export const stripeProducts = {
@@ -40,4 +40,30 @@ export const getSubscription = (subscriptions: ISubscription[]) => {
   return subscriptions.find(
     (sub: ISubscription) => sub.plan.product === stripeProducts.default
   )
+}
+
+export const getPaymentMethods = async ({
+  user,
+  type
+}: {
+  user: IUser;
+  type: string;
+}) => {
+  if (!user?.stripeCustomerId) {
+    return
+  }
+
+  const paymentMethodsRes = await request.get(
+    `/billing/${user.stripeCustomerId}/payment-methods/${type}`
+  )
+
+  return paymentMethodsRes?.data?.paymentMethods?.data
+}
+
+export const getPaymentMethod = (paymentMethods: IPaymentMethod[]) => {
+  if (!paymentMethods?.length) {
+    return
+  }
+
+  return paymentMethods[0]
 }
