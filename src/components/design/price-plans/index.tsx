@@ -7,7 +7,7 @@ import { getProductPlans } from '../../../lib/billing'
 
 const PricePlansWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-conten: space-between;
 `
 

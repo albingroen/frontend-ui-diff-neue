@@ -11,12 +11,16 @@ import messages from './messages'
 const Content = styled.div`
   height: calc(100vh - 70px);
   padding: ${(props) => props?.theme?.space[4]}px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 100px;
+
+  &::after {
+    height: 100px;
+    content: "";
+    display: block;
+  }
 `
 
 interface IContainerProps {
