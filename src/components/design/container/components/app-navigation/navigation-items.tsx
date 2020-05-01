@@ -17,7 +17,7 @@ export default (intl: IntlShape, user: IUser) => [
       {
         value: intl.formatMessage(messages.auditLog),
         link: '/audit-log',
-        key: 3,
+        key: 2,
         active: window.location.pathname === '/audit-log'
       },
       {

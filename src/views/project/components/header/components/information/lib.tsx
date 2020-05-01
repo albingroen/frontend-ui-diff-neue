@@ -1,0 +1,42 @@
+import React from 'react'
+import moment from 'moment'
+import { IntlShape } from 'react-intl'
+import { Text } from '@primer/components'
+import { IProject, TeamsById, IUser } from '../../../../../../types'
+import messages from './messages'
+
+export const getInformation = (
+  project: IProject,
+  teamsById: TeamsById,
+  user: IUser,
+  { formatMessage }: IntlShape
+) => [
+  {
+    label: formatMessage(messages.labelApiKey),
+    value: <code style={{ display: 'block' }}>{project?.apiKey}</code>,
+    key: 0
+  },
+  {
+    label: formatMessage(messages.labelOwner),
+    value: (
+      <Text>{project?._team ? teamsById[project._team]?.name : user.name}</Text>
+    ),
+    key: 1
+  },
+  {
+    label: formatMessage(messages.labelLastUpdated),
+    value: <Text>{moment(project?.updatedAt).fromNow()}</Text>,
+    key: 2
+  },
+  {
+    label: formatMessage(messages.labelImageAmount),
+    value: (
+      <Text>
+        {formatMessage(messages.valueImageAmount, {
+          count: project?.images?.length
+        })}
+      </Text>
+    ),
+    key: 3
+  }
+]
