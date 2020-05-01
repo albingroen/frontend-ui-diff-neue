@@ -1,11 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@primer/components'
-import { IImage, PrimerTheme } from '../../../types'
+import { IImage, PrimerTheme, ImagesByEnvironment } from '../../../types'
 import { Card } from '../card'
 
 interface IImagesProps {
-  images: IImage[];
+  onImageClick?: (image: IImage) => void;
+  images?: IImage[];
+  imagesByEnvironemnt?: ImagesByEnvironment;
 }
 
 interface IImagePreviewProps extends IImage {
@@ -20,19 +22,32 @@ const ImagePreview = styled.div`
   height: 300px;
 `
 
-export const Images: React.FC<IImagesProps> = ({ images }) => (
-  <Grid gridTemplateColumns="repeat(5, auto)" gridGap={3}>
-    {images.map((image) => (
-      <Card
-        scaleOnHover
-        bordered
-        withoutPadding
-        shadowed
-        key={image._id}
-        clickable
-      >
-        <ImagePreview {...image} />
-      </Card>
-    ))}
-  </Grid>
-)
+export const Images: React.FC<IImagesProps> = ({
+  imagesByEnvironemnt,
+  onImageClick
+}) => {
+  const firstEnvironmentImages =
+    imagesByEnvironemnt && Object.values(imagesByEnvironemnt)[0]
+
+  return (
+    <Grid gridTemplateColumns="repeat(5, auto)" gridGap={3}>
+      {firstEnvironmentImages?.map((image: IImage) => (
+        <Card
+          scaleOnHover
+          bordered
+          withoutPadding
+          shadowed
+          key={image._id}
+          clickable
+          onClick={() => {
+            if (onImageClick) {
+              onImageClick(image)
+            }
+          }}
+        >
+          <ImagePreview {...image} />
+        </Card>
+      ))}
+    </Grid>
+  )
+}

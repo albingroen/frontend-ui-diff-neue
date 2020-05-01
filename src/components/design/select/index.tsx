@@ -9,7 +9,7 @@ interface IOption {
   key: string | number;
 }
 
-interface IOptionGroup {
+export interface IOptionGroup {
   title: string;
   options: IOption[];
   key: string | number;

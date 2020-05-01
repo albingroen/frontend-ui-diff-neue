@@ -17,6 +17,7 @@
     "moment": "2.24.0",
     "query-string": "6.12.1",
     "react": "16.13.1",
+    "react-compare-image": "^2.0.4",
     "react-dom": "16.13.1",
     "react-intl": "4.5.1",
     "react-router-dom": "5.1.2",
