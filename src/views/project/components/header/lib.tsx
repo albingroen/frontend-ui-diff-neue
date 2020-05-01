@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import { IntlShape } from 'react-intl'
 import { Text } from '@primer/components'
-import { IProject, TeamsById, IUser } from '../../../../../../types'
+import { IProject, TeamsById, IUser } from '../../../../types'
 import messages from './messages'
 
 export const getInformation = (
@@ -19,19 +19,21 @@ export const getInformation = (
   {
     label: formatMessage(messages.labelOwner),
     value: (
-      <Text>{project?._team ? teamsById[project._team]?.name : user.name}</Text>
+      <Text fontSize={3}>
+        {project?._team ? teamsById[project._team]?.name : user.name}
+      </Text>
     ),
     key: 1
   },
   {
     label: formatMessage(messages.labelLastUpdated),
-    value: <Text>{moment(project?.updatedAt).fromNow()}</Text>,
+    value: <Text fontSize={3}>{moment(project?.updatedAt).fromNow()}</Text>,
     key: 2
   },
   {
     label: formatMessage(messages.labelImageAmount),
     value: (
-      <Text>
+      <Text fontSize={3}>
         {formatMessage(messages.valueImageAmount, {
           count: project?.images?.length
         })}
