@@ -25,6 +25,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  color: rgb(235, 104, 57);
+  background-color: #eee;
+  padding: 0.35rem;
+  border-radius: 5px;
+  font-size: 0.875em;
+  text-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.15);
 }
 
 a {
@@ -35,4 +41,9 @@ a {
 
 hr {
   opacity: 0.2;
+}
+
+label {
+  opacity: 0.5;
+  font-size: 0.875em;
 }

@@ -11,7 +11,8 @@ import {
   NewProject,
   Teams,
   Team,
-  TeamSettings
+  TeamSettings,
+  Project
 } from '../../views'
 import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
@@ -61,6 +62,7 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
             path="/teams/:id/settings/:section"
             component={TeamSettings}
           />
+          <PrivateRoute path="/projects/:id" component={Project} exact />
         </Container>
       </Switch>
     </BrowserRouter>
