@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import { Dialog, Flex, Text } from '@primer/components'
-import { Select } from '../../../..'
 import { defineMessage, IntlShape } from 'react-intl'
 import { IActiveImages } from '../../../../../types'
 import { IOptionGroup } from '../../../select'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
+import { Select } from '../../../..'
 
 export const messages = defineMessage({
   chooseEnvironment: {
