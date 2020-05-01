@@ -1,12 +1,15 @@
 import { IActiveImages } from '../../../types'
 
-export const getDropdownOptionsFromEnvironments = (environments: string[]) => [
+export const getDropdownOptionsFromEnvironments = (
+  environments: string[],
+  name: string
+) => [
   {
     key: 0,
     title: 'Environments',
     options: environments.map((environment: string) => ({
       value: environment,
-      text: environment,
+      text: `${name} (${environment})`,
       key: environment
     }))
   }

@@ -26,11 +26,13 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
   const onChangeEnv = (env: string, type: 'from' | 'to') => {
     const currentImageName = activeImages?.from?.name || activeImages?.to?.name
 
+    const newImage = images.find(
+      (image: IImage) => image.env === env && image.name === currentImageName
+    )
+
     setActiveImages({
       ...activeImages,
-      [type]: images.find(
-        (image: IImage) => image.env === env && image.name === currentImageName
-      )
+      [type]: newImage
     })
   }
 

@@ -36,8 +36,9 @@ const Header: React.FC<IHeaderProps> = ({
         <Select
           ariaLabel="from-environment"
           title={
-            activeImages?.from?.env ||
-            intl.formatMessage(messages.chooseEnvironment)
+            activeImages?.from
+              ? `${activeImages?.from?.name} (${activeImages?.from?.env})`
+              : intl.formatMessage(messages.chooseEnvironment)
           }
           value={activeImages?.from?.env}
           onChange={(env?: string) => {
@@ -53,8 +54,9 @@ const Header: React.FC<IHeaderProps> = ({
         <Select
           ariaLabel="to-environment"
           title={
-            activeImages?.to?.env ||
-            intl.formatMessage(messages.chooseEnvironment)
+            activeImages?.to
+              ? `${activeImages?.to?.name} (${activeImages?.to?.env})`
+              : intl.formatMessage(messages.chooseEnvironment)
           }
           value={activeImages?.to?.env}
           onChange={(env?: string) => {

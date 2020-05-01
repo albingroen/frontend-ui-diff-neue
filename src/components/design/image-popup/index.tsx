@@ -12,8 +12,18 @@ export const ImagePopup: React.FC<IImagePopup> = ({
   onChangeToEnv,
   environments
 }) => {
+  // Intl HOC
   const intl = useIntl()
-  const dropdownOptions = getDropdownOptionsFromEnvironments(environments)
+
+  // Name of current image being compared
+  const currentImageName =
+    activeImages?.from?.name || activeImages?.to?.name || ''
+
+  // Environments to dropdown options
+  const dropdownOptions = getDropdownOptionsFromEnvironments(
+    environments,
+    currentImageName
+  )
 
   return (
     activeImages && (
@@ -32,6 +42,16 @@ export const ImagePopup: React.FC<IImagePopup> = ({
               <CompareImage
                 leftImage={activeImages.from?.small}
                 rightImage={activeImages.to?.small}
+                leftImageLabel={
+                  activeImages.from
+                    ? `${activeImages.from?.name} (${activeImages.from?.env})`
+                    : ''
+                }
+                rightImageLabel={
+                  activeImages.to
+                    ? `${activeImages.to?.name} (${activeImages.to?.env})`
+                    : ''
+                }
               />
             ) : (
               <img
