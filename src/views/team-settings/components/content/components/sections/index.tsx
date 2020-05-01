@@ -2,7 +2,6 @@ import * as React from 'react'
 import { SectionGroup } from '../../../../../../components'
 import { defineMessages } from 'react-intl'
 import { ITeam } from '../../../../../../types'
-import Billing from './billing'
 import Basic from './basic'
 import { Flex } from '@primer/components'
 
@@ -14,14 +13,6 @@ const messages = defineMessages({
   generalLede: {
     defaultMessage: 'General settings preferences for your team',
     id: 'team-settings.sections.general.lede'
-  },
-  billingHeading: {
-    defaultMessage: 'Billing',
-    id: 'team-settings.sections.billing.heading'
-  },
-  billingLede: {
-    defaultMessage: 'Billing, plans and subscriptions',
-    id: 'team-settings.sections.billing.lede'
   }
 })
 
@@ -38,15 +29,6 @@ const renderSection = (path: string, team: ITeam) => {
           lede={messages.generalLede}
         >
           <Basic team={team} />
-        </SectionGroup>
-      )
-    case 'billing':
-      return (
-        <SectionGroup
-          heading={messages.billingHeading}
-          lede={messages.billingLede}
-        >
-          <Billing team={team} />
         </SectionGroup>
       )
   }

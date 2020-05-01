@@ -19,13 +19,6 @@ export default (intl: IntlShape, user: IUser) => [
         link: '/audit-log',
         key: 3,
         active: window.location.pathname === '/audit-log'
-      },
-
-      {
-        value: intl.formatMessage(messages.billing),
-        link: '/billing',
-        key: 5,
-        active: window.location.pathname === '/billing'
       }
     ]
   },

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Heading, Flex, Text, ButtonPrimary, Box } from '@primer/components'
 import { FormattedNumber, defineMessages, FormattedMessage } from 'react-intl'
-import { IPlan } from '../../../types'
 import { Card } from '../card'
 
 const messages = defineMessages({
@@ -28,8 +27,8 @@ const messages = defineMessages({
 })
 
 interface IPricePlan {
-  plan: IPlan;
-  onSelectPlan?: (plan: IPlan) => void;
+  plan: any;
+  onSelectPlan?: (plan: any) => void;
   isActive?: boolean;
   style?: React.CSSProperties;
 }
