@@ -61,15 +61,15 @@ const Project: React.FC<IProjectProps> = ({
           />
         </Text>
 
-        {teamsById &&
-          project._team &&
-          teamsById[project._team] &&
-          includeBelonger && (
+        {includeBelonger && (
           <Text fontSize="14px" opacity={0.75}>
             <FormattedMessage
               {...messages.belonger}
               values={{
-                belonger: teamsById[project._team].name,
+                belonger:
+                  teamsById && project._team && teamsById[project._team]
+                    ? teamsById[project._team]?.name
+                    : 'you',
                 strong: (chunks: string[] | React.ReactElement[]) => (
                   <strong>{chunks}</strong>
                 )
