@@ -13,7 +13,7 @@ const Content = styled.div`
   padding: ${(props) => props?.theme?.space[4]}px;
   overflow-y: auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 
   &::after {

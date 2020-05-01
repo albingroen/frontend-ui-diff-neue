@@ -40,8 +40,8 @@ const VerticalMenuItem = styled.div`
 `
 
 const VerticalSubMenuItem = styled.div`
-  padding: 0.75rem;
-  font-size: 0.875em;
+  padding: 0.5rem;
+  font-size: 0.75em;
   border-bottom: 1px solid #eee;
   padding-left: 1.5rem;
   background: ${(props) => props?.theme?.colors?.bg?.grayLight};

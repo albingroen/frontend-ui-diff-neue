@@ -12,7 +12,7 @@ const HeaderListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 70px;
-  max-width: 1200px;
+  max-width: 1300px;
 `
 
 const HeaderList = styled.ul`
