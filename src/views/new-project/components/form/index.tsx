@@ -4,7 +4,7 @@ import { Section, Select } from '../../../../components'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { TeamsContext } from '../../../../context/teamsContext'
 import { UserContext } from '../../../../context/userContext'
-import { getTeamsAndUserById, getDropdownTitle, teamsToOptions } from './lib'
+import { getDropdownTitle, teamsToOptions } from './lib'
 import messages from './messages'
 import { ProjectsContext } from '../../../../context/projectsContext'
 import { useHistory } from 'react-router-dom'
@@ -45,7 +45,6 @@ const Form = () => {
   const { user } = React.useContext(UserContext)
   const { teamsById } = React.useContext(TeamsContext)
   const { createProject } = React.useContext(ProjectsContext)
-  const teamsAndUserById = getTeamsAndUserById(user, teamsById)
 
   // State
   const [state, dispatch] = React.useReducer(reducer, {})
@@ -79,12 +78,27 @@ const Form = () => {
           <Flex mr={2}>
             <Select
               ariaLabel="owner"
-              onChange={(newValue?: string) =>
+              onChange={(newValue?: string) => {
                 dispatch({ type: 'CHANGE_OWNER', payload: newValue })
-              }
+              }}
               value={state.owner}
-              title={getDropdownTitle(teamsAndUserById, intl, state.owner)}
-              options={teamsToOptions(teamsAndUserById)}
+              title={getDropdownTitle(
+                { ...teamsById, ...{ [user._id]: user } },
+                intl,
+                state.owner
+              )}
+              options={[
+                {
+                  title: 'Teams',
+                  options: teamsToOptions(teamsById),
+                  key: 0
+                },
+                {
+                  title: 'User',
+                  options: teamsToOptions({ [user._id]: user }),
+                  key: 1
+                }
+              ]}
             />
           </Flex>
 

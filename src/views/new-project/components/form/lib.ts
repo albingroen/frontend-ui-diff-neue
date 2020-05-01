@@ -17,10 +17,3 @@ export const getDropdownTitle = (
   chosenTeam
     ? teamsAndUserById[chosenTeam].name
     : intl.formatMessage(messages.belongsToTitle)
-
-export const getTeamsAndUserById = (user: IUser, teamsById: TeamsById) => {
-  return {
-    [user._id]: user,
-    ...teamsById
-  }
-}
