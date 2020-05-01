@@ -27,10 +27,6 @@ const messages = defineMessages({
   tooltipAllImages: {
     defaultMessage: 'All images',
     id: 'component.container.component.app-sidebar.tooltips.all-images'
-  },
-  tooltipBilling: {
-    defaultMessage: 'Billing',
-    id: 'component.container.component.app-sidebar.tooltips.billing'
   }
 })
 

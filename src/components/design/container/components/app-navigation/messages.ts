@@ -17,10 +17,6 @@ export default defineMessages({
     defaultMessage: 'Team settings',
     id: 'component.app-navigation.items.team-settings'
   },
-  billing: {
-    defaultMessage: 'Billing',
-    id: 'component.app-navigation.items.billing'
-  },
   newProject: {
     defaultMessage: 'New project',
     id: 'component.app-navigation.items.new-project'

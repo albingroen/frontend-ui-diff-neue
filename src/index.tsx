@@ -4,8 +4,6 @@ import { theme as primer } from '@primer/components'
 import { ThemeProvider } from 'styled-components'
 import './index.css'
 import { IntlProvider } from 'react-intl'
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
 
 import App from './App'
 import * as serviceWorker from './serviceWorker'
@@ -25,15 +23,10 @@ const theme = {
   }
 }
 
-// Load in Stripe
-const stripePromise = loadStripe('pk_test_EfNNxBuPUHbBg19BnThXTh1F00fCVpnLgF')
-
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <IntlProvider locale="en">
-      <Elements stripe={stripePromise}>
-        <App />
-      </Elements>
+      <App />
     </IntlProvider>
   </ThemeProvider>,
   document.getElementById('root')

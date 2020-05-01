@@ -13,11 +13,6 @@ const messages = defineMessages({
   basicInformation: {
     defaultMessage: 'Basic information',
     id: 'team-settings.menu.general.basic-information'
-  },
-
-  billing: {
-    defaultMessage: 'Billing',
-    id: 'team-settings.menu.billing'
   }
 })
 
@@ -41,10 +36,6 @@ const Content: React.FC<IContentProps> = ({ team }) => {
                 text: intl.formatMessage(messages.basicInformation)
               }
             ]
-          },
-          {
-            link: `/teams/${team._id}/settings/billing`,
-            text: intl.formatMessage(messages.billing)
           }
         ]}
       />
