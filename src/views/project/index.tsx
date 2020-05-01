@@ -15,10 +15,6 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
     return <Redirect to="/" />
   }
 
-  console.log({
-    project
-  })
-
   return (
     <div>
       <Header project={project} />
