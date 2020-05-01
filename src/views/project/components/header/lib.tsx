@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import { IntlShape } from 'react-intl'
 import { Text } from '@primer/components'
-import { IProject, TeamsById, IUser } from '../../../../../../types'
+import { IProject, TeamsById, IUser } from '../../../../types'
 import messages from './messages'
 
 export const getInformation = (

@@ -65,3 +65,5 @@ export interface ITeam {
 }
 
 export type TeamsById = { [key: string]: ITeam | IUser };
+
+export type PrimerTheme = { [key: string]: any };
