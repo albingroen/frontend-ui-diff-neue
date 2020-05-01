@@ -10,11 +10,6 @@ import { ProjectsContext } from '../../../../context/projectsContext'
 import { useHistory } from 'react-router-dom'
 import { errorMessages } from '../../../../lib'
 
-interface Action {
-  type: string;
-  payload?: string;
-}
-
 interface IState {
   owner?: string;
   name?: string;
@@ -22,7 +17,12 @@ interface IState {
   error?: string;
 }
 
-function reducer (state: IState, action: Action): IState {
+interface IAction {
+  type: string;
+  payload?: string;
+}
+
+function reducer (state: IState, action: IAction): IState {
   switch (action.type) {
     case 'CHANGE_NAME':
       return { ...state, name: action.payload }

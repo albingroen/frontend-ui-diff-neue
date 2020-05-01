@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { ButtonPrimary } from '@primer/components'
-import { FormattedMessage, IntlShape } from 'react-intl'
+import { Avatar } from '@primer/components'
+import { IntlShape } from 'react-intl'
 import messages from './messages'
+import { IUser } from '../../../../../types'
 
-export default (intl: IntlShape) => [
+export default (intl: IntlShape, user: IUser) => [
   {
     key: 1,
     items: [
@@ -14,23 +15,12 @@ export default (intl: IntlShape) => [
         active: window.location.pathname === '/'
       },
       {
-        value: intl.formatMessage(messages.members),
-        link: '/members',
-        key: 2,
-        active: window.location.pathname === '/members'
-      },
-      {
         value: intl.formatMessage(messages.auditLog),
         link: '/audit-log',
         key: 3,
         active: window.location.pathname === '/audit-log'
       },
-      {
-        value: intl.formatMessage(messages.teamSettings),
-        link: '/team-settings',
-        key: 4,
-        active: window.location.pathname === '/team-settings'
-      },
+
       {
         value: intl.formatMessage(messages.billing),
         link: '/billing',
@@ -44,11 +34,13 @@ export default (intl: IntlShape) => [
     items: [
       {
         value: (
-          <ButtonPrimary mr={2}>
-            <FormattedMessage {...messages.newProject} />
-          </ButtonPrimary>
+          <Avatar
+            size={35}
+            alt="profile"
+            style={{ borderRadius: '50%' }}
+            src={user.avatar}
+          />
         ),
-        link: '/new-project',
         key: 1,
         active: true
       }

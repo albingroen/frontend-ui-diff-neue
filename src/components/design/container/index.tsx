@@ -11,11 +11,16 @@ import messages from './messages'
 const Content = styled.div`
   height: calc(100vh - 70px);
   padding: ${(props) => props?.theme?.space[4]}px;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 100px;
+
+  &::after {
+    height: 100px;
+    content: "";
+    display: block;
+  }
 `
 
 interface IContainerProps {
@@ -61,7 +66,7 @@ export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
     <>
       <Flex>
         <AppSidebar />
-        <Flex flexDirection="column" style={{ width: '100%' }}>
+        <Flex flexDirection="column" width="100%">
           <AppNavigation />
           <Content>{children}</Content>
         </Flex>

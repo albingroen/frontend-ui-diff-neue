@@ -21,3 +21,8 @@ export const getTeamsById = (teams?: ITeam[]) => {
 
   return teamsById
 }
+
+export const teamMemberRoles = {
+  ADMIN: 'admin',
+  USER: 'user'
+}

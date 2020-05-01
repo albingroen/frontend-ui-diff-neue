@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { Dropdown, Flex, Text } from '@primer/components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { SelectMenu, Button } from '@primer/components'
 
 interface IOption {
   text: string;
@@ -24,41 +22,21 @@ export const Select: React.FC<ISelectProps> = ({
   options,
   onChange
 }) => (
-  <Dropdown
-    value={value || ''}
-    style={{ minWidth: '125px' }}
-    aria-label={ariaLabel}
-    title={title}
-    key={value}
-  >
-    <Dropdown.Menu direction="sw">
-      {options.map((option: IOption, i: number) => {
-        const isChosen = option.value === value
-        const last = options.length - 1
-
-        return (
-          <Dropdown.Item
-            key={option.key}
-            value={option.value}
-            style={{
-              cursor: 'pointer',
-              borderBottom: i !== last ? '1px solid #eee' : 'none',
-              padding: '0.65rem',
-              fontSize: '1em'
-            }}
-            onClick={() => {
-              onChange(isChosen ? undefined : option.value)
-            }}
+  <SelectMenu aria-label={ariaLabel}>
+    <Button as="summary">{title}</Button>
+    <SelectMenu.Modal>
+      <SelectMenu.Header>Teams</SelectMenu.Header>
+      <SelectMenu.List>
+        {options.map((option: IOption) => (
+          <SelectMenu.Item
+            onClick={() => onChange(option.value)}
+            selected={option.value === value}
+            key={option.value}
           >
-            <Flex pl={isChosen ? 0 : 2} alignItems="center">
-              <Text fontSize={1} mr={1}>
-                {isChosen && <FontAwesomeIcon icon={faCheck} />}
-              </Text>
-              {option.text}
-            </Flex>
-          </Dropdown.Item>
-        )
-      })}
-    </Dropdown.Menu>
-  </Dropdown>
+            {option.text}
+          </SelectMenu.Item>
+        ))}
+      </SelectMenu.List>
+    </SelectMenu.Modal>
+  </SelectMenu>
 )

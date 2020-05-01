@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Flex, TextInput, Button } from '@primer/components'
-import { Card } from '../../../../../../components'
+import { Card } from '../../../..'
 import { Link } from 'react-router-dom'
 
 interface IHeaderProps {
   onSearch: (value: string) => void;
-  search?: string;
+  search: string;
 }
 
 const Header: React.FC<IHeaderProps> = ({ search, onSearch }) => (
