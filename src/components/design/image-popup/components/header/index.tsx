@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
-import { Dialog, Flex, Text } from '@primer/components'
+import { Dialog, Flex, Text, Heading } from '@primer/components'
 import { defineMessage, IntlShape } from 'react-intl'
 import { IActiveImages } from '../../../../../types'
 import { IOptionGroup } from '../../../select'
@@ -31,7 +31,9 @@ const Header: React.FC<IHeaderProps> = ({
 }) => (
   <Dialog.Header>
     <Flex width="100%" alignItems="center" justifyContent="space-between">
-      <span>Compare your images</span>
+      <Heading fontSize={3}>
+        {activeImages?.from?.name || activeImages?.to?.name}
+      </Heading>
       <Flex alignItems="center" pr={5}>
         <Select
           ariaLabel="from-environment"
