@@ -10,6 +10,7 @@ interface ICardProps {
   shadowed?: boolean;
   style?: React.CSSProperties;
   withoutPadding?: boolean;
+  scaleOnHover?: boolean;
   borderColor?: string;
   isActive?: boolean;
 }
@@ -50,6 +51,12 @@ const StyledBox = styled(Box)`
       &:hover {
         background: #f9f9f9;
         transition: ${(tprops: any) => tprops?.theme.transitions?.default};
+        ${(props: ICardProps) =>
+          props.scaleOnHover &&
+          css`
+            box-shadow: 0 20px 20px 0 rgba(14, 30, 37, 0.12);
+            transform: scale(1.05);
+          `}
       }
 
       &:active {
@@ -67,7 +74,8 @@ export const Card: React.FC<ICardProps> = ({
   bordered,
   style,
   withoutPadding,
-  isActive
+  isActive,
+  scaleOnHover
 }) => {
   return (
     <StyledBox
@@ -80,6 +88,7 @@ export const Card: React.FC<ICardProps> = ({
       bordered={bordered}
       withoutPadding={withoutPadding}
       isActive={isActive}
+      scaleOnHover={scaleOnHover}
     >
       {children}
     </StyledBox>
