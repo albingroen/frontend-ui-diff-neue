@@ -2,7 +2,7 @@ import * as React from 'react'
 import { RouteComponentProps, Redirect } from 'react-router-dom'
 import { ProjectsContext } from '../../context/projectsContext'
 import Header from './components/header'
-import { Images } from '../../components'
+import Images from './components/images'
 
 export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const { projectsById } = React.useContext(ProjectsContext)

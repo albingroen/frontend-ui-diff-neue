@@ -13,6 +13,7 @@ interface ICardProps {
   scaleOnHover?: boolean;
   borderColor?: string;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
 const StyledBox = styled(Box)`
@@ -75,10 +76,12 @@ export const Card: React.FC<ICardProps> = ({
   style,
   withoutPadding,
   isActive,
-  scaleOnHover
+  scaleOnHover,
+  onClick
 }) => {
   return (
     <StyledBox
+      onClick={onClick}
       clickable={clickable}
       shadowed={shadowed}
       p={3}
