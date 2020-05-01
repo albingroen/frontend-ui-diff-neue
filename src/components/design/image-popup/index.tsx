@@ -26,18 +26,20 @@ export const ImagePopup: React.FC<IImagePopup> = ({
           onChangeToEnv={onChangeToEnv}
         />
         <Box p={3}>
-          {activeImages.to ? (
-            <CompareImage
-              leftImage={activeImages.from?.small}
-              rightImage={activeImages.to?.small}
-            />
-          ) : (
-            <img
-              src={activeImages.from?.small}
-              style={{ width: '100%' }}
-              alt="Page screenshot"
-            />
-          )}
+          {activeImages?.from &&
+          activeImages?.to &&
+          activeImages?.from?._id !== activeImages?.to?._id ? (
+              <CompareImage
+                leftImage={activeImages.from?.small}
+                rightImage={activeImages.to?.small}
+              />
+            ) : (
+              <img
+                src={activeImages.from?.small}
+                style={{ width: '100%' }}
+                alt="Page screenshot"
+              />
+            )}
         </Box>
       </Dialog>
     )
