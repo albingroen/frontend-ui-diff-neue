@@ -25,6 +25,7 @@ interface IImagesProps {
   onImageClick?: (image: IImage) => void;
   images?: IImage[];
   imagesByEnvironemnt?: ImagesByEnvironment;
+  baseEnvironment?: string;
 }
 
 interface IImagePreviewProps extends IImage {
@@ -85,16 +86,20 @@ const ImagePreview = styled.div`
 
 export const Images: React.FC<IImagesProps> = ({
   imagesByEnvironemnt,
+  baseEnvironment,
   onImageClick
 }) => {
-  const firstEnvironmentImages =
-    imagesByEnvironemnt && Object.values(imagesByEnvironemnt)[0]
+  const baseEnvironmentImages =
+    imagesByEnvironemnt &&
+    (baseEnvironment
+      ? imagesByEnvironemnt[baseEnvironment]
+      : Object.values(imagesByEnvironemnt)[0])
 
   return imagesByEnvironemnt ? (
     Object.values(imagesByEnvironemnt).flatMap((imgs: IImage[]) => imgs)
       .length ? (
         <Grid gridTemplateColumns="repeat(5, auto)" gridGap={3}>
-          {firstEnvironmentImages?.map((image: IImage) => (
+          {baseEnvironmentImages?.map((image: IImage) => (
             <Card
               scaleOnHover
               bordered
