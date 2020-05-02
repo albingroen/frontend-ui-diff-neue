@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { AppNavigation } from './components/app-navigation'
-import { AppSidebar } from './components/app-sidebar'
 import { Loading } from '../loading'
 import { Flex } from '@primer/components'
 import { Footer } from '../footer'
@@ -9,12 +8,11 @@ import { useIntl, IntlShape } from 'react-intl'
 import messages from './messages'
 
 const Content = styled.div`
-  height: calc(100vh - 70px);
-  padding: ${(props) => props?.theme?.space[4]}px;
-  overflow-y: auto;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
+  padding: ${(props) => props?.theme?.space[4]}px;
+  min-height: calc(100vh - 70px);
 
   &::after {
     height: 100px;
@@ -65,7 +63,6 @@ export const Container: React.FC<IContainerProps> = ({ children, loading }) => {
   ) : (
     <>
       <Flex>
-        <AppSidebar />
         <Flex flexDirection="column" width="100%">
           <AppNavigation />
           <Content>{children}</Content>
