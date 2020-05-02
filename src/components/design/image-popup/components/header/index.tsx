@@ -65,7 +65,9 @@ const Header: React.FC<IHeaderProps> = ({
         <Heading fontSize={3} mr={4}>
           {activeImages?.from?.name || activeImages?.to?.name}
         </Heading>
+      </Flex>
 
+      <Flex alignItems="center" pr={4}>
         <ButtonGroup>
           <Button onClick={() => onBrowse('prev')}>
             <FontAwesomeIcon icon={faAngleLeft} />
@@ -74,10 +76,8 @@ const Header: React.FC<IHeaderProps> = ({
             <FontAwesomeIcon icon={faAngleRight} />
           </Button>
         </ButtonGroup>
-      </Flex>
 
-      <Flex alignItems="center" pr={4}>
-        <Flex alignItems="center" pr={2}>
+        <Flex alignItems="center" px={2}>
           <Tooltip
             aria-label={intl.formatMessage(messages.chooseBaseEnvironment)}
           >

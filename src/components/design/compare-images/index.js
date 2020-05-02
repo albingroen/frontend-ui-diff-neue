@@ -12,5 +12,6 @@ export const CompareImage = ({
     rightImageLabel={rightImageLabel}
     leftImage={leftImage}
     rightImage={rightImage}
+    aspectRatio="taller"
   />
 )

@@ -44,6 +44,7 @@ export const ImagePopup: React.FC<IImagePopup> = ({
           activeImages?.to &&
           activeImages?.from?._id !== activeImages?.to?._id ? (
               <CompareImage
+                key={activeImages.from?._id}
                 leftImage={activeImages.from?.small}
                 rightImage={activeImages.to?.small}
                 leftImageLabel={
