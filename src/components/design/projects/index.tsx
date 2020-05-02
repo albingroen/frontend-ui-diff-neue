@@ -36,9 +36,7 @@ const Projects: React.FC<IProjectsProps> = ({
   includeBelonger
 }) => {
   const history = useHistory()
-
   const { teamsById } = React.useContext(TeamsContext)
-
   const [search, setSearch] = React.useState<string>('')
 
   const filterProjects = (project: IProject) =>
