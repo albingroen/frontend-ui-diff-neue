@@ -20,25 +20,23 @@ export const Empty: React.FC<IEmptyProps> = ({
   lede,
   cta,
   onClick
-}) => {
-  return (
-    <BorderBox mt={3} p={5} borderStyle="dashed">
-      <Flex justifyContent="center" alignItems="center" flexDirection="column">
-        <Heading fontSize={3}>
-          {typeof heading === 'string' ? (
-            heading
-          ) : (
-            <FormattedMessage {...heading} />
-          )}
-        </Heading>
-        <Text opacity={0.5} mt={1} mb={3}>
-          {typeof lede === 'string' ? lede : <FormattedMessage {...lede} />}
-        </Text>
+}) => (
+  <BorderBox mt={3} p={5} borderStyle="dashed">
+    <Flex justifyContent="center" alignItems="center" flexDirection="column">
+      <Heading fontSize={3}>
+        {typeof heading === 'string' ? (
+          heading
+        ) : (
+          <FormattedMessage {...heading} />
+        )}
+      </Heading>
+      <Text opacity={0.5} mt={1} mb={3}>
+        {typeof lede === 'string' ? lede : <FormattedMessage {...lede} />}
+      </Text>
 
-        <ButtonPrimary onClick={onClick} variant="medium">
-          {typeof cta === 'string' ? cta : <FormattedMessage {...cta} />}
-        </ButtonPrimary>
-      </Flex>
-    </BorderBox>
-  )
-}
+      <ButtonPrimary onClick={onClick} variant="medium">
+        {typeof cta === 'string' ? cta : <FormattedMessage {...cta} />}
+      </ButtonPrimary>
+    </Flex>
+  </BorderBox>
+)
