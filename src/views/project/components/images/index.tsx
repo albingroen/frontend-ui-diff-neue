@@ -1,10 +1,11 @@
 import * as React from 'react'
+import { useIntl } from 'react-intl'
 import { IImage, IActiveImages, ImageBrowseDir } from '../../../../types'
 import { ImagePopup } from '../../../../components/design/image-popup'
 import { Images as ImageGrid, Section, Select } from '../../../../components'
 import { getImagesByEnvironment } from '../../../../lib/images'
-import { defineMessage, useIntl } from 'react-intl'
 import { Box } from '@primer/components'
+import messages from './lib'
 
 interface IImagesProps {
   images: IImage[];
@@ -14,25 +15,6 @@ const initialActiveImages = {
   from: undefined,
   to: undefined
 }
-
-const messages = defineMessage({
-  imagesHeading: {
-    defaultMessage: 'Images',
-    id: 'project.images.heading'
-  },
-  imagesLede: {
-    defaultMessage: 'These are the images you have uploaded',
-    id: 'project.images.lede'
-  },
-  environments: {
-    defaultMessage: 'Environments',
-    id: 'project.images.environments'
-  },
-  baseEnvironment: {
-    defaultMessage: 'Base environment',
-    id: 'project.images.base-environment'
-  }
-})
 
 const Images: React.FC<IImagesProps> = ({ images }) => {
   const intl = useIntl()
@@ -88,33 +70,35 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
   return (
     <div>
       <Section title={messages.imagesHeading} lede={messages.imagesLede}>
-        <Box mb={4}>
-          <Select
-            onChange={(value?: string) => {
-              if (value) {
-                setBaseEnvironment(value)
-              }
-            }}
-            ariaLabel="base-image-environment"
-            title={`${intl.formatMessage(
-              messages.baseEnvironment
-            )}: ${baseEnvironment}`}
-            value={baseEnvironment}
-            options={[
-              {
-                title: intl.formatMessage(messages.environments),
-                key: 0,
-                options: Object.keys(imagesByEnvironemnt).map(
-                  (env: string) => ({
-                    value: env,
-                    text: env,
-                    key: env
-                  })
-                )
-              }
-            ]}
-          />
-        </Box>
+        {Object.keys(imagesByEnvironemnt)?.length > 0 && (
+          <Box mb={4}>
+            <Select
+              onChange={(value?: string) => {
+                if (value) {
+                  setBaseEnvironment(value)
+                }
+              }}
+              ariaLabel="base-image-environment"
+              title={`${intl.formatMessage(
+                messages.baseEnvironment
+              )}: ${baseEnvironment}`}
+              value={baseEnvironment}
+              options={[
+                {
+                  title: intl.formatMessage(messages.environments),
+                  key: 0,
+                  options: Object.keys(imagesByEnvironemnt).map(
+                    (env: string) => ({
+                      value: env,
+                      text: env,
+                      key: env
+                    })
+                  )
+                }
+              ]}
+            />
+          </Box>
+        )}
 
         <ImageGrid
           baseEnvironment={baseEnvironment}
