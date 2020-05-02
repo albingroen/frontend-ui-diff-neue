@@ -74,3 +74,5 @@ export interface IActiveImages {
 }
 
 export type ImagesByEnvironment = { [env: string]: IImage[] };
+
+export type ImageBrowseDir = 'prev' | 'next';

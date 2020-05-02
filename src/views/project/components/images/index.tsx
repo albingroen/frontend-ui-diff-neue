@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IImage, IActiveImages } from '../../../../types'
+import { IImage, IActiveImages, ImageBrowseDir } from '../../../../types'
 import { ImagePopup } from '../../../../components/design/image-popup'
 import { Images as ImageGrid } from '../../../../components'
 import { getImagesByEnvironment } from '../../../../lib/images'
@@ -36,6 +36,54 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
     })
   }
 
+  // Browsing functions
+  const onBrowse = (dir: ImageBrowseDir) => {
+    const currentImageFromIndex =
+      activeImages?.from &&
+      imagesByEnvironemnt[activeImages?.from?.env].indexOf(activeImages.from)
+    const currentImageToIndex =
+      activeImages?.to &&
+      imagesByEnvironemnt[activeImages?.to?.env].indexOf(activeImages.to)
+
+    switch (dir) {
+      case 'prev':
+        setActiveImages({
+          ...activeImages,
+          from:
+            activeImages?.from && currentImageFromIndex
+              ? imagesByEnvironemnt[activeImages?.from?.env][
+                currentImageFromIndex - 1
+              ]
+              : undefined,
+          to:
+            activeImages?.to && currentImageToIndex
+              ? imagesByEnvironemnt[activeImages?.to?.env][
+                currentImageToIndex - 1
+              ]
+              : undefined
+        })
+        break
+      case 'next':
+        setActiveImages({
+          ...activeImages,
+          from:
+            activeImages?.from && currentImageFromIndex !== undefined
+              ? imagesByEnvironemnt[activeImages?.from?.env][
+                currentImageFromIndex + 1
+              ]
+              : undefined,
+          to:
+            activeImages?.to && currentImageToIndex !== undefined
+              ? imagesByEnvironemnt[activeImages?.to?.env][
+                currentImageToIndex + 1
+              ]
+              : undefined
+        })
+        break
+      default:
+    }
+  }
+
   return (
     <div>
       <ImageGrid
@@ -49,6 +97,7 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
 
       {activeImages?.from && (
         <ImagePopup
+          onBrowse={onBrowse}
           onDismiss={() => setActiveImages(initialActiveImages)}
           onChangeFromEnv={(env: string) => onChangeEnv(env, 'from')}
           onChangeToEnv={(env: string) => onChangeEnv(env, 'to')}
