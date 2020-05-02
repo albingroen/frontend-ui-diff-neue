@@ -3,11 +3,29 @@ import styled from 'styled-components'
 import { Grid } from '@primer/components'
 import { IImage, PrimerTheme, ImagesByEnvironment } from '../../../types'
 import { Card } from '../card'
+import { Empty } from '../../'
+import { defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  emptyHeading: {
+    defaultMessage: 'No uploaded images found',
+    id: 'component.images.empty.heading'
+  },
+  emptyLede: {
+    defaultMessage: 'We could not find any images',
+    id: 'component.images.empty.lede'
+  },
+  emptyCta: {
+    defaultMessage: 'How do I upload images?',
+    id: 'component.images.empty.cta'
+  }
+})
 
 interface IImagesProps {
   onImageClick?: (image: IImage) => void;
   images?: IImage[];
   imagesByEnvironemnt?: ImagesByEnvironment;
+  baseEnvironment?: string;
 }
 
 interface IImagePreviewProps extends IImage {
@@ -68,30 +86,44 @@ const ImagePreview = styled.div`
 
 export const Images: React.FC<IImagesProps> = ({
   imagesByEnvironemnt,
+  baseEnvironment,
   onImageClick
 }) => {
-  const firstEnvironmentImages =
-    imagesByEnvironemnt && Object.values(imagesByEnvironemnt)[0]
+  const baseEnvironmentImages =
+    imagesByEnvironemnt &&
+    (baseEnvironment
+      ? imagesByEnvironemnt[baseEnvironment]
+      : Object.values(imagesByEnvironemnt)[0])
 
-  return (
-    <Grid gridTemplateColumns="repeat(5, auto)" gridGap={3}>
-      {firstEnvironmentImages?.map((image: IImage) => (
-        <Card
-          scaleOnHover
-          bordered
-          withoutPadding
-          shadowed
-          key={image._id}
-          clickable
-          onClick={() => {
-            if (onImageClick) {
-              onImageClick(image)
-            }
-          }}
-        >
-          <ImagePreview {...image} />
-        </Card>
-      ))}
-    </Grid>
-  )
+  return imagesByEnvironemnt ? (
+    Object.values(imagesByEnvironemnt).flatMap((imgs: IImage[]) => imgs)
+      .length ? (
+        <Grid gridTemplateColumns="repeat(5, auto)" gridGap={3}>
+          {baseEnvironmentImages?.map((image: IImage) => (
+            <Card
+              scaleOnHover
+              bordered
+              withoutPadding
+              shadowed
+              key={image._id}
+              clickable
+              onClick={() => {
+                if (onImageClick) {
+                  onImageClick(image)
+                }
+              }}
+            >
+              <ImagePreview {...image} />
+            </Card>
+          ))}
+        </Grid>
+      ) : (
+        <Empty
+          heading={messages.emptyHeading}
+          lede={messages.emptyLede}
+          cta={messages.emptyCta}
+          onClick={() => console.log('Click')}
+        />
+      )
+  ) : null
 }
