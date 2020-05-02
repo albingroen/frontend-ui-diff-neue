@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faExchangeAlt,
   faAngleLeft,
-  faAngleRight
+  faAngleRight,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Dialog,
@@ -11,7 +12,8 @@ import {
   Text,
   Heading,
   ButtonGroup,
-  Button
+  Button,
+  Tooltip
 } from '@primer/components'
 import { defineMessage, IntlShape } from 'react-intl'
 import { IActiveImages, ImageBrowseDir } from '../../../../../types'
@@ -22,6 +24,19 @@ export const messages = defineMessage({
   chooseEnvironment: {
     defaultMessage: 'Choose a environment',
     id: 'components.design.image-popup.header.choose-environment'
+  },
+  chooseBaseEnvironment: {
+    defaultMessage: 'Choose the base environment',
+    id: 'components.design.image-popup.header.choose-the-base-environment'
+  },
+  chooseComparisonEnvironment: {
+    defaultMessage: 'Choose the environment to compare with',
+    id:
+      'components.design.image-popup.header.choose-the-comparison-environment'
+  },
+  clearComparison: {
+    defaultMessage: 'Clear comparison',
+    id: 'components.design.image-popup.header.clear-comparison'
   }
 })
 
@@ -31,6 +46,7 @@ interface IHeaderProps {
   onChangeFromEnv: (env: string) => void;
   onChangeToEnv: (env: string) => void;
   onBrowse: (dir: ImageBrowseDir) => void;
+  onReset: () => void;
   dropdownOptions: IOptionGroup[];
 }
 
@@ -40,7 +56,8 @@ const Header: React.FC<IHeaderProps> = ({
   dropdownOptions,
   onChangeFromEnv,
   onChangeToEnv,
-  onBrowse
+  onBrowse,
+  onReset
 }) => (
   <Dialog.Header>
     <Flex width="100%" alignItems="center" justifyContent="space-between">
@@ -59,40 +76,62 @@ const Header: React.FC<IHeaderProps> = ({
         </ButtonGroup>
       </Flex>
 
-      <Flex alignItems="center" pr={5}>
-        <Select
-          ariaLabel="from-environment"
-          title={
-            activeImages?.from
-              ? `${activeImages?.from?.name} (${activeImages?.from?.env})`
-              : intl.formatMessage(messages.chooseEnvironment)
-          }
-          value={activeImages?.from?.env}
-          onChange={(env?: string) => {
-            if (env) {
-              onChangeFromEnv(env)
-            }
-          }}
-          options={dropdownOptions}
-        />
-        <Text opacity={0.5} px={3}>
-          <FontAwesomeIcon icon={faExchangeAlt} />
-        </Text>
-        <Select
-          ariaLabel="to-environment"
-          title={
-            activeImages?.to
-              ? `${activeImages?.to?.name} (${activeImages?.to?.env})`
-              : intl.formatMessage(messages.chooseEnvironment)
-          }
-          value={activeImages?.to?.env}
-          onChange={(env?: string) => {
-            if (env) {
-              onChangeToEnv(env)
-            }
-          }}
-          options={dropdownOptions}
-        />
+      <Flex alignItems="center" pr={4}>
+        <Flex alignItems="center" pr={2}>
+          <Tooltip
+            aria-label={intl.formatMessage(messages.chooseBaseEnvironment)}
+          >
+            <Select
+              ariaLabel="from-environment"
+              title={
+                activeImages?.from
+                  ? `${activeImages?.from?.name} (${activeImages?.from?.env})`
+                  : intl.formatMessage(messages.chooseEnvironment)
+              }
+              value={activeImages?.from?.env}
+              onChange={(env?: string) => {
+                if (env) {
+                  onChangeFromEnv(env)
+                }
+              }}
+              options={dropdownOptions}
+            />
+          </Tooltip>
+
+          <Text opacity={0.5} px={3}>
+            <FontAwesomeIcon icon={faExchangeAlt} />
+          </Text>
+
+          <Tooltip
+            aria-label={intl.formatMessage(
+              messages.chooseComparisonEnvironment
+            )}
+          >
+            <Select
+              ariaLabel="to-environment"
+              title={
+                activeImages?.to
+                  ? `${activeImages?.to?.name} (${activeImages?.to?.env})`
+                  : intl.formatMessage(messages.chooseEnvironment)
+              }
+              value={activeImages?.to?.env}
+              onChange={(env?: string) => {
+                if (env) {
+                  onChangeToEnv(env)
+                }
+              }}
+              options={dropdownOptions}
+            />
+          </Tooltip>
+        </Flex>
+
+        {activeImages?.to && (
+          <Tooltip aria-label={intl.formatMessage(messages.clearComparison)}>
+            <Button onClick={onReset}>
+              <FontAwesomeIcon icon={faTimes} />
+            </Button>
+          </Tooltip>
+        )}
       </Flex>
     </Flex>
   </Dialog.Header>
