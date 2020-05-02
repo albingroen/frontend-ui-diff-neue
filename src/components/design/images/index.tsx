@@ -19,7 +19,51 @@ const ImagePreview = styled.div`
   border-radius: ${(props: IImagePreviewProps) => props?.theme?.radii[2]};
   background-size: cover;
   background-position: top;
-  height: 300px;
+  height: 250px;
+  position: relative;
+
+  &:after {
+    opacity: 0;
+    content: '${(props: IImagePreviewProps) => `${props.name} (${props.env})`}';
+    border-radius: ${(props: IImagePreviewProps) => props?.theme?.radii[2]};
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.75);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5em;
+    transition: ${(props) => props?.theme?.transitions?.default};
+  }
+
+  &:hover {
+    transition: ${(props) => props?.theme?.transitions?.default};
+
+    &:after {
+      opacity: 1;
+      content: '${(props: IImagePreviewProps) =>
+        `${props.name} (${props.env})`}';
+      border-radius: ${(props: IImagePreviewProps) => props?.theme?.radii[2]};
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0, 0.75);
+      height: 100%;
+      width: 100%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.5em;
+      transition: ${(props) => props?.theme?.transitions?.default};
+    }
+  }
 `
 
 export const Images: React.FC<IImagesProps> = ({

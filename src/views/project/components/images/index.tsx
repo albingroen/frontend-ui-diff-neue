@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { IImage, IActiveImages, ImageBrowseDir } from '../../../../types'
 import { ImagePopup } from '../../../../components/design/image-popup'
-import { Images as ImageGrid } from '../../../../components'
+import { Images as ImageGrid, Section } from '../../../../components'
 import { getImagesByEnvironment } from '../../../../lib/images'
+import { defineMessage } from 'react-intl'
 
 interface IImagesProps {
   images: IImage[];
@@ -12,6 +13,17 @@ const initialActiveImages = {
   from: undefined,
   to: undefined
 }
+
+const messages = defineMessage({
+  imagesHeading: {
+    defaultMessage: 'Images',
+    id: 'project.images.heading'
+  },
+  imagesLede: {
+    defaultMessage: 'These are the images you have uploaded',
+    id: 'project.images.lede'
+  }
+})
 
 const Images: React.FC<IImagesProps> = ({ images }) => {
   // Store current images
@@ -94,14 +106,16 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
 
   return (
     <div>
-      <ImageGrid
-        imagesByEnvironemnt={imagesByEnvironemnt}
-        onImageClick={(image: IImage) => {
-          setActiveImages({
-            from: image
-          })
-        }}
-      />
+      <Section title={messages.imagesHeading} lede={messages.imagesLede}>
+        <ImageGrid
+          imagesByEnvironemnt={imagesByEnvironemnt}
+          onImageClick={(image: IImage) => {
+            setActiveImages({
+              from: image
+            })
+          }}
+        />
+      </Section>
 
       {activeImages?.from && (
         <ImagePopup
