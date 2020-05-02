@@ -22,5 +22,6 @@ export interface IImagePopup {
   onChangeToEnv: (env: string) => void;
   setActiveImages: (images: IActiveImages) => void;
   onBrowse: (dir: ImageBrowseDir) => void;
+  onReset: () => void;
   environments: string[];
 }

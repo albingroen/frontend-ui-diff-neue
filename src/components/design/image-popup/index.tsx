@@ -11,7 +11,8 @@ export const ImagePopup: React.FC<IImagePopup> = ({
   onChangeFromEnv,
   onChangeToEnv,
   environments,
-  onBrowse
+  onBrowse,
+  onReset
 }) => {
   // Intl HOC
   const intl = useIntl()
@@ -36,6 +37,7 @@ export const ImagePopup: React.FC<IImagePopup> = ({
           onChangeFromEnv={onChangeFromEnv}
           onChangeToEnv={onChangeToEnv}
           onBrowse={onBrowse}
+          onReset={onReset}
         />
         <Box p={3}>
           {activeImages?.from &&

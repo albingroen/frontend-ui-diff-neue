@@ -84,6 +84,14 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
     }
   }
 
+  // Reset function
+  const onReset = () => {
+    setActiveImages({
+      ...activeImages,
+      to: undefined
+    })
+  }
+
   return (
     <div>
       <ImageGrid
@@ -97,6 +105,7 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
 
       {activeImages?.from && (
         <ImagePopup
+          onReset={onReset}
           onBrowse={onBrowse}
           onDismiss={() => setActiveImages(initialActiveImages)}
           onChangeFromEnv={(env: string) => onChangeEnv(env, 'from')}
