@@ -13,7 +13,8 @@ import {
   Heading,
   ButtonGroup,
   Button,
-  Tooltip
+  Tooltip,
+  Box
 } from '@primer/components'
 import { defineMessage, IntlShape } from 'react-intl'
 import { IActiveImages, ImageBrowseDir } from '../../../../../types'
@@ -65,19 +66,10 @@ const Header: React.FC<IHeaderProps> = ({
         <Heading fontSize={3} mr={4}>
           {activeImages?.from?.name || activeImages?.to?.name}
         </Heading>
-
-        <ButtonGroup>
-          <Button onClick={() => onBrowse('prev')}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </Button>
-          <Button onClick={() => onBrowse('next')}>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </Button>
-        </ButtonGroup>
       </Flex>
 
       <Flex alignItems="center" pr={4}>
-        <Flex alignItems="center" pr={2}>
+        <Flex alignItems="center" px={2}>
           <Tooltip
             aria-label={intl.formatMessage(messages.chooseBaseEnvironment)}
           >
@@ -126,12 +118,23 @@ const Header: React.FC<IHeaderProps> = ({
         </Flex>
 
         {activeImages?.to && (
-          <Tooltip aria-label={intl.formatMessage(messages.clearComparison)}>
-            <Button onClick={onReset}>
-              <FontAwesomeIcon icon={faTimes} />
-            </Button>
-          </Tooltip>
+          <Box mr={2}>
+            <Tooltip aria-label={intl.formatMessage(messages.clearComparison)}>
+              <Button onClick={onReset}>
+                <FontAwesomeIcon icon={faTimes} />
+              </Button>
+            </Tooltip>
+          </Box>
         )}
+
+        <ButtonGroup>
+          <Button onClick={() => onBrowse('prev')}>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </Button>
+          <Button onClick={() => onBrowse('next')}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </Button>
+        </ButtonGroup>
       </Flex>
     </Flex>
   </Dialog.Header>

@@ -25,6 +25,12 @@ export default (intl: IntlShape, user: IUser) => [
         link: '/new-project',
         key: 3,
         active: window.location.pathname === '/new-project'
+      },
+      {
+        value: intl.formatMessage(messages.teams),
+        link: '/teams',
+        key: 3,
+        active: window.location.pathname === '/teams'
       }
     ]
   },

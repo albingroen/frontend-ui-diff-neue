@@ -45,25 +45,25 @@ const Images: React.FC<IImagesProps> = ({ images }) => {
   const onBrowse = (dir: ImageBrowseDir) => {
     const { from: fromImg, to: toImg } = activeImages || {}
 
-    // Image indexes
-    const index = {
-      from: fromImg && imagesByEnvironemnt[fromImg?.env].indexOf(fromImg),
-      to: toImg && imagesByEnvironemnt[toImg?.env].indexOf(toImg)
-    }
+    const fromIndex =
+      fromImg && imagesByEnvironemnt[fromImg?.env].indexOf(fromImg)
 
     // Add or substract index
     const operator = dir === 'next' ? 1 : -1
 
+    const newFromImage =
+      fromImg && fromIndex !== undefined
+        ? imagesByEnvironemnt[fromImg?.env][fromIndex + operator]
+        : undefined
+
     // Update state
     setActiveImages({
-      from:
-        fromImg && index.from !== undefined
-          ? imagesByEnvironemnt[fromImg?.env][index.from + operator]
-          : undefined,
-      to:
-        toImg && index.to !== undefined
-          ? imagesByEnvironemnt[toImg?.env][index.to + operator]
-          : undefined
+      from: newFromImage,
+      to: toImg?.env
+        ? imagesByEnvironemnt[toImg?.env].find(
+          (img: IImage) => img.name === newFromImage?.name
+        )
+        : undefined
     })
   }
 
