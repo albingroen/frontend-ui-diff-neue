@@ -1,9 +1,20 @@
 import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
-import { Dialog, Flex, Text } from '@primer/components'
+import {
+  faExchangeAlt,
+  faAngleLeft,
+  faAngleRight
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  Dialog,
+  Flex,
+  Text,
+  Heading,
+  ButtonGroup,
+  Button
+} from '@primer/components'
 import { defineMessage, IntlShape } from 'react-intl'
-import { IActiveImages } from '../../../../../types'
+import { IActiveImages, ImageBrowseDir } from '../../../../../types'
 import { IOptionGroup } from '../../../select'
 import { Select } from '../../../..'
 
@@ -19,6 +30,7 @@ interface IHeaderProps {
   activeImages: IActiveImages;
   onChangeFromEnv: (env: string) => void;
   onChangeToEnv: (env: string) => void;
+  onBrowse: (dir: ImageBrowseDir) => void;
   dropdownOptions: IOptionGroup[];
 }
 
@@ -27,17 +39,33 @@ const Header: React.FC<IHeaderProps> = ({
   intl,
   dropdownOptions,
   onChangeFromEnv,
-  onChangeToEnv
+  onChangeToEnv,
+  onBrowse
 }) => (
   <Dialog.Header>
     <Flex width="100%" alignItems="center" justifyContent="space-between">
-      <span>Compare your images</span>
+      <Flex alignItems="center">
+        <Heading fontSize={3} mr={4}>
+          {activeImages?.from?.name || activeImages?.to?.name}
+        </Heading>
+
+        <ButtonGroup>
+          <Button onClick={() => onBrowse('prev')}>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </Button>
+          <Button onClick={() => onBrowse('next')}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </Button>
+        </ButtonGroup>
+      </Flex>
+
       <Flex alignItems="center" pr={5}>
         <Select
           ariaLabel="from-environment"
           title={
-            activeImages?.from?.env ||
-            intl.formatMessage(messages.chooseEnvironment)
+            activeImages?.from
+              ? `${activeImages?.from?.name} (${activeImages?.from?.env})`
+              : intl.formatMessage(messages.chooseEnvironment)
           }
           value={activeImages?.from?.env}
           onChange={(env?: string) => {
@@ -53,8 +81,9 @@ const Header: React.FC<IHeaderProps> = ({
         <Select
           ariaLabel="to-environment"
           title={
-            activeImages?.to?.env ||
-            intl.formatMessage(messages.chooseEnvironment)
+            activeImages?.to
+              ? `${activeImages?.to?.name} (${activeImages?.to?.env})`
+              : intl.formatMessage(messages.chooseEnvironment)
           }
           value={activeImages?.to?.env}
           onChange={(env?: string) => {
