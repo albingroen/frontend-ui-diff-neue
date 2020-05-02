@@ -1,10 +1,11 @@
 import * as React from 'react'
-import Header from './components/header'
+import { defineMessages, useIntl } from 'react-intl'
+import { Helmet } from 'react-helmet'
 import { TeamsContext } from '../../context/teamsContext'
-import List from './components/list'
 import { Empty } from '../../components'
 import { useHistory } from 'react-router-dom'
-import { defineMessages } from 'react-intl'
+import List from './components/list'
+import Header from './components/header'
 
 const messages = defineMessages({
   heading: {
@@ -24,13 +25,19 @@ const messages = defineMessages({
 export const Teams = () => {
   const { teams, teamsById } = React.useContext(TeamsContext)
   const history = useHistory()
-
-  React.useEffect(() => {
-    document.title = 'Your teams'
-  }, [])
+  const intl = useIntl()
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {intl.formatMessage({
+            defaultMessage: 'Teams | ui-diff',
+            id: 'teams.seo.title'
+          })}
+        </title>
+      </Helmet>
+
       <Header />
       <List teams={teams.map((id: string) => teamsById[id])} />
       <Empty

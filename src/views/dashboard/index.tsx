@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { useIntl } from 'react-intl'
+import { Helmet } from 'react-helmet'
 import Header from './components/header'
 import Projects from '../../components/design/projects'
 import { IUserContext, UserContext } from '../../context/userContext'
@@ -8,17 +10,24 @@ import {
 } from '../../context/projectsContext'
 
 export const Dashboard: React.FC = () => {
+  const intl = useIntl()
+
   const { user } = React.useContext<IUserContext>(UserContext)
   const { projectsById, projects } = React.useContext<IProjectsContext>(
     ProjectsContext
   )
 
-  React.useEffect(() => {
-    document.title = 'ui-diff'
-  }, [])
-
   return (
     <div>
+      <Helmet>
+        <title>
+          {intl.formatMessage({
+            defaultMessage: 'Dashboard | ui-diff',
+            id: 'dashboard.seo.title'
+          })}
+        </title>
+      </Helmet>
+
       <Header user={user} />
       <Projects
         includeBelonger

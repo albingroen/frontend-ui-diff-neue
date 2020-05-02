@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Helmet } from 'react-helmet'
 import { Grid, Heading, Flex, Link as StyledLink } from '@primer/components'
 import { RouteComponentProps, Redirect, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +9,7 @@ import { TeamsContext } from '../../context/teamsContext'
 import Projects from '../../components/design/projects'
 import Header from './components/header'
 import { Members } from '../../components'
-import { defineMessages, FormattedMessage } from 'react-intl'
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl'
 
 const messages = defineMessages({
   projects: {
@@ -30,13 +31,11 @@ const messages = defineMessages({
 })
 
 export const Team: React.FC<RouteComponentProps> = (props) => {
+  const intl = useIntl()
+
   const { id } = props.match.params as any
   const { teamsById } = React.useContext(TeamsContext)
   const { projectsById, projects } = React.useContext(ProjectsContext)
-
-  React.useEffect(() => {
-    document.title = teamsById[id]?.name || ''
-  }, [id, teamsById])
 
   if (teamsById) {
     if (Object.keys(teamsById)?.length) {
@@ -60,6 +59,15 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {intl.formatMessage({
+            defaultMessage: team?.name ? `${team.name} | ui-diff` : 'ui-diff',
+            id: 'team.seo.title'
+          })}
+        </title>
+      </Helmet>
+
       <Header team={team} />
 
       <Grid gridTemplateColumns="repeat(2, auto)" gridGap={4}>
