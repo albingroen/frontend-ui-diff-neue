@@ -15,12 +15,16 @@ export const transformAppNavigationLists = (lists: AppNavigation): Header =>
       key: listItem.key,
       node: listItem.link ? (
         <Link to={listItem.link} key={listItem.key}>
-          <NavigationItem active={listItem.active}>
+          <NavigationItem active={listItem.active} style={listItem.style}>
             {listItem.value}
           </NavigationItem>
         </Link>
       ) : (
-        <NavigationItem key={listItem.key} active={listItem.active}>
+        <NavigationItem
+          key={listItem.key}
+          active={listItem.active}
+          style={listItem.style}
+        >
           {listItem.value}
         </NavigationItem>
       )

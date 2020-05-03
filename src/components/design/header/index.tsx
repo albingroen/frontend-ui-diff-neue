@@ -19,11 +19,6 @@ const HeaderList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  padding: 0 ${(props) => props?.theme?.space[2]}px;
-
-  &:last-child {
-    padding-right: 0px;
-  }
 `
 
 interface IHeaderProps {
