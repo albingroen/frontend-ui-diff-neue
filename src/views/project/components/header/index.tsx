@@ -1,18 +1,13 @@
 import * as React from 'react'
-import { Heading, Text, Box } from '@primer/components'
-import { FormattedMessage, defineMessages, useIntl } from 'react-intl'
+import { Heading, Text, Box, UnderlineNav } from '@primer/components'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { ViewHeader, Statistics } from '../../../../components'
 import { IProject } from '../../../../types'
 import { UserContext } from '../../../../context/userContext'
 import { TeamsContext } from '../../../../context/teamsContext'
-import { getInformation } from './lib'
-
-const messages = defineMessages({
-  lede: {
-    defaultMessage: 'Here you will find the images that you publish regularly',
-    id: 'project.header.lede'
-  }
-})
+import { getInformation, getTabItems, ITabItem } from './lib'
+import { useHistory } from 'react-router-dom'
+import messages from './messages'
 
 interface IHeaderProps {
   project: IProject;
@@ -20,12 +15,13 @@ interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = ({ project }) => {
   const intl = useIntl()
+  const history = useHistory()
   const { user } = React.useContext(UserContext)
   const { teamsById } = React.useContext(TeamsContext)
   const information = getInformation(project, teamsById, user, intl)
 
   return (
-    <ViewHeader>
+    <ViewHeader noDivider>
       <Heading mb={2}>{project?.name}</Heading>
 
       <Text>
@@ -35,6 +31,19 @@ const Header: React.FC<IHeaderProps> = ({ project }) => {
       <Box mt={4}>
         <Statistics statistics={information} />
       </Box>
+
+      <UnderlineNav mb={3} mt={2} aria-label="Main">
+        {getTabItems(intl, project?._id).map((tabItem: ITabItem) => (
+          <UnderlineNav.Link
+            key={tabItem.value}
+            style={{ padding: '0.75rem 1rem' }}
+            onClick={() => history.push(tabItem.link)}
+            selected={tabItem.link === history.location.pathname}
+          >
+            {tabItem.value}
+          </UnderlineNav.Link>
+        ))}
+      </UnderlineNav>
     </ViewHeader>
   )
 }

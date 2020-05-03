@@ -42,3 +42,22 @@ export const getInformation = (
     key: 3
   }
 ]
+
+export interface ITabItem {
+  value: string;
+  link: string;
+}
+
+export const getTabItems = (
+  { formatMessage }: IntlShape,
+  projectId: string
+): ITabItem[] => [
+  {
+    value: formatMessage(messages.tabMain),
+    link: `/projects/${projectId}`
+  },
+  {
+    value: formatMessage(messages.tabSettings),
+    link: `/projects/${projectId}/settings`
+  }
+]
