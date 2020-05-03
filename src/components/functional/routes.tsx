@@ -57,7 +57,11 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           <PrivateRoute path="/new-project" component={NewProject} exact />
           <PrivateRoute path="/teams" component={Teams} exact />
           <PrivateRoute path="/teams/:id" component={Team} exact />
-          <PrivateRoute path="/projects/:id" component={Project} exact />
+          <PrivateRoute
+            path={['/projects/:id', '/projects/:id/:tab']}
+            component={Project}
+            exact
+          />
         </Container>
       </Switch>
     </BrowserRouter>

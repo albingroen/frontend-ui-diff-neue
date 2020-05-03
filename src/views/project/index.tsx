@@ -8,16 +8,30 @@ import { useIntl } from 'react-intl'
 
 export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const intl = useIntl()
-
+  const { id, tab } = (match as any).params
   const { projectsById } = React.useContext(ProjectsContext)
   const projectsLength = Object.values(projectsById).length
 
   // Find project from global projects
-  const project = projectsById[(match as any).params.id]
+  const project = projectsById[id]
 
   // Go to start if no projects or project found
   if (projectsLength && !project?._id) {
     return <Redirect to="/" />
+  }
+
+  // Function for rendering content
+  const renderContent = () => {
+    switch (tab) {
+      case 'settings':
+        return <h2>Settings</h2>
+      case undefined:
+        return <Images images={project?.images || []} />
+      default:
+        if (project) {
+          return <Redirect to={`/projects/${project._id}`} />
+        }
+    }
   }
 
   return (
@@ -34,7 +48,8 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
       </Helmet>
 
       <Header project={project} />
-      <Images images={project?.images || []} />
+
+      {renderContent()}
     </div>
   )
 }
