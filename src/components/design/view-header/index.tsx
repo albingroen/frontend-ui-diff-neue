@@ -3,14 +3,17 @@ import { Divider } from '../..'
 
 interface IViewHeader {
   children: React.ReactNode;
-  noDivider?: boolean;
+  withoutDivider?: boolean;
 }
 
-export const ViewHeader: React.FC<IViewHeader> = ({ children, noDivider }) => {
+export const ViewHeader: React.FC<IViewHeader> = ({
+  children,
+  withoutDivider
+}) => {
   return (
     <div>
       <div>{children}</div>
-      {!noDivider && <Divider />}
+      {!withoutDivider && <Divider />}
     </div>
   )
 }

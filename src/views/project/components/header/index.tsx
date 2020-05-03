@@ -21,7 +21,7 @@ const Header: React.FC<IHeaderProps> = ({ project }) => {
   const information = getInformation(project, teamsById, user, intl)
 
   return (
-    <ViewHeader noDivider>
+    <ViewHeader withoutDivider>
       <Heading mb={2}>{project?.name}</Heading>
 
       <Text>
