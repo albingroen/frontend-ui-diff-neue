@@ -18,6 +18,11 @@ export const request = {
     axios.post(apiBaseUrl + path, body, {
       ...config,
       withCredentials: true
+    }),
+  patch: (path: string, body?: any, config?: AxiosRequestConfig) =>
+    axios.patch(apiBaseUrl + path, body, {
+      ...config,
+      withCredentials: true
     })
 }
 

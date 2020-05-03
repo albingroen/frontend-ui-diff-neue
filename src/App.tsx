@@ -3,7 +3,8 @@ import {
   getProjects,
   getProjectsById,
   getProjectIds,
-  createProject
+  createProject,
+  patchProject
 } from './lib/projects'
 import { UserContext, initialUser } from './context/userContext'
 import { TeamsContext } from './context/teamsContext'
@@ -88,6 +89,26 @@ const App: React.FC = () => {
 
         // Return project
         return project
+      },
+      patchProject: async (
+        projectId: string,
+        values: { [key: string]: any }
+      ) => {
+        // Patch project
+        const patchedProject = await patchProject(projectId, values)
+
+        // Find previous project
+        const oldProject = projects.find((p) => p?._id === projectId)
+
+        if (oldProject) {
+          // Set new project
+          const newProjects = [...projects]
+          newProjects[projects.indexOf(oldProject)] = patchedProject
+          setProjects(newProjects)
+
+          // Return project
+          return patchedProject
+        }
       }
     }),
     [projectIds, projectsById, projects]

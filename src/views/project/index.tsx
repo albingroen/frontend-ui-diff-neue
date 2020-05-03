@@ -5,6 +5,7 @@ import { ProjectsContext } from '../../context/projectsContext'
 import Header from './components/header'
 import Images from './components/images'
 import { useIntl } from 'react-intl'
+import Settings from './components/project'
 
 export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const intl = useIntl()
@@ -24,7 +25,7 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const renderContent = () => {
     switch (tab) {
       case 'settings':
-        return <h2>Settings</h2>
+        return <Settings project={project} />
       case undefined:
         return <Images images={project?.images || []} />
       default:
