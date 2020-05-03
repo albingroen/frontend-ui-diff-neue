@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { TextInput, ButtonPrimary } from '@primer/components'
+import { TextInput, ButtonPrimary, Text, Box } from '@primer/components'
 import { DEFAULT_SNACKBAR_DURATION } from '../../../../components/design/snackbar'
 import { ProjectsContext } from '../../../../context/projectsContext'
 import { Section, Snackbar } from '../../../../components'
@@ -58,14 +58,17 @@ const Settings: React.FC<ISettingsProps> = ({ project }) => {
     { withIds: true }
   )
 
-  // Check wether info has changed
+  // Check wether info has changed or form is dirty
   const isPristine = formState.values.name === project?.name
+  const isDirty = Object.values(formState.validity).some(
+    (value?: boolean) => !value
+  )
 
   // Runs when submitting form
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!isPristine) {
+    if (!isPristine && !isDirty) {
       dispatch({ type: 'SUBMIT' })
 
       const patchedProject = await patchProject(project?._id, formState.values)
@@ -91,25 +94,46 @@ const Settings: React.FC<ISettingsProps> = ({ project }) => {
   return (
     <div>
       {state.status === 'success' && (
-        <Snackbar variant="success" value="Saved project settings!" />
+        <Snackbar
+          variant="success"
+          value={intl.formatMessage(messages.success)}
+        />
       )}
 
       {state.status === 'error' && (
-        <Snackbar variant="error" value="Failed to save project settings" />
+        <Snackbar variant="error" value={intl.formatMessage(messages.error)} />
       )}
 
       <Section title={messages.heading} lede={messages.lede}>
         <form onSubmit={onSubmit}>
           <TextInput
-            {...text('name')}
+            {...text({
+              name: 'name',
+              validate: (value?: string) => {
+                if (!value) {
+                  return intl.formatMessage(messages.noEmptyName)
+                }
+              }
+            })}
             placeholder={placeholders.name}
             width="100%"
           />
+
+          {formState?.errors && (
+            <Box my={3}>
+              {Object.values(formState.errors)?.map((error?: string) => (
+                <Text key={error} color="red.5" py={2}>
+                  {error}
+                </Text>
+              ))}
+            </Box>
+          )}
+
           <ButtonPrimary
             type="submit"
             mt={3}
             style={{ width: '100%' }}
-            disabled={isPristine}
+            disabled={isPristine || isDirty}
           >
             <FormattedMessage {...getCtaValue(state.status)} />
           </ButtonPrimary>

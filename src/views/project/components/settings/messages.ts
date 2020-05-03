@@ -2,7 +2,7 @@ import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   heading: {
-    defaultMessage: 'Project settings',
+    defaultMessage: 'Basic settings',
     id: 'project.settings.heading'
   },
   lede: {
@@ -21,5 +21,19 @@ export default defineMessages({
   placeholderName: {
     defaultMessage: 'Name',
     id: 'project.settings.placeholder-name'
+  },
+
+  success: {
+    defaultMessage: 'Saved project successfully',
+    id: 'project.settings.success'
+  },
+  error: {
+    defaultMessage: 'Failed to save project settings',
+    id: 'project.settings.error'
+  },
+
+  noEmptyName: {
+    defaultMessage: 'Name cannot be empty',
+    id: 'project.settings.no-empty-name'
   }
 })
