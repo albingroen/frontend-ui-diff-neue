@@ -7,7 +7,8 @@ export interface AppNavigationList {
 
 export interface AppNavigationListItem {
   value: React.ReactNode | string;
-  link?: string;
   key: number;
   active: boolean;
+  link?: string;
+  style?: React.CSSProperties;
 }
