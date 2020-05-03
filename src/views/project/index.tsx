@@ -5,7 +5,7 @@ import { ProjectsContext } from '../../context/projectsContext'
 import Header from './components/header'
 import Images from './components/images'
 import { useIntl } from 'react-intl'
-import Settings from './components/project'
+import Settings from './components/settings'
 
 export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const intl = useIntl()

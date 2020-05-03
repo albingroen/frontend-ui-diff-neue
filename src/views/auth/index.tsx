@@ -2,7 +2,7 @@ import * as React from 'react'
 import queryString from 'query-string'
 import { useHistory } from 'react-router-dom'
 import { Loading } from '../../components/design/loading'
-import { Error } from '../../components'
+import { Snackbar } from '../../components'
 import auth from '../../lib/auth'
 
 export const Auth: React.FC = () => {
@@ -35,7 +35,7 @@ export const Auth: React.FC = () => {
   return (
     <>
       <Loading />
-      {error && <Error error={error.message} />}
+      {error && <Snackbar variant="error" value={error.message} />}
     </>
   )
 }

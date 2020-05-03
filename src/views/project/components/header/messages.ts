@@ -27,8 +27,8 @@ export default defineMessage({
     id: 'project.header.value-image-amount'
   },
   tabMain: {
-    defaultMessage: 'Main',
-    id: 'project.header.main'
+    defaultMessage: 'Images',
+    id: 'project.header.images'
   },
   tabSettings: {
     defaultMessage: 'Settings',
