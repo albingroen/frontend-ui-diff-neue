@@ -12,25 +12,39 @@ export default (intl: IntlShape, user: IUser) => [
         value: intl.formatMessage(messages.projects),
         link: '/',
         key: 1,
-        active: window.location.pathname === '/'
+        active: window.location.pathname === '/',
+        style: {
+          paddingRight: '1rem'
+        }
       },
       {
         value: intl.formatMessage(messages.auditLog),
         link: '/audit-log',
         key: 2,
-        active: window.location.pathname === '/audit-log'
+        active: window.location.pathname === '/audit-log',
+        style: {
+          paddingRight: '1rem',
+          paddingLeft: '1rem'
+        }
       },
       {
         value: intl.formatMessage(messages.newProject),
         link: '/new-project',
         key: 3,
-        active: window.location.pathname === '/new-project'
+        active: window.location.pathname === '/new-project',
+        style: {
+          paddingRight: '1rem',
+          paddingLeft: '1rem'
+        }
       },
       {
         value: intl.formatMessage(messages.teams),
         link: '/teams',
         key: 3,
-        active: window.location.pathname === '/teams'
+        active: window.location.pathname === '/teams',
+        style: {
+          paddingLeft: '1rem'
+        }
       }
     ]
   },
