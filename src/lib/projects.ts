@@ -33,3 +33,11 @@ export const createProject = async (owner: string, name: string) => {
   const res = await request.post('/projects', { name, team: owner })
   return res.data.project
 }
+
+export const patchProject = async (
+  projectId: string,
+  values: { [key: string]: any }
+) => {
+  const res = await request.patch(`/projects/${projectId}`, values)
+  return res.data.project
+}

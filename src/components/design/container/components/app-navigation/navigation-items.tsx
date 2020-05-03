@@ -40,7 +40,7 @@ export default (intl: IntlShape, user: IUser) => [
       {
         value: intl.formatMessage(messages.teams),
         link: '/teams',
-        key: 3,
+        key: 4,
         active: window.location.pathname === '/teams',
         style: {
           paddingLeft: '1rem'
