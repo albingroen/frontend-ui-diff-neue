@@ -5,9 +5,10 @@
 Frontend for the ui-diff platform built on
 
 - React
-- Redux
+- Context
 - Typescript
 - Styled components
+- Primer components
 
 ## Development
 
