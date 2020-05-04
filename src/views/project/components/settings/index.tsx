@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useFormState } from 'react-use-form-state'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { TextInput, ButtonPrimary, Text, Box } from '@primer/components'
+import { ButtonPrimary } from '@primer/components'
 import { DEFAULT_SNACKBAR_DURATION } from '../../../../components/design/snackbar'
 import { ProjectsContext } from '../../../../context/projectsContext'
-import { Section, Snackbar } from '../../../../components'
+import { Section, Snackbar, Input } from '../../../../components'
 import { IProject } from '../../../../types'
 import messages from './messages'
 
@@ -106,7 +106,11 @@ const Settings: React.FC<ISettingsProps> = ({ project }) => {
 
       <Section title={messages.heading} lede={messages.lede}>
         <form onSubmit={onSubmit}>
-          <TextInput
+          <Input
+            placeholder={placeholders.name}
+            error={formState.errors.name}
+            label={intl.formatMessage(messages.labelName)}
+            description={intl.formatMessage(messages.descriptionName)}
             {...text({
               name: 'name',
               validate: (value?: string) => {
@@ -115,25 +119,13 @@ const Settings: React.FC<ISettingsProps> = ({ project }) => {
                 }
               }
             })}
-            placeholder={placeholders.name}
-            width="100%"
           />
-
-          {formState?.errors && (
-            <Box my={3}>
-              {Object.values(formState.errors)?.map((error?: string) => (
-                <Text key={error} color="red.5" py={2}>
-                  {error}
-                </Text>
-              ))}
-            </Box>
-          )}
 
           <ButtonPrimary
             type="submit"
-            mt={3}
             style={{ width: '100%' }}
             disabled={isPristine || isDirty}
+            mt={4}
           >
             <FormattedMessage {...getCtaValue(state.status)} />
           </ButtonPrimary>
