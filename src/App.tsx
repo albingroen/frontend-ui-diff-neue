@@ -4,7 +4,8 @@ import {
   getProjectsById,
   getProjectIds,
   createProject,
-  patchProject
+  patchProject,
+  patchProjectApiKey
 } from './lib/projects'
 import { UserContext, initialUser } from './context/userContext'
 import { TeamsContext } from './context/teamsContext'
@@ -96,6 +97,23 @@ const App: React.FC = () => {
       ) => {
         // Patch project
         const patchedProject = await patchProject(projectId, values)
+
+        // Find previous project
+        const oldProject = projects.find((p) => p?._id === projectId)
+
+        if (oldProject) {
+          // Set new project
+          const newProjects = [...projects]
+          newProjects[projects.indexOf(oldProject)] = patchedProject
+          setProjects(newProjects)
+
+          // Return project
+          return patchedProject
+        }
+      },
+      patchProjectApiKey: async (projectId: string) => {
+        // Patch project
+        const patchedProject = await patchProjectApiKey(projectId)
 
         // Find previous project
         const oldProject = projects.find((p) => p?._id === projectId)

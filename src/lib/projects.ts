@@ -41,3 +41,8 @@ export const patchProject = async (
   const res = await request.patch(`/projects/${projectId}`, values)
   return res.data.project
 }
+
+export const patchProjectApiKey = async (projectId: string) => {
+  const res = await request.patch(`/projects/${projectId}/updateToken`)
+  return res.data.project
+}
