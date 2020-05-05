@@ -10,6 +10,7 @@ export type IProjectsContext = {
     values: { [key: string]: any }
   ) => Promise<IProject> | void;
   patchProjectApiKey: (projectId: string) => Promise<IProject> | void;
+  deleteProject: (projectId: string) => Promise<boolean> | void;
 };
 
 export const ProjectsContext = createContext<IProjectsContext>({
@@ -17,5 +18,6 @@ export const ProjectsContext = createContext<IProjectsContext>({
   projects: [],
   createProject: () => {},
   patchProject: () => {},
-  patchProjectApiKey: () => {}
+  patchProjectApiKey: () => {},
+  deleteProject: () => {}
 })

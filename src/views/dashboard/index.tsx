@@ -31,7 +31,7 @@ export const Dashboard: React.FC = () => {
       <Header user={user} />
       <Projects
         includeBelonger
-        includeCreateNew={!projects?.length}
+        includeCreateNew
         includeFilter
         projects={projects?.map((id: string) => projectsById[id])}
       />
