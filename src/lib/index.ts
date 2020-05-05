@@ -23,6 +23,11 @@ export const request = {
     axios.patch(apiBaseUrl + path, body, {
       ...config,
       withCredentials: true
+    }),
+  delete: (path: string, config?: AxiosRequestConfig) =>
+    axios.delete(apiBaseUrl + path, {
+      ...config,
+      withCredentials: true
     })
 }
 

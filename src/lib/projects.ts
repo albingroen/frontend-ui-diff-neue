@@ -46,3 +46,8 @@ export const patchProjectApiKey = async (projectId: string) => {
   const res = await request.patch(`/projects/${projectId}/updateToken`)
   return res.data.project
 }
+
+export const deleteProject = async (projectId: string) => {
+  const res = await request.delete(`/projects/${projectId}`)
+  return res.data.isProjectDeleted
+}
