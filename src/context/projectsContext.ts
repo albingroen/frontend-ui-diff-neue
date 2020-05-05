@@ -9,11 +9,13 @@ export type IProjectsContext = {
     projectId: string,
     values: { [key: string]: any }
   ) => Promise<IProject> | void;
+  patchProjectApiKey: (projectId: string) => Promise<IProject> | void;
 };
 
 export const ProjectsContext = createContext<IProjectsContext>({
   projectsById: {},
   projects: [],
   createProject: () => {},
-  patchProject: () => {}
+  patchProject: () => {},
+  patchProjectApiKey: () => {}
 })
