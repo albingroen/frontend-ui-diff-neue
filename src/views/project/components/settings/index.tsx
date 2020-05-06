@@ -10,12 +10,8 @@ interface ISettingsProps {
   isAdmin: boolean;
 }
 
-const Settings: React.FC<ISettingsProps> = ({ project, isAdmin }) => {
-  console.log({
-    project
-  })
-
-  return isAdmin ? (
+const Settings: React.FC<ISettingsProps> = ({ project, isAdmin }) =>
+  isAdmin ? (
     <>
       <Basic project={project} />
       <Security project={project} />
@@ -24,6 +20,5 @@ const Settings: React.FC<ISettingsProps> = ({ project, isAdmin }) => {
   ) : project ? (
     <Redirect to={`/projects/${project?._id}`} />
   ) : null
-}
 
 export default Settings
