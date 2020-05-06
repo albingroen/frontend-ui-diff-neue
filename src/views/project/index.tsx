@@ -27,8 +27,6 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
 
   // Function for rendering content
   const renderContent = (isAdmin: boolean) => {
-    const projectLink = `/projects/${project?._id}`
-
     switch (tab) {
       case 'settings':
         return <Settings isAdmin={isAdmin} project={project} />
@@ -36,7 +34,7 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
         return <Images images={project?.images || []} />
       default:
         if (project) {
-          return <Redirect to={projectLink} />
+          return <Redirect to={`/projects/${project?._id}`} />
         }
     }
   }
