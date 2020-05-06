@@ -32,11 +32,12 @@ const messages = defineMessages({
 
 export const Team: React.FC<RouteComponentProps> = (props) => {
   const intl = useIntl()
-
   const { id } = props.match.params as any
   const { teamsById } = React.useContext(TeamsContext)
   const { projectsById, projects } = React.useContext(ProjectsContext)
+  const team = teamsById[id]
 
+  // Return if invalid team
   if (teamsById) {
     if (Object.keys(teamsById)?.length) {
       if (!teamsById[id]?._id) {
@@ -45,17 +46,10 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
     }
   }
 
-  const filterTeamProjects = (projectId: string) => {
-    return projectsById[projectId]._team === id
-  }
-
-  const mapTeamProjects = (projectId: string) => {
-    return projectsById[projectId]
-  }
-
-  const team = teamsById[id]
-
-  const teamProjects = projects.filter(filterTeamProjects).map(mapTeamProjects)
+  // Find team projects
+  const teamProjects = projects
+    .filter((pId: string) => projectsById[pId]._team === id)
+    .map((pId: string) => projectsById[pId])
 
   return (
     <div>
