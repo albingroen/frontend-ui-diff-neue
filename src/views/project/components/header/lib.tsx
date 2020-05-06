@@ -50,14 +50,21 @@ export interface ITabItem {
 
 export const getTabItems = (
   { formatMessage }: IntlShape,
-  projectId: string
-): ITabItem[] => [
-  {
-    value: formatMessage(messages.tabMain),
-    link: `/projects/${projectId}`
-  },
-  {
-    value: formatMessage(messages.tabSettings),
-    link: `/projects/${projectId}/settings`
-  }
-]
+  projectId: string,
+  isAdmin: boolean
+): ITabItem[] => {
+  return [
+    {
+      value: formatMessage(messages.tabMain),
+      link: `/projects/${projectId}`
+    },
+    ...(isAdmin
+      ? [
+        {
+          value: formatMessage(messages.tabSettings),
+          link: `/projects/${projectId}/settings`
+        }
+      ]
+      : [])
+  ]
+}

@@ -11,9 +11,10 @@ import messages from './messages'
 
 interface IHeaderProps {
   project: IProject;
+  isAdmin: boolean;
 }
 
-const Header: React.FC<IHeaderProps> = ({ project }) => {
+const Header: React.FC<IHeaderProps> = ({ project, isAdmin }) => {
   const intl = useIntl()
   const history = useHistory()
   const { user } = React.useContext(UserContext)
@@ -33,7 +34,7 @@ const Header: React.FC<IHeaderProps> = ({ project }) => {
       </Box>
 
       <UnderlineNav mb={3} mt={2} aria-label="Main">
-        {getTabItems(intl, project?._id).map((tabItem: ITabItem) => (
+        {getTabItems(intl, project?._id, isAdmin).map((tabItem: ITabItem) => (
           <UnderlineNav.Link
             key={tabItem.value}
             style={{ padding: '0.75rem 1rem' }}
