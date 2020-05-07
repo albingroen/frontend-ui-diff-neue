@@ -1,18 +1,18 @@
 import * as React from 'react'
-import { FormattedMessage, defineMessages } from 'react-intl'
+import { FormattedMessage, defineMessages, useIntl } from 'react-intl'
 import {
   Heading,
   Text,
   Flex,
   Avatar,
-  Tooltip,
-  Link as StyledLink
+  UnderlineNav,
+  Box
 } from '@primer/components'
-import { ViewHeader } from '../../../../components'
-import { ITeam } from '../../../../types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { ViewHeader, Statistics } from '../../../../components'
+import { ITeam, ITabItem, IProject } from '../../../../types'
+import { useHistory } from 'react-router-dom'
+import { getTabItems, getInformation } from './lib'
+import { ProjectsContext } from '../../../../context/projectsContext'
 
 const messages = defineMessages({
   lede: {
@@ -25,9 +25,17 @@ interface IHeaderProps {
   team: ITeam;
 }
 
-const Header: React.FC<IHeaderProps> = ({ team }) => (
-  <ViewHeader>
-    <Flex alignItems="center" justifyContent="space-between">
+const Header: React.FC<IHeaderProps> = ({ team }) => {
+  const intl = useIntl()
+  const history = useHistory()
+  const { projectsById } = React.useContext(ProjectsContext)
+  const projects = Object.values(projectsById).filter(
+    (project: IProject) => project._team === team._id
+  )
+  const information = getInformation(team, projects, intl)
+
+  return (
+    <ViewHeader withoutDivider>
       <Flex alignItems="center">
         <Avatar src={team?.logo} size={65} mr={3} />
         <div>
@@ -41,15 +49,24 @@ const Header: React.FC<IHeaderProps> = ({ team }) => (
         </div>
       </Flex>
 
-      <Tooltip aria-label="Team settings">
-        <Link to={`/teams/${team?._id}/settings/general`}>
-          <StyledLink as="p" p={0} m={0} color="gray.4" fontSize={2}>
-            <FontAwesomeIcon icon={faCog} />
-          </StyledLink>
-        </Link>
-      </Tooltip>
-    </Flex>
-  </ViewHeader>
-)
+      <Box mt={4}>
+        <Statistics statistics={information} />
+      </Box>
+
+      <UnderlineNav mb={3} mt={2} aria-label="Main">
+        {getTabItems(intl, team?._id, true).map((tabItem: ITabItem) => (
+          <UnderlineNav.Link
+            key={tabItem.value}
+            style={{ padding: '0.75rem 1rem' }}
+            onClick={() => history.push(tabItem.link)}
+            selected={tabItem.link === history.location.pathname}
+          >
+            {tabItem.value}
+          </UnderlineNav.Link>
+        ))}
+      </UnderlineNav>
+    </ViewHeader>
+  )
+}
 
 export default Header
