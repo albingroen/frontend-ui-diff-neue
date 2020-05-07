@@ -73,6 +73,11 @@ export interface IActiveImages {
   to?: IImage;
 }
 
+export interface ITabItem {
+  value: string;
+  link: string;
+}
+
 export type ImagesByEnvironment = { [env: string]: IImage[] };
 
 export type ImageBrowseDir = 'prev' | 'next';
