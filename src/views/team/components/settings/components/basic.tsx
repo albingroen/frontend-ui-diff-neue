@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { Section, List } from '../../../../../../components'
+import { Section, List } from '../../../../../components'
 import { defineMessages } from 'react-intl'
-import { ITeam } from '../../../../../../types'
+import { ITeam } from '../../../../../types'
 import { Text, Flex, Avatar } from '@primer/components'
 
 const messages = defineMessages({
@@ -11,11 +11,11 @@ const messages = defineMessages({
   }
 })
 
-interface INamingProps {
+interface IBasicProps {
   team: ITeam;
 }
 
-const Naming: React.FC<INamingProps> = ({ team }) => {
+const Basic: React.FC<IBasicProps> = ({ team }) => {
   return (
     <Section id="basic-information" title={messages.heading}>
       <List
@@ -46,4 +46,4 @@ const Naming: React.FC<INamingProps> = ({ team }) => {
   )
 }
 
-export default Naming
+export default Basic
