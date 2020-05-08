@@ -12,6 +12,7 @@ const SnackbarWrapper = styled.div`
   bottom: 4rem;
   right: 4rem;
   width: 300px;
+  z-index: 10;
   animation: fadeInOut ${(props: ISnackbarWrapperProps) => props.duration}ms
     ease-in-out;
 
