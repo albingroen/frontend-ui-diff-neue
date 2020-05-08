@@ -56,7 +56,11 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           <PrivateRoute path="/members" component={Dashboard} exact />
           <PrivateRoute path="/new-project" component={NewProject} exact />
           <PrivateRoute path="/teams" component={Teams} exact />
-          <PrivateRoute path="/teams/:id" component={Team} exact />
+          <PrivateRoute
+            path={['/teams/:id', '/teams/:id/:tab']}
+            component={Team}
+            exact
+          />
           <PrivateRoute
             path={['/projects/:id', '/projects/:id/:tab']}
             component={Project}

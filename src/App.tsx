@@ -13,7 +13,7 @@ import { TeamsContext } from './context/teamsContext'
 import { ProjectsContext } from './context/projectsContext'
 import { loggedIn, logout } from './lib/auth'
 import { IUser, IProject, ITeam } from './types'
-import { getTeamIds, getTeamsById } from './lib/teams'
+import { getTeamIds, getTeamsById, patchTeam } from './lib/teams'
 import { getUser } from './lib/user'
 import Routes from './components/functional/routes'
 
@@ -25,7 +25,7 @@ const initialLoadingState = {
 // Render routes
 const App: React.FC = () => {
   // State management
-  const [teams, setTeams] = React.useState<ITeam[]>()
+  const [teams, setTeams] = React.useState<ITeam[]>([])
   const [user, setUser] = React.useState<IUser>(initialUser)
   const [projects, setProjects] = React.useState<IProject[]>([])
   const [loading, setLoading] = React.useState(initialLoadingState)
@@ -74,9 +74,26 @@ const App: React.FC = () => {
   const teamsProviderValue = React.useMemo(
     () => ({
       teams: teamIds,
-      teamsById
+      teamsById,
+      patchTeam: async (teamId: string, values: { [key: string]: any }) => {
+        // Patch project
+        const patchedTeam = await patchTeam(teamId, values)
+
+        // Find previous project
+        const oldTeam = teams.find((t) => t?._id === teamId)
+
+        if (oldTeam) {
+          // Set new project
+          const newTeams = [...teams]
+          newTeams[teams.indexOf(oldTeam)] = patchedTeam
+          setTeams(newTeams)
+
+          // Return project
+          return patchedTeam
+        }
+      }
     }),
-    [teamIds, teamsById]
+    [teamIds, teamsById, teams]
   )
   const projectsProviderValue = React.useMemo(
     () => ({

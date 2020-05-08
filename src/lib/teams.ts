@@ -1,4 +1,5 @@
 import { ITeam } from '../types'
+import { request } from '.'
 
 export const getTeamIds = (teams?: ITeam[]) => {
   if (!teams || !teams.length) {
@@ -20,6 +21,14 @@ export const getTeamsById = (teams?: ITeam[]) => {
   }
 
   return teamsById
+}
+
+export const patchTeam = async (
+  teamId: string,
+  values: { [key: string]: any }
+) => {
+  const res = await request.patch(`/teams/${teamId}`, values)
+  return res.data.team
 }
 
 export const teamMemberRoles = {
