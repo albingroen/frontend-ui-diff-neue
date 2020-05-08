@@ -56,7 +56,7 @@ export default (intl: IntlShape, user: IUser) => [
           <Avatar
             size={35}
             alt="profile"
-            style={{ borderRadius: '50%' }}
+            sx={{ borderRadius: 3 }}
             src={user.avatar}
           />
         ),

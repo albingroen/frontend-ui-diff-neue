@@ -37,9 +37,10 @@ const Header: React.FC<IHeaderProps> = ({ project, isAdmin }) => {
         {getTabItems(intl, project?._id, isAdmin).map((tabItem: ITabItem) => (
           <UnderlineNav.Link
             key={tabItem.value}
-            style={{ padding: '0.75rem 1rem' }}
             onClick={() => history.push(tabItem.link)}
             selected={tabItem.link === history.location.pathname}
+            px={2}
+            py={1}
           >
             {tabItem.value}
           </UnderlineNav.Link>
