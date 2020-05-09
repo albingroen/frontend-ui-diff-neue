@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Avatar } from '@primer/components'
+import { Avatar, Dropdown } from '@primer/components'
 import { IntlShape } from 'react-intl'
 import messages from './messages'
 import { IUser } from '../../../../../types'
+import { logout } from '../../../../../lib/auth'
 
 export default (intl: IntlShape, user: IUser) => [
   {
@@ -53,12 +54,48 @@ export default (intl: IntlShape, user: IUser) => [
     items: [
       {
         value: (
-          <Avatar
-            size={35}
-            alt="profile"
-            sx={{ borderRadius: 3 }}
-            src={user.avatar}
-          />
+          <Dropdown overlay>
+            <summary>
+              <Avatar
+                size={35}
+                alt="profile"
+                sx={{ borderRadius: 3, cursor: 'pointer' }}
+                src={user.avatar}
+              />
+            </summary>
+            <Dropdown.Menu p={0} sx={{ border: 'none' }}>
+              <Dropdown.Item
+                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                px={2}
+                py={1}
+              >
+                My profile
+              </Dropdown.Item>
+              <Dropdown.Item
+                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                px={2}
+                py={1}
+              >
+                My teams
+              </Dropdown.Item>
+              <Dropdown.Item
+                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                px={2}
+                py={1}
+              >
+                Settings
+              </Dropdown.Item>
+              <Dropdown.Item
+                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                px={2}
+                py={1}
+                color="red.5"
+                onClick={() => logout()}
+              >
+                Log out
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         ),
         key: 1,
         active: true
