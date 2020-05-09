@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Avatar, Dropdown } from '@primer/components'
-import { IntlShape } from 'react-intl'
+import { IntlShape, FormattedMessage } from 'react-intl'
 import messages from './messages'
 import { IUser } from '../../../../../types'
 import { logout } from '../../../../../lib/auth'
@@ -71,7 +71,7 @@ export default (intl: IntlShape, user: IUser) => [
                   px={2}
                   py={1}
                 >
-                  My profile
+                  <FormattedMessage {...messages.dropdownProfile} />
                 </Dropdown.Item>
               </Link>
               <Link to="/teams">
@@ -80,7 +80,7 @@ export default (intl: IntlShape, user: IUser) => [
                   px={2}
                   py={1}
                 >
-                  My teams
+                  <FormattedMessage {...messages.dropdownTeams} />
                 </Dropdown.Item>
               </Link>
               <Link to="/profile/settings">
@@ -89,7 +89,7 @@ export default (intl: IntlShape, user: IUser) => [
                   px={2}
                   py={1}
                 >
-                  Settings
+                  <FormattedMessage {...messages.dropdownSettings} />
                 </Dropdown.Item>
               </Link>
               <Dropdown.Item
@@ -99,7 +99,7 @@ export default (intl: IntlShape, user: IUser) => [
                 color="red.5"
                 onClick={() => logout()}
               >
-                Log out
+                <FormattedMessage {...messages.dropdownLogOut} />
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
