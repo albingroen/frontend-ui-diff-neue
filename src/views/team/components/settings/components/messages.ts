@@ -9,7 +9,7 @@ export default defineMessages({
 
   // Ledes
   lede: {
-    defaultMessage: 'Team name, billing, and members',
+    defaultMessage: 'The team display name and logotype can be changed here',
     id: 'team-settings.sections.general.basics.lede'
   },
 
