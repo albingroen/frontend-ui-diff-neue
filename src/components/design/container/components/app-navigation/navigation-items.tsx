@@ -4,6 +4,7 @@ import { IntlShape } from 'react-intl'
 import messages from './messages'
 import { IUser } from '../../../../../types'
 import { logout } from '../../../../../lib/auth'
+import { Link } from 'react-router-dom'
 
 export default (intl: IntlShape, user: IUser) => [
   {
@@ -64,27 +65,33 @@ export default (intl: IntlShape, user: IUser) => [
               />
             </summary>
             <Dropdown.Menu p={0} sx={{ border: 'none' }}>
-              <Dropdown.Item
-                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
-                px={2}
-                py={1}
-              >
-                My profile
-              </Dropdown.Item>
-              <Dropdown.Item
-                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
-                px={2}
-                py={1}
-              >
-                My teams
-              </Dropdown.Item>
-              <Dropdown.Item
-                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
-                px={2}
-                py={1}
-              >
-                Settings
-              </Dropdown.Item>
+              <Link to="/profile">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  My profile
+                </Dropdown.Item>
+              </Link>
+              <Link to="/teams">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  My teams
+                </Dropdown.Item>
+              </Link>
+              <Link to="/profile/settings">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  Settings
+                </Dropdown.Item>
+              </Link>
               <Dropdown.Item
                 sx={{ cursor: 'pointer', fontSize: '0.875em' }}
                 px={2}
