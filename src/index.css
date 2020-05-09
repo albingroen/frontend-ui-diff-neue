@@ -48,3 +48,7 @@ label {
   font-size: 0.875em;
   text-transform: uppercase;
 }
+
+summary:focus {
+  outline: none;
+}

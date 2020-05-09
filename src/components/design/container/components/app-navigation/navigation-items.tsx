@@ -1,8 +1,10 @@
 import * as React from 'react'
-import { Avatar } from '@primer/components'
-import { IntlShape } from 'react-intl'
+import { Avatar, Dropdown } from '@primer/components'
+import { IntlShape, FormattedMessage } from 'react-intl'
 import messages from './messages'
 import { IUser } from '../../../../../types'
+import { logout } from '../../../../../lib/auth'
+import { Link } from 'react-router-dom'
 
 export default (intl: IntlShape, user: IUser) => [
   {
@@ -53,12 +55,54 @@ export default (intl: IntlShape, user: IUser) => [
     items: [
       {
         value: (
-          <Avatar
-            size={35}
-            alt="profile"
-            sx={{ borderRadius: 3 }}
-            src={user.avatar}
-          />
+          <Dropdown overlay>
+            <summary>
+              <Avatar
+                size={35}
+                alt="profile"
+                sx={{ borderRadius: 3, cursor: 'pointer' }}
+                src={user.avatar}
+              />
+            </summary>
+            <Dropdown.Menu p={0} sx={{ border: 'none' }}>
+              <Link to="/profile">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  <FormattedMessage {...messages.dropdownProfile} />
+                </Dropdown.Item>
+              </Link>
+              <Link to="/teams">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  <FormattedMessage {...messages.dropdownTeams} />
+                </Dropdown.Item>
+              </Link>
+              <Link to="/profile/settings">
+                <Dropdown.Item
+                  sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                  px={2}
+                  py={1}
+                >
+                  <FormattedMessage {...messages.dropdownSettings} />
+                </Dropdown.Item>
+              </Link>
+              <Dropdown.Item
+                sx={{ cursor: 'pointer', fontSize: '0.875em' }}
+                px={2}
+                py={1}
+                color="red.5"
+                onClick={() => logout()}
+              >
+                <FormattedMessage {...messages.dropdownLogOut} />
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         ),
         key: 1,
         active: true
