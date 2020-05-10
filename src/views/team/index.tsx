@@ -9,10 +9,12 @@ import { ProjectsContext } from '../../context/projectsContext'
 import { RouteComponentProps, Redirect } from 'react-router-dom'
 import { TeamsContext } from '../../context/teamsContext'
 import { useIntl } from 'react-intl'
+import { UserContext } from '../../context/userContext'
 
 export const Team: React.FC<RouteComponentProps> = (props) => {
   const intl = useIntl()
   const { id, tab } = props.match.params as any
+  const { user } = React.useContext(UserContext)
   const { teamsById } = React.useContext(TeamsContext)
   const { projectsById, projects } = React.useContext(ProjectsContext)
   const team = teamsById[id]
@@ -26,11 +28,20 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
     }
   }
 
+  // Find current user's member role
+  const currentUserMemberRole = team?.members.find((member) =>
+    typeof member._user === 'object'
+      ? member._user._id === user._id
+      : member._user === user._id
+  )?.role
+
+  const isAdmin = currentUserMemberRole === 'admin'
+
   // Function for rendering content
-  const renderContent = () => {
+  const renderContent = (isAdmin: boolean) => {
     switch (tab) {
       case 'settings':
-        return <Settings team={team} />
+        return <Settings isAdmin={isAdmin} team={team} />
       case undefined:
         return (
           <Grid gridTemplateColumns="repeat(2, auto)" gridGap={4}>
@@ -61,9 +72,9 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
         </title>
       </Helmet>
 
-      <Header team={team} />
+      <Header team={team} isAdmin={isAdmin} />
 
-      {renderContent()}
+      {renderContent(isAdmin)}
     </div>
   )
 }

@@ -23,9 +23,10 @@ const messages = defineMessages({
 
 interface IHeaderProps {
   team: ITeam;
+  isAdmin: boolean;
 }
 
-const Header: React.FC<IHeaderProps> = ({ team }) => {
+const Header: React.FC<IHeaderProps> = ({ team, isAdmin }) => {
   const intl = useIntl()
   const history = useHistory()
   const { projectsById } = React.useContext(ProjectsContext)
@@ -54,7 +55,7 @@ const Header: React.FC<IHeaderProps> = ({ team }) => {
       </Box>
 
       <UnderlineNav mb={3} mt={2} aria-label="Main">
-        {getTabItems(intl, team?._id, true).map((tabItem: ITabItem) => (
+        {getTabItems(intl, team?._id, isAdmin).map((tabItem: ITabItem) => (
           <UnderlineNav.Link
             key={tabItem.value}
             onClick={() => history.push(tabItem.link)}
