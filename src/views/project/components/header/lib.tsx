@@ -1,10 +1,10 @@
 import React from 'react'
-import moment from 'moment'
-import { IntlShape } from 'react-intl'
-import { Text } from '@primer/components'
-import { IProject, TeamsById, IUser, ITabItem } from '../../../../types'
 import messages from './messages'
+import moment from 'moment'
+import { IProject, TeamsById, IUser, ITabItem } from '../../../../types'
+import { IntlShape } from 'react-intl'
 import { Link } from 'react-router-dom'
+import { Text } from '@primer/components'
 
 export const getInformation = (
   project: IProject,
