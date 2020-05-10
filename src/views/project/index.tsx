@@ -8,6 +8,7 @@ import { useIntl } from 'react-intl'
 import Settings from './components/settings'
 import { UserContext } from '../../context/userContext'
 import { ITeam, ITeamMember } from '../../types'
+import { teamMemberRoles } from '../../lib/teams'
 
 export const Project: React.FC<RouteComponentProps> = ({ match }) => {
   const intl = useIntl()
@@ -47,7 +48,9 @@ export const Project: React.FC<RouteComponentProps> = ({ match }) => {
       : member._user === user._id
   })
 
-  const isAdmin = teams ? !team || currentUserMember?.role === 'admin' : false
+  const isAdmin = teams
+    ? !team || currentUserMember?.role === teamMemberRoles.ADMIN
+    : false
 
   return (
     <div>
