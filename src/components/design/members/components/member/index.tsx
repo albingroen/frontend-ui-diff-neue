@@ -7,13 +7,20 @@ import { teamMemberRoles } from '../../../../../lib/teams'
 interface IMemberProps {
   member: ITeamMember;
   isYou?: boolean;
+  bordered?: boolean;
+  shadowed?: boolean;
 }
 
-const Member: React.FC<IMemberProps> = ({ member, isYou }) => {
+const Member: React.FC<IMemberProps> = ({
+  member,
+  isYou,
+  bordered,
+  shadowed
+}) => {
   const user = member._user
 
   return typeof user === 'object' ? (
-    <Card shadowed>
+    <Card bordered={bordered} shadowed={shadowed}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex alignItems="center">
           <Avatar size={35} mr={2} src={user.avatar} />

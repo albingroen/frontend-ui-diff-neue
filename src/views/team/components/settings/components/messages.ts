@@ -6,11 +6,19 @@ export default defineMessages({
     defaultMessage: 'Basic settings',
     id: 'team-settings.sections.general.basics.heading'
   },
+  headingMembers: {
+    defaultMessage: 'Members',
+    id: 'team-settings.sections.general.members.heading'
+  },
 
   // Ledes
   lede: {
     defaultMessage: 'The team display name and logotype can be changed here',
     id: 'team-settings.sections.general.basics.lede'
+  },
+  ledeMembers: {
+    defaultMessage: 'Add, update and delete members of this team',
+    id: 'team-settings.sections.general.basics.members.lede'
   },
 
   // Placeholders
