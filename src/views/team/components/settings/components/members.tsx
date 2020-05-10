@@ -152,7 +152,9 @@ const Member: React.FC<IMemberProps> = ({
                 <Popover.Content mt={2} p={3}>
                   <Flex alignItems="center" justifyContent="space-between">
                     <Heading fontSize={2} color="red.5">
-                      Are you sure?
+                      <FormattedMessage
+                        {...messages.deleteMemberPopoverHeading}
+                      />
                     </Heading>
                     <Icon
                       icon={faTimes}
@@ -160,10 +162,10 @@ const Member: React.FC<IMemberProps> = ({
                     />
                   </Flex>
                   <Text lineHeight={1.5} opacity={0.75} mt={1} as="p">
-                    Please be aware this action is final.
+                    <FormattedMessage {...messages.deleteMemberPopoverLede} />
                   </Text>
                   <ButtonDanger onClick={handleDelete} mt={2} width="100%">
-                    Delete user
+                    <FormattedMessage {...messages.deleteMemberPopoverCta} />
                   </ButtonDanger>
                 </Popover.Content>
               </Popover>
