@@ -10,6 +10,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom'
 import { TeamsContext } from '../../context/teamsContext'
 import { useIntl } from 'react-intl'
 import { UserContext } from '../../context/userContext'
+import { teamMemberRoles } from '../../lib/teams'
 
 export const Team: React.FC<RouteComponentProps> = (props) => {
   const intl = useIntl()
@@ -35,7 +36,7 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
       : member._user === user._id
   )?.role
 
-  const isAdmin = currentUserMemberRole === 'admin'
+  const isAdmin = currentUserMemberRole === teamMemberRoles.ADMIN
 
   // Function for rendering content
   const renderContent = (isAdmin: boolean) => {

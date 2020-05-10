@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { Label } from '@primer/components'
 import { teamMemberRoles } from '../../../lib/teams'
+import { TeamMemberRole } from '../../../types'
 
 interface IRoleLabelProps {
-  role: 'admin' | 'user';
+  role: TeamMemberRole;
 }
 
 export const RoleLabel: React.FC<IRoleLabelProps> = ({ role }) => (

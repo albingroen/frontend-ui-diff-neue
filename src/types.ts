@@ -49,10 +49,12 @@ export interface IProject {
   _team?: string;
 }
 
+export type TeamMemberRole = 'admin' | 'user';
+
 export interface ITeamMember {
   _id: string;
   _user: string | IUser;
-  role: 'admin' | 'user';
+  role: TeamMemberRole;
 }
 
 export interface ITeam {
