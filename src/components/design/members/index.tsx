@@ -22,6 +22,7 @@ export const Members: React.FC<IMembersProps> = ({ members }) => {
             typeof member._user === 'object' ? member._user._id : member._user
           }
           member={member}
+          shadowed
         />
       ))}
     </Grid>
