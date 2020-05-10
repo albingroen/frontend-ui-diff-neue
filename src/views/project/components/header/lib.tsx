@@ -4,6 +4,7 @@ import { IntlShape } from 'react-intl'
 import { Text } from '@primer/components'
 import { IProject, TeamsById, IUser, ITabItem } from '../../../../types'
 import messages from './messages'
+import { Link } from 'react-router-dom'
 
 export const getInformation = (
   project: IProject,
@@ -18,10 +19,14 @@ export const getInformation = (
   },
   {
     label: formatMessage(messages.labelOwner),
-    value: (
-      <Text fontSize={3}>
-        {project?._team ? teamsById[project._team]?.name : user.name}
-      </Text>
+    value: project?._team ? (
+      <Link to={`/teams/${project?._team}`}>
+        <Text color="blue.5" fontSize={3}>
+          {teamsById[project._team]?.name}
+        </Text>
+      </Link>
+    ) : (
+      <Text fontSize={3}>{user.name}</Text>
     ),
     key: 1
   },
