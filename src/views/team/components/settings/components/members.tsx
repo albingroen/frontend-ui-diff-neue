@@ -24,7 +24,7 @@ interface IMembersProps {
 
 const Members: React.FC<IMembersProps> = ({ team }) => {
   const intl = useIntl()
-  const { patchTeamMember } = React.useContext(TeamsContext)
+  const { patchTeamMember, deleteTeamMember } = React.useContext(TeamsContext)
 
   return (
     <Section title={messages.headingMembers} lede={messages.ledeMembers}>
@@ -33,6 +33,14 @@ const Members: React.FC<IMembersProps> = ({ team }) => {
           key: i,
           children: (
             <Member
+              onDelete={async () => {
+                await deleteTeamMember(
+                  team._id,
+                  typeof member._user === 'object'
+                    ? member._user._id
+                    : member._user
+                )
+              }}
               onChange={async (role) => {
                 await patchTeamMember(
                   team._id,
@@ -59,12 +67,14 @@ interface IMemberProps {
   intl: IntlShape;
   isEditable?: boolean;
   onChange?: (role: string) => Promise<void>;
+  onDelete?: () => Promise<void>;
 }
 
 const Member: React.FC<IMemberProps> = ({
   member,
   isEditable,
   onChange,
+  onDelete,
   intl
 }) => {
   const [isEditing, setIsEditing] = React.useState<boolean>(false)
@@ -75,6 +85,13 @@ const Member: React.FC<IMemberProps> = ({
     if (onChange) {
       await onChange(role)
       setIsEditing(false)
+    }
+  }
+
+  const handleDelete = async () => {
+    if (onDelete) {
+      await onDelete()
+      setDeleteIsOpen(false)
     }
   }
 
@@ -145,7 +162,7 @@ const Member: React.FC<IMemberProps> = ({
                   <Text lineHeight={1.5} opacity={0.75} mt={1} as="p">
                     Please be aware this action is final.
                   </Text>
-                  <ButtonDanger mt={2} width="100%">
+                  <ButtonDanger onClick={handleDelete} mt={2} width="100%">
                     Delete user
                   </ButtonDanger>
                 </Popover.Content>

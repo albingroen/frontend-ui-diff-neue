@@ -43,6 +43,11 @@ export const patchTeamMember = async (
   return res.data.team
 }
 
+export const deleteTeamMember = async (teamId: string, userId: string) => {
+  const res = await request.patch(`/teams/${teamId}/delete-member`, { userId })
+  return res.data.team
+}
+
 export const teamMemberRoles = {
   ADMIN: 'admin',
   USER: 'user'
