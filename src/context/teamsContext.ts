@@ -13,11 +13,13 @@ export type ITeamsContext = {
     userId: string,
     values: { [key: string]: any }
   ) => Promise<ITeam> | void;
+  deleteTeamMember: (teamId: string, userId: string) => Promise<ITeam> | void;
 };
 
 export const TeamsContext = createContext<ITeamsContext>({
   teamsById: {},
   teams: [],
   patchTeam: () => {},
-  patchTeamMember: () => {}
+  patchTeamMember: () => {},
+  deleteTeamMember: () => {}
 })

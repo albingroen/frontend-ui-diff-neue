@@ -82,5 +82,17 @@ export default defineMessages({
   roleDropdownTitle: {
     defaultMessage: 'Role',
     id: 'team-settings.sections.general.members.role-dropdown-title'
+  },
+  deleteMemberPopoverHeading: {
+    defaultMessage: 'Are you sure?',
+    id: 'team-settings.sections.general.members.delete-member.popover.heading'
+  },
+  deleteMemberPopoverLede: {
+    defaultMessage: 'Please be aware this action is final.',
+    id: 'team-settings.sections.general.members.delete-member.popover.lede'
+  },
+  deleteMemberPopoverCta: {
+    defaultMessage: 'Delete member',
+    id: 'team-settings.sections.general.members.delete-member.popover.cta'
   }
 })
