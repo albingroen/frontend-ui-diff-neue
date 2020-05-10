@@ -8,10 +8,16 @@ export type ITeamsContext = {
     teamId: string,
     values: { [key: string]: any }
   ) => Promise<ITeam> | void;
+  patchTeamMember: (
+    teamId: string,
+    userId: string,
+    values: { [key: string]: any }
+  ) => Promise<ITeam> | void;
 };
 
 export const TeamsContext = createContext<ITeamsContext>({
   teamsById: {},
   teams: [],
-  patchTeam: () => {}
+  patchTeam: () => {},
+  patchTeamMember: () => {}
 })

@@ -52,7 +52,7 @@ export interface IProject {
 export interface ITeamMember {
   _id: string;
   _user: string | IUser;
-  role: string;
+  role: 'admin' | 'user';
 }
 
 export interface ITeam {

@@ -31,6 +31,18 @@ export const patchTeam = async (
   return res.data.team
 }
 
+export const patchTeamMember = async (
+  teamId: string,
+  userId: string,
+  values: { [key: string]: any }
+) => {
+  const res = await request.patch(`/teams/${teamId}/update-member`, {
+    userId,
+    newRole: values.role
+  })
+  return res.data.team
+}
+
 export const teamMemberRoles = {
   ADMIN: 'admin',
   USER: 'user'

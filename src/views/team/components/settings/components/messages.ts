@@ -36,6 +36,10 @@ export default defineMessages({
     defaultMessage: 'Saving ...',
     id: 'team-settings.sections.general.basics.cta-loading'
   },
+  ctaSaveMember: {
+    defaultMessage: 'Save member',
+    id: 'team-settings.sections.general.members.cta-save-member'
+  },
 
   // Errors
   noEmptyName: {
@@ -72,5 +76,11 @@ export default defineMessages({
   error: {
     defaultMessage: 'Failed to save team settings',
     id: 'team.settings.error'
+  },
+
+  // Misc.
+  roleDropdownTitle: {
+    defaultMessage: 'Role',
+    id: 'team-settings.sections.general.members.role-dropdown-title'
   }
 })

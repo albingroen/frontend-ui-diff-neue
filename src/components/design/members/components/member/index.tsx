@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Card } from '../../../card'
 import { ITeamMember } from '../../../../../types'
-import { Text, Heading, Flex, Avatar, Label } from '@primer/components'
-import { teamMemberRoles } from '../../../../../lib/teams'
+import { Text, Heading, Flex, Avatar } from '@primer/components'
+import { RoleLabel } from '../../../role-label'
 
 interface IMemberProps {
   member: ITeamMember;
@@ -34,9 +34,7 @@ const Member: React.FC<IMemberProps> = ({
           </div>
         </Flex>
 
-        <Label bg={member.role === teamMemberRoles.ADMIN ? 'blue.4' : 'gray.3'}>
-          {member.role}
-        </Label>
+        <RoleLabel role={member.role} />
       </Flex>
     </Card>
   ) : null

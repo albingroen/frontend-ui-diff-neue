@@ -13,7 +13,12 @@ import { TeamsContext } from './context/teamsContext'
 import { ProjectsContext } from './context/projectsContext'
 import { loggedIn, logout } from './lib/auth'
 import { IUser, IProject, ITeam } from './types'
-import { getTeamIds, getTeamsById, patchTeam } from './lib/teams'
+import {
+  getTeamIds,
+  getTeamsById,
+  patchTeam,
+  patchTeamMember
+} from './lib/teams'
 import { getUser } from './lib/user'
 import Routes from './components/functional/routes'
 
@@ -78,6 +83,27 @@ const App: React.FC = () => {
       patchTeam: async (teamId: string, values: { [key: string]: any }) => {
         // Patch project
         const patchedTeam = await patchTeam(teamId, values)
+
+        // Find previous project
+        const oldTeam = teams.find((t) => t?._id === teamId)
+
+        if (oldTeam) {
+          // Set new project
+          const newTeams = [...teams]
+          newTeams[teams.indexOf(oldTeam)] = patchedTeam
+          setTeams(newTeams)
+
+          // Return project
+          return patchedTeam
+        }
+      },
+      patchTeamMember: async (
+        teamId: string,
+        userId: string,
+        values: { [key: string]: any }
+      ) => {
+        // Patch project
+        const patchedTeam = await patchTeamMember(teamId, userId, values)
 
         // Find previous project
         const oldTeam = teams.find((t) => t?._id === teamId)
