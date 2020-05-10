@@ -20,9 +20,10 @@ const messages = defineMessages({
 
 interface ITeamMembersProps {
   team: ITeam;
+  isAdmin: boolean;
 }
 
-const TeamMembers: React.FC<ITeamMembersProps> = ({ team }) => {
+const TeamMembers: React.FC<ITeamMembersProps> = ({ team, isAdmin }) => {
   return (
     <div>
       <Flex alignItems="center" justifyContent="space-between" mb={3}>
@@ -35,11 +36,13 @@ const TeamMembers: React.FC<ITeamMembersProps> = ({ team }) => {
             />
           </span>
         </Heading>
-        <Link to={`/teams/${team?._id}/members`}>
-          <StyledLink as="p" fontSize={2}>
-            <FormattedMessage {...messages.manageMembers} />
-          </StyledLink>
-        </Link>
+        {isAdmin && (
+          <Link to={`/teams/${team?._id}/settings`}>
+            <StyledLink as="p" fontSize={2}>
+              <FormattedMessage {...messages.manageMembers} />
+            </StyledLink>
+          </Link>
+        )}
       </Flex>
       <Members members={team?.members} />
     </div>

@@ -46,7 +46,7 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
         return (
           <Grid gridTemplateColumns="repeat(2, auto)" gridGap={4}>
             <Projects projects={teamProjects} />
-            <Members team={team} />
+            <Members isAdmin={isAdmin} team={team} />
           </Grid>
         )
       default:
