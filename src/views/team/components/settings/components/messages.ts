@@ -80,7 +80,7 @@ export default defineMessages({
   // Descriptions
   descriptionName: {
     defaultMessage:
-      'This name will only be visible to the members on the team or the user that owns this project',
+      'This name will only be visible to the members on this team',
     id: 'team.settings.description-name'
   },
   descriptionLogo: {
@@ -89,7 +89,7 @@ export default defineMessages({
   },
   descriptionDeleteTeam: {
     defaultMessage: 'Please be aware that this action is final',
-    id: 'project.settings.description-delete-team'
+    id: 'team.settings.description-delete-team'
   },
 
   // States
