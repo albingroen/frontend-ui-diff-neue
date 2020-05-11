@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { FormattedMessage, useIntl } from 'react-intl'
+import messages from './messages'
 import { Box, Text, BorderBox, ButtonDanger } from '@primer/components'
 import { DEFAULT_SNACKBAR_DURATION } from '../../../../../components/design/snackbar'
-import { ProjectsContext } from '../../../../../context/projectsContext'
+import { FormattedMessage, useIntl } from 'react-intl'
+import { ITeam } from '../../../../../types'
 import { Section, Snackbar } from '../../../../../components'
-import { IProject } from '../../../../../types'
-import messages from './messages'
+import { TeamsContext } from '../../../../../context/teamsContext'
 
 interface IDangerousProps {
-  project: IProject;
+  team: ITeam;
 }
 
 type StateStatus = 'success' | 'error' | 'idle' | 'loading';
@@ -40,23 +40,23 @@ function reducer (state: IState, action: IAction): IState {
 const getCtaValue = (status: StateStatus) => {
   switch (status) {
     case 'loading':
-      return messages.ctaDeleteProjectLoading
+      return messages.ctaDeleteTeamLoading
     default:
-      return messages.ctaDeleteProject
+      return messages.ctaDeleteTeam
   }
 }
 
-const Dangerous: React.FC<IDangerousProps> = ({ project }) => {
+const Dangerous: React.FC<IDangerousProps> = ({ team }) => {
   const intl = useIntl()
-  const { deleteProject } = React.useContext(ProjectsContext)
+  const { deleteTeam } = React.useContext(TeamsContext)
   const [state, dispatch] = React.useReducer(reducer, { status: 'idle' })
 
   // Runs when submitting form
-  const onDeleteProject = async () => {
+  const onDeleteTeam = async () => {
     dispatch({ type: 'SUBMIT' })
 
-    const isProjectDeleted = await deleteProject(project?._id)
-    if (isProjectDeleted) {
+    const isTeamDeleted = await deleteTeam(team?._id)
+    if (isTeamDeleted) {
       dispatch({ type: 'SUCCESS' })
       setTimeout(() => {
         dispatch({ type: 'RESET' })
@@ -74,31 +74,30 @@ const Dangerous: React.FC<IDangerousProps> = ({ project }) => {
       {state.status === 'success' && (
         <Snackbar
           variant="success"
-          value={intl.formatMessage(messages.successDeleteProject)}
+          value={intl.formatMessage(messages.successDeleteTeam)}
         />
       )}
 
       {state.status === 'error' && (
         <Snackbar
           variant="error"
-          value={intl.formatMessage(messages.errorDeleteProject)}
+          value={intl.formatMessage(messages.errorDeleteTeam)}
         />
       )}
 
-      <Section title={messages.dangerousHeading} lede={messages.dangerousLede}>
+      <Section title={messages.headingDangerous} lede={messages.ledeDangerous}>
         <BorderBox p={2}>
           <Box mb={2}>
             <Text color="red.5">
-              <FormattedMessage {...messages.labelDeleteProject} /> (
-              {project?.name})
+              <FormattedMessage {...messages.labelDeleteTeam} /> ({team?.name})
             </Text>
           </Box>
-          <ButtonDanger onClick={onDeleteProject}>
+          <ButtonDanger onClick={onDeleteTeam}>
             <FormattedMessage {...getCtaValue(state.status)} />
           </ButtonDanger>
           <Box mt={2}>
             <Text fontSize={1} opacity={0.75}>
-              <FormattedMessage {...messages.descriptionDeleteProject} />
+              <FormattedMessage {...messages.descriptionDeleteTeam} />
             </Text>
           </Box>
         </BorderBox>

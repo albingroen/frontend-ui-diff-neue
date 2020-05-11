@@ -10,6 +10,10 @@ export default defineMessages({
     defaultMessage: 'Members',
     id: 'team-settings.sections.general.members.heading'
   },
+  headingDangerous: {
+    defaultMessage: 'Dangerous settings',
+    id: 'team-settings.sections.general.dangerous.heading'
+  },
 
   // Ledes
   lede: {
@@ -19,6 +23,10 @@ export default defineMessages({
   ledeMembers: {
     defaultMessage: 'Add, update and delete members of this team',
     id: 'team-settings.sections.general.basics.members.lede'
+  },
+  ledeDangerous: {
+    defaultMessage: 'Here you can delete this team if you want to',
+    id: 'team-settings.sections.general.basics.dangerous.lede'
   },
 
   // Placeholders
@@ -40,32 +48,48 @@ export default defineMessages({
     defaultMessage: 'Save member',
     id: 'team-settings.sections.general.members.cta-save-member'
   },
+  ctaDeleteTeam: {
+    defaultMessage: 'Delete team',
+    id: 'team-settings.sections.general.dangerous.cta-delete-team'
+  },
+  ctaDeleteTeamLoading: {
+    defaultMessage: 'Deleting team ...',
+    id: 'team-settings.sections.general.dangerous.cta-delete-team-loading'
+  },
 
   // Errors
   noEmptyName: {
     defaultMessage: 'Name cannot be empty',
-    id: 'project.settings.no-empty-name'
+    id: 'team.settings.no-empty-name'
   },
 
   // Labels
   labelName: {
     defaultMessage: 'Name',
-    id: 'project.settings.label-name.basic.label-name'
+    id: 'team.settings.label-name.basic.label-name'
   },
   labelLogo: {
     defaultMessage: 'Logo',
-    id: 'project.settings.label-name.basic.label-logo'
+    id: 'team.settings.label-name.basic.label-logo'
+  },
+  labelDeleteTeam: {
+    defaultMessage: 'Delete team',
+    id: 'team.settings.label-name.basic.label-delete-team'
   },
 
   // Descriptions
   descriptionName: {
     defaultMessage:
-      'This name will only be visible to the members on the team or the user that owns this project',
-    id: 'project.settings.description-name'
+      'This name will only be visible to the members on this team',
+    id: 'team.settings.description-name'
   },
   descriptionLogo: {
     defaultMessage: 'The logo will only be visible to the members on the team',
-    id: 'project.settings.description-logo'
+    id: 'team.settings.description-logo'
+  },
+  descriptionDeleteTeam: {
+    defaultMessage: 'Please be aware that this action is final',
+    id: 'team.settings.description-delete-team'
   },
 
   // States
@@ -76,6 +100,14 @@ export default defineMessages({
   error: {
     defaultMessage: 'Failed to save team settings',
     id: 'team.settings.error'
+  },
+  successDeleteTeam: {
+    defaultMessage: 'Deleted team successfully',
+    id: 'team.settings.success-delete-team'
+  },
+  errorDeleteTeam: {
+    defaultMessage: 'Failed to delete team',
+    id: 'team.settings.error-delete-team'
   },
 
   // Misc.

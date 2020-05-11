@@ -1,4 +1,9 @@
-import { patchTeam, patchTeamMember, deleteTeamMember } from '../lib/teams'
+import {
+  patchTeam,
+  patchTeamMember,
+  deleteTeamMember,
+  deleteTeam
+} from '../lib/teams'
 import { ITeam } from '../types'
 
 export default (
@@ -63,5 +68,23 @@ export default (
       // Return team
       return patchedTeam
     }
+  },
+  deleteTeam: async (teamId: string) => {
+    // Delete team
+    const isTeamDeleted = await deleteTeam(teamId)
+
+    // Find previous team
+    const oldTeam = teams.find((t) => t?._id === teamId)
+
+    // Set new teams
+    if (isTeamDeleted && oldTeam) {
+      const newTeams = [...teams]
+      newTeams.splice(teams.indexOf(oldTeam), 1)
+      setTeams(newTeams)
+
+      return true
+    }
+
+    return false
   }
 })
