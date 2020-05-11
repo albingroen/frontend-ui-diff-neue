@@ -70,14 +70,14 @@ export default (
     }
   },
   deleteTeam: async (teamId: string) => {
-    // Patch project
-    const isProjectDeleted = await deleteTeam(teamId)
+    // Delete team
+    const isTeamDeleted = await deleteTeam(teamId)
 
-    // Find previous project
+    // Find previous team
     const oldTeam = teams.find((t) => t?._id === teamId)
 
-    // Set new projects
-    if (isProjectDeleted && oldTeam) {
+    // Set new teams
+    if (isTeamDeleted && oldTeam) {
       const newTeams = [...teams]
       newTeams.splice(teams.indexOf(oldTeam), 1)
       setTeams(newTeams)
