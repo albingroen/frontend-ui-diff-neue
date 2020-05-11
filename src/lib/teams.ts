@@ -48,6 +48,11 @@ export const deleteTeamMember = async (teamId: string, userId: string) => {
   return res.data.team
 }
 
+export const deleteTeam = async (teamId: string) => {
+  const res = await request.delete(`/teams/${teamId}`)
+  return res.data.isTeamDeleted
+}
+
 export const teamMemberRoles = {
   ADMIN: 'admin',
   USER: 'user'

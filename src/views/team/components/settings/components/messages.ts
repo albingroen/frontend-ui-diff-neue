@@ -10,6 +10,10 @@ export default defineMessages({
     defaultMessage: 'Members',
     id: 'team-settings.sections.general.members.heading'
   },
+  headingDangerous: {
+    defaultMessage: 'Dangerous settings',
+    id: 'team-settings.sections.general.dangerous.heading'
+  },
 
   // Ledes
   lede: {
@@ -19,6 +23,10 @@ export default defineMessages({
   ledeMembers: {
     defaultMessage: 'Add, update and delete members of this team',
     id: 'team-settings.sections.general.basics.members.lede'
+  },
+  ledeDangerous: {
+    defaultMessage: 'Here you can delete this team if you want to',
+    id: 'team-settings.sections.general.basics.dangerous.lede'
   },
 
   // Placeholders
@@ -40,6 +48,14 @@ export default defineMessages({
     defaultMessage: 'Save member',
     id: 'team-settings.sections.general.members.cta-save-member'
   },
+  ctaDeleteTeam: {
+    defaultMessage: 'Delete team',
+    id: 'team-settings.sections.general.dangerous.cta-delete-team'
+  },
+  ctaDeleteTeamLoading: {
+    defaultMessage: 'Deleting team ...',
+    id: 'team-settings.sections.general.dangerous.cta-delete-team-loading'
+  },
 
   // Errors
   noEmptyName: {
@@ -56,6 +72,10 @@ export default defineMessages({
     defaultMessage: 'Logo',
     id: 'project.settings.label-name.basic.label-logo'
   },
+  labelDeleteTeam: {
+    defaultMessage: 'Delete team',
+    id: 'project.settings.label-name.basic.label-delete-team'
+  },
 
   // Descriptions
   descriptionName: {
@@ -67,6 +87,10 @@ export default defineMessages({
     defaultMessage: 'The logo will only be visible to the members on the team',
     id: 'project.settings.description-logo'
   },
+  descriptionDeleteTeam: {
+    defaultMessage: 'Please be aware that this action is final',
+    id: 'project.settings.description-delete-team'
+  },
 
   // States
   success: {
@@ -76,6 +100,14 @@ export default defineMessages({
   error: {
     defaultMessage: 'Failed to save team settings',
     id: 'team.settings.error'
+  },
+  successDeleteTeam: {
+    defaultMessage: 'Deleted team successfully',
+    id: 'team.settings.success-delete-team'
+  },
+  errorDeleteTeam: {
+    defaultMessage: 'Failed to delete team',
+    id: 'team.settings.error-delete-team'
   },
 
   // Misc.
