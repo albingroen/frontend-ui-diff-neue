@@ -1,4 +1,4 @@
-import { ITeam } from '../types'
+import { ITeam, TeamMemberRole } from '../types'
 import { request } from '.'
 
 export const getTeamIds = (teams?: ITeam[]) => {
@@ -53,7 +53,15 @@ export const deleteTeam = async (teamId: string) => {
   return res.data.isTeamDeleted
 }
 
-export const teamMemberRoles = {
+export const inviteTeamMember = async (
+  teamId: string,
+  values: { email: string; role: TeamMemberRole | string }
+) => {
+  const res = await request.post('/invitations', { ...values, teamId })
+  return res.data.invitation
+}
+
+export const teamMemberRoles: { [key: string]: TeamMemberRole } = {
   ADMIN: 'admin',
   USER: 'user'
 }

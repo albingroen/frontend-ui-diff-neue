@@ -26,9 +26,10 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
       if (!teamsById[id]?._id) {
         return <Redirect to="/teams" />
       }
-    } else {
-      return <Redirect to="/teams" />
     }
+    // else {
+    //   return <Redirect to="/teams" />
+    // }
   }
 
   // Find current user's member role

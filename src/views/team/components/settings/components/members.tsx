@@ -111,7 +111,7 @@ const Member: React.FC<IMemberProps> = ({
               value={role}
               title={role}
               ariaLabel="member-role"
-              onChange={(value) => value && setRole(value)}
+              onChange={(value?: string) => value && setRole(value)}
               options={[
                 {
                   title: intl.formatMessage(messages.roleDropdownTitle),

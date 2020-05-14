@@ -2,9 +2,10 @@ import {
   patchTeam,
   patchTeamMember,
   deleteTeamMember,
-  deleteTeam
+  deleteTeam,
+  inviteTeamMember
 } from '../lib/teams'
-import { ITeam } from '../types'
+import { ITeam, TeamMemberRole } from '../types'
 
 export default (
   teamIds: string[],
@@ -86,5 +87,13 @@ export default (
     }
 
     return false
+  },
+  inviteTeamMember: async (
+    teamId: string,
+    values: { email: string; role: TeamMemberRole | string }
+  ) => {
+    // Patch team
+    const invitation = await inviteTeamMember(teamId, values)
+    return invitation
   }
 })

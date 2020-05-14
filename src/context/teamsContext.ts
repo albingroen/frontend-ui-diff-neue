@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ITeam } from '../types'
+import { ITeam, TeamMemberRole, ITeamInvitation } from '../types'
 
 export type ITeamsContext = {
   teamsById: { [id: string]: ITeam };
@@ -15,6 +15,10 @@ export type ITeamsContext = {
   ) => Promise<ITeam> | void;
   deleteTeamMember: (teamId: string, userId: string) => Promise<ITeam> | void;
   deleteTeam: (teamId: string) => Promise<boolean> | void;
+  inviteTeamMember: (
+    teamId: string,
+    values: { email: string; role: TeamMemberRole | string }
+  ) => Promise<ITeamInvitation> | void;
 };
 
 export const TeamsContext = createContext<ITeamsContext>({
@@ -23,5 +27,6 @@ export const TeamsContext = createContext<ITeamsContext>({
   patchTeam: () => {},
   patchTeamMember: () => {},
   deleteTeamMember: () => {},
-  deleteTeam: () => {}
+  deleteTeam: () => {},
+  inviteTeamMember: () => {}
 })

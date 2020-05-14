@@ -10,6 +10,8 @@ interface IInputProps {
   ariaLabel?: string;
   error?: string;
   description?: string;
+  type?: string;
+  required?: boolean;
 }
 
 export const Input: React.FC<IInputProps> = ({

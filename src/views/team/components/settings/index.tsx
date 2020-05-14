@@ -4,6 +4,7 @@ import Basic from './components/basic'
 import Members from './components/members'
 import { Redirect } from 'react-router-dom'
 import Dangerous from './components/dangerous'
+import Invitations from './components/invitations'
 
 interface IContentProps {
   team: ITeam;
@@ -15,6 +16,7 @@ const Content: React.FC<IContentProps> = ({ team, isAdmin }) => {
     <>
       <Basic team={team} />
       <Members team={team} />
+      <Invitations team={team} />
       <Dangerous team={team} />
     </>
   ) : team ? (

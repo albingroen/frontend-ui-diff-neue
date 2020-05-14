@@ -23,14 +23,15 @@ interface ISelectProps {
   value?: string;
 }
 
-export const Select: React.FC<ISelectProps> = ({
+export const Select: React.FC<ISelectProps & any> = ({
   title,
   value,
   ariaLabel,
   options,
-  onChange
+  onChange,
+  ...rest
 }) => (
-  <SelectMenu aria-label={ariaLabel}>
+  <SelectMenu aria-label={ariaLabel} {...rest}>
     <Button as="summary">
       {title}{' '}
       <i style={{ marginLeft: '0.75rem' }}>

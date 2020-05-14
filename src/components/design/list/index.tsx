@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { BorderBox } from '@primer/components'
 
 const ListWrapper = styled.ul`
   display: flex;
@@ -45,17 +46,19 @@ interface IListProps {
 
 export const List: React.FC<IListProps> = ({ items }) => {
   return (
-    <ListWrapper>
-      {items?.map((item: IItem, i: number) => (
-        <ListItem
-          key={item.key}
-          isEven={i % 2 === 0}
-          isLast={i === items.length - 1}
-          isFirst={i === 0}
-        >
-          {item.children}
-        </ListItem>
-      ))}
-    </ListWrapper>
+    <BorderBox>
+      <ListWrapper>
+        {items?.map((item: IItem, i: number) => (
+          <ListItem
+            key={item.key}
+            isEven={i % 2 === 0}
+            isLast={i === items.length - 1}
+            isFirst={i === 0}
+          >
+            {item.children}
+          </ListItem>
+        ))}
+      </ListWrapper>
+    </BorderBox>
   )
 }

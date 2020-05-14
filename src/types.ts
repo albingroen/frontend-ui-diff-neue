@@ -83,3 +83,13 @@ export interface ITabItem {
 export type ImagesByEnvironment = { [env: string]: IImage[] };
 
 export type ImageBrowseDir = 'prev' | 'next';
+
+export interface ITeamInvitation {
+  _id: string;
+  active: Boolean;
+  createdAt: Date;
+  email: string;
+  role: TeamMemberRole;
+  updatedAt: Date;
+  _team: string;
+}
