@@ -38,7 +38,7 @@ export default (
     userId: string,
     values: { [key: string]: any }
   ) => {
-    // Patch team
+    // Patch team member
     const patchedTeam = await patchTeamMember(teamId, userId, values)
 
     // Find previous team
@@ -55,7 +55,7 @@ export default (
     }
   },
   deleteTeamMember: async (teamId: string, userId: string) => {
-    // Patch team
+    // Delete team member
     const patchedTeam = await deleteTeamMember(teamId, userId)
 
     // Find previous team
@@ -93,7 +93,7 @@ export default (
     teamId: string,
     values: { email: string; role: TeamMemberRole | string }
   ) => {
-    // Patch team
+    // Invite team member
     const invitation = await inviteTeamMember(teamId, values)
     return invitation
   },
