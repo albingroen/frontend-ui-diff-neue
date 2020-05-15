@@ -2,9 +2,11 @@ import {
   patchTeam,
   patchTeamMember,
   deleteTeamMember,
-  deleteTeam
+  deleteTeam,
+  inviteTeamMember,
+  deleteTeamMemberInvitation
 } from '../lib/teams'
-import { ITeam } from '../types'
+import { ITeam, TeamMemberRole } from '../types'
 
 export default (
   teamIds: string[],
@@ -36,7 +38,7 @@ export default (
     userId: string,
     values: { [key: string]: any }
   ) => {
-    // Patch team
+    // Patch team member
     const patchedTeam = await patchTeamMember(teamId, userId, values)
 
     // Find previous team
@@ -53,7 +55,7 @@ export default (
     }
   },
   deleteTeamMember: async (teamId: string, userId: string) => {
-    // Patch team
+    // Delete team member
     const patchedTeam = await deleteTeamMember(teamId, userId)
 
     // Find previous team
@@ -86,5 +88,20 @@ export default (
     }
 
     return false
+  },
+  inviteTeamMember: async (
+    teamId: string,
+    values: { email: string; role: TeamMemberRole | string }
+  ) => {
+    // Invite team member
+    const invitation = await inviteTeamMember(teamId, values)
+    return invitation
+  },
+  deleteTeamMemberInvitation: async (invitationId: string) => {
+    // Delete team member invitation
+    const isTeamMemberInvitationDeleted = await deleteTeamMemberInvitation(
+      invitationId
+    )
+    return isTeamMemberInvitationDeleted
   }
 })

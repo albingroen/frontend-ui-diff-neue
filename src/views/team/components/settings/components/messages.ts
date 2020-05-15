@@ -14,6 +14,14 @@ export default defineMessages({
     defaultMessage: 'Dangerous settings',
     id: 'team-settings.sections.general.dangerous.heading'
   },
+  headingInvitations: {
+    defaultMessage: 'Invitations',
+    id: 'team-settings.sections.general.invitations.heading'
+  },
+  headingInviteMember: {
+    defaultMessage: 'Invite member',
+    id: 'team-settings.sections.general.invitations.invite-member.heading'
+  },
 
   // Ledes
   lede: {
@@ -28,11 +36,20 @@ export default defineMessages({
     defaultMessage: 'Here you can delete this team if you want to',
     id: 'team-settings.sections.general.basics.dangerous.lede'
   },
+  ledeInvitations: {
+    defaultMessage:
+      'Here you can see all invitations and invite new team members',
+    id: 'team-settings.sections.general.basics.invitations.lede'
+  },
 
   // Placeholders
   placeholderName: {
     defaultMessage: 'Team name',
     id: 'team-settings.sections.general.basics.placeholder-name'
+  },
+  placeholderInviteMemberEmail: {
+    defaultMessage: 'Ex. john@doe.com',
+    id: 'team-settings.sections.general.basics.placeholder-invite-team-member'
   },
 
   // Cta's
@@ -56,6 +73,10 @@ export default defineMessages({
     defaultMessage: 'Deleting team ...',
     id: 'team-settings.sections.general.dangerous.cta-delete-team-loading'
   },
+  ctaInviteTeamMember: {
+    defaultMessage: 'Invite member',
+    id: 'team-settings.sections.general.invitations.cta-invite-member'
+  },
 
   // Errors
   noEmptyName: {
@@ -76,6 +97,10 @@ export default defineMessages({
     defaultMessage: 'Delete team',
     id: 'team.settings.label-name.basic.label-delete-team'
   },
+  labelInviteTeamMemberEmail: {
+    defaultMessage: 'Email adress',
+    id: 'team.settings.label-name.basic.label-invite-team-member'
+  },
 
   // Descriptions
   descriptionName: {
@@ -90,6 +115,10 @@ export default defineMessages({
   descriptionDeleteTeam: {
     defaultMessage: 'Please be aware that this action is final',
     id: 'team.settings.description-delete-team'
+  },
+  descriptionInviteMember: {
+    defaultMessage: 'This is the email the member will get the invitation to',
+    id: 'team.settings.description-invite-member'
   },
 
   // States
@@ -126,5 +155,14 @@ export default defineMessages({
   deleteMemberPopoverCta: {
     defaultMessage: 'Delete member',
     id: 'team-settings.sections.general.members.delete-member.popover.cta'
+  },
+  roleDropdownTitleWithType: {
+    defaultMessage: 'User role: {role}',
+    id:
+      'team-settings.sections.general.invitations.invite-team-memer.role-dropdown.title'
+  },
+  invitedTeamMemberSince: {
+    defaultMessage: 'Invited {fromNow}',
+    id: 'team-settings.sections.general.invitations.invitation.since'
   }
 })
