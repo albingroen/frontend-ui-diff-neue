@@ -19,6 +19,7 @@ export type ITeamsContext = {
     teamId: string,
     values: { email: string; role: TeamMemberRole | string }
   ) => Promise<ITeamInvitation> | void;
+  deleteTeamMemberInvitation: (invitationId: string) => Promise<boolean> | void;
 };
 
 export const TeamsContext = createContext<ITeamsContext>({
@@ -28,5 +29,6 @@ export const TeamsContext = createContext<ITeamsContext>({
   patchTeamMember: () => {},
   deleteTeamMember: () => {},
   deleteTeam: () => {},
-  inviteTeamMember: () => {}
+  inviteTeamMember: () => {},
+  deleteTeamMemberInvitation: () => {}
 })

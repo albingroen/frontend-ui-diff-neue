@@ -3,7 +3,8 @@ import {
   patchTeamMember,
   deleteTeamMember,
   deleteTeam,
-  inviteTeamMember
+  inviteTeamMember,
+  deleteTeamMemberInvitation
 } from '../lib/teams'
 import { ITeam, TeamMemberRole } from '../types'
 
@@ -95,5 +96,12 @@ export default (
     // Patch team
     const invitation = await inviteTeamMember(teamId, values)
     return invitation
+  },
+  deleteTeamMemberInvitation: async (invitationId: string) => {
+    // Delete team member invitation
+    const isTeamMemberInvitationDeleted = await deleteTeamMemberInvitation(
+      invitationId
+    )
+    return isTeamMemberInvitationDeleted
   }
 })

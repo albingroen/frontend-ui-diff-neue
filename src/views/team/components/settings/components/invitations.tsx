@@ -9,7 +9,8 @@ import {
   List,
   Input,
   Select,
-  RoleLabel
+  RoleLabel,
+  Icon
 } from '../../../../../components'
 import {
   Box,
@@ -17,11 +18,15 @@ import {
   ButtonPrimary,
   Flex,
   Avatar,
-  Text
+  Text,
+  Relative,
+  Popover,
+  ButtonDanger
 } from '@primer/components'
 import gravatar from 'gravatar'
 import moment from 'moment'
 import messages from './messages'
+import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 interface IInvitationsProps {
   team: ITeam;
@@ -29,7 +34,9 @@ interface IInvitationsProps {
 
 const Invitations: React.FC<IInvitationsProps> = ({ team }) => {
   const [invitations, setInvitations] = React.useState<ITeamInvitation[]>([])
-  const { inviteTeamMember } = React.useContext(TeamsContext)
+  const { inviteTeamMember, deleteTeamMemberInvitation } = React.useContext(
+    TeamsContext
+  )
 
   React.useEffect(() => {
     request.get(`/teams/${team?._id}/invitations`).then((res) => {
@@ -43,9 +50,20 @@ const Invitations: React.FC<IInvitationsProps> = ({ team }) => {
       lede={messages.ledeInvitations}
     >
       <List
-        items={invitations?.map((inv) => ({
-          key: inv._id,
-          children: <Invitation invitation={inv} />
+        items={invitations?.map((invitation) => ({
+          key: invitation._id,
+          children: (
+            <Invitation
+              onDelete={async () => {
+                if (await deleteTeamMemberInvitation(invitation._id)) {
+                  setInvitations(
+                    invitations.filter((i) => i._id !== invitation._id)
+                  )
+                }
+              }}
+              invitation={invitation}
+            />
+          )
         }))}
       />
 
@@ -75,7 +93,7 @@ interface IInviteMemberProps {
 
 const InviteMember: React.FC<IInviteMemberProps> = ({ onSubmit }) => {
   const intl = useIntl()
-  const [email, setEmail] = React.useState<string>()
+  const [email, setEmail] = React.useState<string>('')
   const [role, setRole] = React.useState<TeamMemberRole | string>(
     teamMemberRoles.USER
   )
@@ -84,6 +102,7 @@ const InviteMember: React.FC<IInviteMemberProps> = ({ onSubmit }) => {
     e.preventDefault()
     if (email && role) {
       onSubmit({ email, role })
+      setEmail('')
     }
   }
 
@@ -124,9 +143,19 @@ const InviteMember: React.FC<IInviteMemberProps> = ({ onSubmit }) => {
 
 interface IInvitationProps {
   invitation: ITeamInvitation;
+  onDelete: () => Promise<void>;
 }
 
-const Invitation: React.FC<IInvitationProps> = ({ invitation }) => {
+const Invitation: React.FC<IInvitationProps> = ({ invitation, onDelete }) => {
+  const [deleteIsOpen, setDeleteIsOpen] = React.useState<boolean>(false)
+
+  const handleDelete = async () => {
+    if (onDelete) {
+      setDeleteIsOpen(false)
+      await onDelete()
+    }
+  }
+
   return (
     <Flex alignItems="center" justifyContent="space-between">
       <Flex alignItems="center">
@@ -141,7 +170,34 @@ const Invitation: React.FC<IInvitationProps> = ({ invitation }) => {
           </Text>
         </div>
       </Flex>
-      <RoleLabel role={invitation.role} />
+      <Flex alignItems="center">
+        <RoleLabel role={invitation.role} />
+
+        <Relative alignItems="center" justifyContent="center" ml={2}>
+          <Icon
+            onClick={() => setDeleteIsOpen(!deleteIsOpen)}
+            icon={faTrash}
+            color="red.5"
+          />
+
+          <Popover open={deleteIsOpen} sx={{ left: -115 }}>
+            <Popover.Content mt={2} p={3}>
+              <Flex alignItems="center" justifyContent="space-between">
+                <Heading fontSize={2} color="red.5">
+                  <FormattedMessage {...messages.deleteMemberPopoverHeading} />
+                </Heading>
+                <Icon icon={faTimes} onClick={() => setDeleteIsOpen(false)} />
+              </Flex>
+              <Text lineHeight={1.5} opacity={0.75} mt={1} as="p">
+                <FormattedMessage {...messages.deleteMemberPopoverLede} />
+              </Text>
+              <ButtonDanger onClick={handleDelete} mt={2} width="100%">
+                <FormattedMessage {...messages.deleteMemberPopoverCta} />
+              </ButtonDanger>
+            </Popover.Content>
+          </Popover>
+        </Relative>
+      </Flex>
     </Flex>
   )
 }
