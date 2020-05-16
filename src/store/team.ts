@@ -4,7 +4,8 @@ import {
   deleteTeamMember,
   deleteTeam,
   inviteTeamMember,
-  deleteTeamMemberInvitation
+  deleteTeamMemberInvitation,
+  createTeam
 } from '../lib/teams'
 import { ITeam, TeamMemberRole } from '../types'
 
@@ -103,5 +104,11 @@ export default (
       invitationId
     )
     return isTeamMemberInvitationDeleted
+  },
+  createTeam: async (name: string) => {
+    // Create team
+    const team = await createTeam(name)
+    setTeams([...teams, team])
+    return team
   }
 })
