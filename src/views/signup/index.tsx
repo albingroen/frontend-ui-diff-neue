@@ -13,8 +13,9 @@ const Wrapper = styled.div`
 
 export const Signup: React.FC = () => {
   const { setUser } = React.useContext(UserContext)
-
-  const { code, method } = queryString.parse(window.location.search)
+  const { code, method, invitationId } = queryString.parse(
+    window.location.search
+  )
 
   React.useEffect(() => {
     if (
@@ -24,14 +25,23 @@ export const Signup: React.FC = () => {
       typeof code === 'string'
     ) {
       (async () => {
-        await auth.social.signup(method, code)
+        if (typeof invitationId === 'string') {
+          await auth.social.signup(method, code, invitationId)
+        } else {
+          await auth.social.signup(method, code)
+        }
       })()
     }
-  }, [setUser, code, method])
+  }, [setUser, code, method, invitationId])
 
   return (
     <Wrapper>
-      <Side isEmail={method === 'email'} />
+      <Side
+        isEmail={method === 'email'}
+        invitationId={
+          typeof invitationId === 'string' ? invitationId : undefined
+        }
+      />
       <Right />
     </Wrapper>
   )

@@ -16,11 +16,14 @@ export interface SignupMethod {
   style?: React.CSSProperties;
 }
 
-export const signupMethods = (history: any): SignupMethod[] => [
+export const signupMethods = (
+  history: any,
+  invitationId?: string
+): SignupMethod[] => [
   {
     name: messages.github,
     icon: faGithub,
-    onClick: () => auth.social.signup('github'),
+    onClick: () => auth.social.signup('github', '', invitationId),
     style: {
       backgroundColor: '#222',
       borderColor: '#222',
@@ -30,7 +33,7 @@ export const signupMethods = (history: any): SignupMethod[] => [
   {
     name: messages.gitlab,
     icon: faGitlab,
-    onClick: () => auth.social.signup('gitlab'),
+    onClick: () => auth.social.signup('gitlab', '', invitationId),
     style: {
       backgroundColor: '#fb7135',
       borderColor: '#fb7135',
@@ -40,7 +43,7 @@ export const signupMethods = (history: any): SignupMethod[] => [
   {
     name: messages.google,
     icon: faGoogle,
-    onClick: () => auth.social.signup('google'),
+    onClick: () => auth.social.signup('google', '', invitationId),
     style: {
       backgroundColor: '#4285f5',
       borderColor: '#4285f5',

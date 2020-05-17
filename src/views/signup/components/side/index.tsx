@@ -20,9 +20,10 @@ const Sidebar = styled.div`
 
 interface ISideProps {
   isEmail?: boolean;
+  invitationId?: string;
 }
 
-const Side: React.FC<ISideProps> = ({ isEmail }) => {
+const Side: React.FC<ISideProps> = ({ isEmail, invitationId }) => {
   const history = useHistory()
 
   return (
@@ -41,7 +42,7 @@ const Side: React.FC<ISideProps> = ({ isEmail }) => {
 
       <Flex my={2} flexDirection="column">
         {!isEmail ? (
-          signupMethods(history).map((method: SignupMethod) => (
+          signupMethods(history, invitationId).map((method: SignupMethod) => (
             <SignupMethodButton
               onClick={() => method.onClick && method.onClick()}
               key={method.name.id}

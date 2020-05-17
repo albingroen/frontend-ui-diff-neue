@@ -6,7 +6,11 @@ import { Snackbar } from '../../components'
 import auth from '../../lib/auth'
 
 export const Auth: React.FC = () => {
-  const { code, method } = queryString.parse(window.location.search)
+  const { code, method, invitationId, state } = queryString.parse(
+    window.location.search
+  )
+  const invitationIdFromState =
+    typeof state === 'string' && state.split('invitationId')[1]
 
   const history = useHistory()
   const [error, setError] = React.useState<Error | null>()
@@ -19,7 +23,15 @@ export const Auth: React.FC = () => {
       typeof code === 'string'
     ) {
       (async () => {
-        const res = await auth.social.signup(method, code)
+        let res
+
+        if (typeof invitationId === 'string') {
+          res = await auth.social.signup(method, code, invitationId)
+        } else if (invitationIdFromState) {
+          res = await auth.social.signup(method, code, invitationIdFromState)
+        } else {
+          res = await auth.social.signup(method, code)
+        }
 
         if (res) {
           setError(res)
@@ -30,7 +42,7 @@ export const Auth: React.FC = () => {
         }
       })()
     }
-  }, [history, code, method])
+  }, [history, code, method, invitationId, invitationIdFromState])
 
   return (
     <>
