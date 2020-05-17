@@ -20,5 +20,14 @@ export default defineMessages({
   ctaLoading: {
     defaultMessage: 'Creating team...',
     id: 'new-team.cta-loading'
+  },
+
+  logoLabel: {
+    defaultMessage: 'Team logo',
+    id: 'new-team.logo.label'
+  },
+  logoDescription: {
+    defaultMessage: 'This will be visible to all team members and invitees',
+    id: 'new-team.logo.label'
   }
 })

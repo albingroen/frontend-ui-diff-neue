@@ -9,6 +9,7 @@ interface IAvatarInputProps {
   ariaLabel?: string;
   error?: string;
   description?: string;
+  required?: boolean;
 }
 
 export const AvatarInput: React.FC<IAvatarInputProps> = ({

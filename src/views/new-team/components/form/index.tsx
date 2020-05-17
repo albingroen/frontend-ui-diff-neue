@@ -48,14 +48,16 @@ const Form = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (state.name && state.logo) {
+    if (state.name) {
       dispatch({ type: 'SUBMIT' })
 
       try {
         const formData = new FormData()
-
-        formData.append('logo', state.logo)
         formData.append('name', state.name)
+
+        if (state.logo) {
+          formData.append('logo', state.logo)
+        }
 
         const team = await createTeam(formData)
 
@@ -79,8 +81,8 @@ const Form = () => {
       >
         <AvatarInput
           ariaLabel="team-logo"
-          label="Team logo"
-          description="This will be visible to all team members and invitees"
+          label={intl.formatMessage(messages.logoLabel)}
+          description={intl.formatMessage(messages.logoDescription)}
           value={
             state.logo
               ? URL.createObjectURL(state.logo)
