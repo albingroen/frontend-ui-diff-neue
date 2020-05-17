@@ -50,7 +50,7 @@ const Side: React.FC<ISideProps> = ({ isEmail, invitationId }) => {
             />
           ))
         ) : (
-          <EmailForm />
+          <EmailForm invitationId={invitationId} />
         )}
       </Flex>
 

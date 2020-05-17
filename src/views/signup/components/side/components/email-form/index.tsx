@@ -21,7 +21,11 @@ export interface IEmailFormValues {
   password: string;
 }
 
-const EmailForm: React.FC = () => {
+interface IEmailFormProps {
+  invitationId?: string;
+}
+
+const EmailForm: React.FC<IEmailFormProps> = ({ invitationId }) => {
   const intl = useIntl()
   const [submitted, setSubmitted] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string | null>()
@@ -32,7 +36,7 @@ const EmailForm: React.FC = () => {
   const onSubmit = async (e: any) => {
     e.preventDefault()
     setError(null)
-    const res = await auth.email.signup(formState.values)
+    const res = await auth.email.signup({ ...formState.values, invitationId })
     if (res instanceof Error) {
       setError(res?.message)
     } else if (res) {

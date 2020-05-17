@@ -54,10 +54,7 @@ export const signupMethods = (
     name: messages.email,
     icon: faLock,
     onClick: () => {
-      history.push({
-        pathname: '/signup',
-        search: '?method=email'
-      })
+      history.push(`/signup${history.location.search}&method=email`)
     }
   }
 ]

@@ -3,7 +3,9 @@ import { login } from '.'
 
 export const getAuthUrl = async (method: string, invitationId?: string) => {
   const authUrl = await request.get(
-    `/login/${method}?invitationId=${invitationId}`
+    invitationId
+      ? `/login/${method}?invitationId=${invitationId}`
+      : `/login/${method}`
   )
   return authUrl?.data?.url || null
 }
