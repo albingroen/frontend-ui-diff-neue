@@ -91,5 +91,5 @@ export interface ITeamInvitation {
   email: string;
   role: TeamMemberRole;
   updatedAt: Date;
-  _team: string;
+  _team: string | ITeam;
 }
