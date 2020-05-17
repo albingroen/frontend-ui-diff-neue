@@ -24,7 +24,7 @@
     "react-intl": "4.5.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
-    "react-use-form-state": "0.12.1",
+    "react-use-form-state": "0.13.0",
     "styled-components": "5.1.0",
     "typescript": "3.9.2"
   },
