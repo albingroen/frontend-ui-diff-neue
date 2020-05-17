@@ -12,7 +12,8 @@ import {
   Teams,
   Team,
   Project,
-  NewTeam
+  NewTeam,
+  Invitation
 } from '../../views'
 import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
@@ -29,6 +30,7 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
         <PublicRoute path="/auth" component={Auth} exact />
         <PublicRoute path="/signup" component={Signup} exact />
         <PublicRoute path="/login" component={Login} exact />
+        <PublicRoute path="/invitations/:id" component={Invitation} exact />
         <PublicRoute
           path="/reset-password"
           component={CreatePasswordReset}
