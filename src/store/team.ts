@@ -105,9 +105,9 @@ export default (
     )
     return isTeamMemberInvitationDeleted
   },
-  createTeam: async (name: string) => {
+  createTeam: async (values: { [key: string]: any }) => {
     // Create team
-    const team = await createTeam(name)
+    const team = await createTeam(values)
     setTeams([...teams, team])
     return team
   }

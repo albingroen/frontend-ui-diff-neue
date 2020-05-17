@@ -1,14 +1,15 @@
 import * as React from 'react'
 import messages from './messages'
-import { Section } from '../../../../components'
+import { Section, AvatarInput } from '../../../../components'
 import { TeamsContext } from '../../../../context/teamsContext'
-import { TextInput, Flex, ButtonPrimary, Text, Box } from '@primer/components'
+import { TextInput, ButtonPrimary, Text, Box } from '@primer/components'
 import { errorMessages } from '../../../../lib'
 import { useHistory } from 'react-router-dom'
 import { useIntl, FormattedMessage } from 'react-intl'
 
 interface IState {
   name?: string;
+  logo?: any;
   loading?: boolean;
   error?: string;
 }
@@ -22,6 +23,8 @@ function reducer (state: IState, action: IAction): IState {
   switch (action.type) {
     case 'CHANGE_NAME':
       return { ...state, name: action.payload }
+    case 'CHANGE_LOGO':
+      return { ...state, logo: action.payload }
     case 'SUBMIT':
       return { ...state, loading: true }
     case 'SUCCESS':
@@ -45,11 +48,16 @@ const Form = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (state.name) {
+    if (state.name && state.logo) {
       dispatch({ type: 'SUBMIT' })
 
       try {
-        const team = await createTeam(state.name)
+        const formData = new FormData()
+
+        formData.append('logo', state.logo)
+        formData.append('name', state.name)
+
+        const team = await createTeam(formData)
 
         if (team) {
           dispatch({ type: 'SUCCESS' })
@@ -69,16 +77,28 @@ const Form = () => {
         title={messages.informationTitle}
         lede={messages.informationLede}
       >
-        <Flex alignItems="center">
-          <TextInput
-            required
-            value={state.name || ''}
-            onChange={(e) =>
-              dispatch({ type: 'CHANGE_NAME', payload: e.target.value })
-            }
-            placeholder={intl.formatMessage(messages.teamNamePlaceholder)}
-          />
-        </Flex>
+        <AvatarInput
+          ariaLabel="team-logo"
+          label="Team logo"
+          description="This will be visible to all team members and invitees"
+          value={
+            state.logo
+              ? URL.createObjectURL(state.logo)
+              : 'https://placehold.it/100x100'
+          }
+          onChange={(e) =>
+            dispatch({ type: 'CHANGE_LOGO', payload: e.target.files[0] })
+          }
+        />
+        <TextInput
+          mt={5}
+          required
+          value={state.name || ''}
+          onChange={(e) =>
+            dispatch({ type: 'CHANGE_NAME', payload: e.target.value })
+          }
+          placeholder={intl.formatMessage(messages.teamNamePlaceholder)}
+        />
       </Section>
 
       {state.error && (

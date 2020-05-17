@@ -20,7 +20,7 @@ export type ITeamsContext = {
     values: { email: string; role: TeamMemberRole | string }
   ) => Promise<ITeamInvitation> | void;
   deleteTeamMemberInvitation: (invitationId: string) => Promise<boolean> | void;
-  createTeam: (name: string) => Promise<ITeam> | void;
+  createTeam: (values: { [key: string]: any }) => Promise<ITeam> | void;
 };
 
 export const TeamsContext = createContext<ITeamsContext>({
