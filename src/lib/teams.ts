@@ -66,6 +66,11 @@ export const deleteTeamMemberInvitation = async (invitationId: string) => {
   return res.data.isTeamMemberInvitationDeleted
 }
 
+export const createTeam = async (values: { [key: string]: any }) => {
+  const res = await request.post('/teams', values)
+  return res.data.team
+}
+
 export const teamMemberRoles: { [key: string]: TeamMemberRole } = {
   ADMIN: 'admin',
   USER: 'user'

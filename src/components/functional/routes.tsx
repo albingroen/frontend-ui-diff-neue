@@ -11,7 +11,8 @@ import {
   NewProject,
   Teams,
   Team,
-  Project
+  Project,
+  NewTeam
 } from '../../views'
 import { Container } from '../design/container'
 import { loggedIn } from '../../lib/auth'
@@ -56,6 +57,7 @@ const Routes: React.FC<IRoutesProps> = ({ userIsLoading }) => {
           <PrivateRoute path="/members" component={Dashboard} exact />
           <PrivateRoute path="/new-project" component={NewProject} exact />
           <PrivateRoute path="/teams" component={Teams} exact />
+          <PrivateRoute path="/new-team" component={NewTeam} exact />
           <PrivateRoute
             path={['/teams/:id', '/teams/:id/:tab']}
             component={Team}
