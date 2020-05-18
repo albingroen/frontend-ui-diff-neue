@@ -14,9 +14,14 @@ export const initialUser: IUser = {
 export type IUserContext = {
   user: IUser;
   setUser: (newUser: IUser) => void;
+  patchUser: (
+    userId: string,
+    values: { [key: string]: any }
+  ) => Promise<IUser> | void;
 };
 
 export const UserContext = createContext<IUserContext>({
   user: initialUser,
-  setUser: () => {}
+  setUser: () => {},
+  patchUser: () => {}
 })

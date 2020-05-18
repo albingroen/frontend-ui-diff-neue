@@ -50,5 +50,14 @@ export default defineMessage({
   ctaSaveLoading: {
     defaultMessage: 'Saving...',
     id: 'user-profile.settings.basic.cta-save-loading'
+  },
+
+  success: {
+    defaultMessage: 'Successfully saved user!',
+    id: 'user-profile.settings.basic.states.success'
+  },
+  error: {
+    defaultMessage: 'Failed to save user',
+    id: 'user-profile.settings.basic.states.fail'
   }
 })
