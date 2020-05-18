@@ -11,6 +11,7 @@ import {
 import { Card } from '../../../../components'
 import { FormattedMessage } from 'react-intl'
 import { ITeamInvitation } from '../../../../types'
+import { Link } from 'react-router-dom'
 
 interface IInvitationCardProps {
   invitation: ITeamInvitation;
@@ -49,9 +50,11 @@ const InvitationCard: React.FC<IInvitationCardProps> = ({ invitation }) => {
             />
           </Text>
 
-          <ButtonPrimary mt={4} variant="large">
-            <FormattedMessage {...messages.cta} />
-          </ButtonPrimary>
+          <Link to={`/signup?invitationId=${invitation?._id}`}>
+            <ButtonPrimary mt={4} variant="large">
+              <FormattedMessage {...messages.cta} />
+            </ButtonPrimary>
+          </Link>
         </Flex>
       </Card>
     </Box>

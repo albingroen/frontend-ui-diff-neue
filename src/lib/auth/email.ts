@@ -2,14 +2,20 @@ import { request } from '..'
 import { login as loginUser } from '.'
 import { IEmailFormValues } from '../../views/signup/components/side/components/email-form'
 
-export const signup = async ({ name, email, password }: IEmailFormValues) => {
+export const signup = async ({
+  name,
+  email,
+  password,
+  invitationId
+}: IEmailFormValues & { invitationId?: string }) => {
   let data
 
   try {
     const signupResult = await request.post('/auth/email/signup', {
       name,
       email,
-      password
+      password,
+      invitationId
     })
     data = signupResult.data
   } catch (err) {
