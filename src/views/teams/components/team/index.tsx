@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { ITeam, ITeamMember } from '../../../../types'
+import moment from 'moment'
 import { Card } from '../../../../components'
 import { Flex, Avatar, Heading, AvatarStack } from '@primer/components'
 import { FormattedMessage, defineMessages } from 'react-intl'
-import moment from 'moment'
+import { ITeam, ITeamMember } from '../../../../types'
 import { Link } from 'react-router-dom'
 
 const messages = defineMessages({
