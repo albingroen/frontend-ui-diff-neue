@@ -1,5 +1,5 @@
 import { IUser } from '../types'
-import { patchUser } from '../lib/user'
+import { patchUser, deleteUser } from '../lib/user'
 
 export default (user: IUser, setUser: (user: IUser) => void) => ({
   user,
@@ -8,5 +8,9 @@ export default (user: IUser, setUser: (user: IUser) => void) => ({
     const patchedUser = await patchUser(userId, values)
     setUser(patchedUser)
     return patchedUser
+  },
+  deleteUser: async (userId: string) => {
+    const isUserDeleted = await deleteUser(userId)
+    return isUserDeleted
   }
 })
