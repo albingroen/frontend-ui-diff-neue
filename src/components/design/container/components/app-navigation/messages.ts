@@ -1,13 +1,9 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  projects: {
-    defaultMessage: 'Projects',
-    id: 'component.app-navigation.items.projects'
-  },
-  auditLog: {
-    defaultMessage: 'Audit log',
-    id: 'component.app-navigation.items.audit-log'
+  start: {
+    defaultMessage: 'Dashboard',
+    id: 'component.app-navigation.items.start'
   },
   teams: {
     defaultMessage: 'Teams',
@@ -20,11 +16,11 @@ export default defineMessages({
 
   // Dropdown items
   dropdownProfile: {
-    defaultMessage: 'My profile',
+    defaultMessage: 'Profile',
     id: 'component.app-navigation.items.profile-dropdown.profile'
   },
   dropdownTeams: {
-    defaultMessage: 'My teams',
+    defaultMessage: 'Teams',
     id: 'component.app-navigation.items.profile-dropdown.teams'
   },
   dropdownSettings: {

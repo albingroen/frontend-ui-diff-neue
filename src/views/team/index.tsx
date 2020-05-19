@@ -21,15 +21,8 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
   const team = teamsById[id]
 
   // Return if invalid team
-  if (teamsById) {
-    if (Object.keys(teamsById)?.length) {
-      if (!teamsById[id]?._id) {
-        return <Redirect to="/teams" />
-      }
-    }
-    // else {
-    //   return <Redirect to="/teams" />
-    // }
+  if (Object.keys(teamsById).length && !team) {
+    return <Redirect to="/teams" />
   }
 
   // Find current user's member role
@@ -65,7 +58,7 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
     .filter((pId: string) => projectsById[pId]._team === id)
     .map((pId: string) => projectsById[pId])
 
-  return (
+  return team ? (
     <div>
       <Helmet>
         <title>
@@ -80,5 +73,7 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
 
       {renderContent(isAdmin)}
     </div>
+  ) : (
+    <Redirect to="/teams" />
   )
 }
