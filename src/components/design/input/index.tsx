@@ -12,16 +12,22 @@ interface IInputProps {
   description?: string;
   type?: string;
   required?: boolean;
+  my?: number;
+  mt?: number;
+  mb?: number;
 }
 
 export const Input: React.FC<IInputProps> = ({
   label,
   error,
   description,
+  my,
+  mt,
+  mb,
   ...rest
 }) => {
   return (
-    <Box>
+    <Box my={my} mt={mt} mb={mb}>
       {label && (
         <Box mb={1}>
           <Text>{label}</Text>

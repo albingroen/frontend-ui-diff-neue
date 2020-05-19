@@ -14,9 +14,16 @@ export const initialUser: IUser = {
 export type IUserContext = {
   user: IUser;
   setUser: (newUser: IUser) => void;
+  patchUser: (
+    userId: string,
+    values: { [key: string]: any }
+  ) => Promise<IUser> | void;
+  deleteUser: (userId: string) => Promise<boolean> | void;
 };
 
 export const UserContext = createContext<IUserContext>({
   user: initialUser,
-  setUser: () => {}
+  setUser: () => {},
+  patchUser: () => {},
+  deleteUser: () => {}
 })

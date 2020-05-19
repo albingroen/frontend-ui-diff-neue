@@ -21,7 +21,7 @@ export const UserProfile: React.FC<RouteComponentProps> = ({ match }) => {
   const renderContent = () => {
     switch (tab) {
       case 'settings':
-        return <Settings />
+        return <Settings user={user} />
       case undefined:
         return (
           <Grid gridTemplateColumns="repeat(2, auto)" gridGap={4}>

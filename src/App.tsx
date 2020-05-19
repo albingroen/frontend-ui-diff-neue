@@ -10,6 +10,7 @@ import { getUser } from './lib/user'
 import Routes from './components/functional/routes'
 import teamStore from './store/team'
 import projectStore from './store/project'
+import userStore from './store/user'
 
 const initialLoadingState = {
   user: false,
@@ -64,7 +65,9 @@ const App: React.FC = () => {
 
   // Values using memo hooks to only update
   // when depedency values are changing.
-  const userProviderValue = React.useMemo(() => user, [user])
+  const userProviderValue = React.useMemo(() => userStore(user, setUser), [
+    user
+  ])
   const teamsProviderValue = React.useMemo(
     () => teamStore(teamIds, teamsById, teams, setTeams),
     [teamIds, teamsById, teams]
@@ -75,7 +78,7 @@ const App: React.FC = () => {
   )
 
   return (
-    <UserContext.Provider value={{ user: userProviderValue, setUser }}>
+    <UserContext.Provider value={userProviderValue}>
       <TeamsContext.Provider value={teamsProviderValue}>
         <ProjectsContext.Provider value={projectsProviderValue}>
           <Routes userIsLoading={loading.user || loading.projects} />
