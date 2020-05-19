@@ -10,6 +10,7 @@ interface IAvatarInputProps {
   error?: string;
   description?: string;
   required?: boolean;
+  shape?: 'square' | 'round';
 }
 
 export const AvatarInput: React.FC<IAvatarInputProps> = ({
@@ -17,6 +18,7 @@ export const AvatarInput: React.FC<IAvatarInputProps> = ({
   error,
   description,
   value,
+  shape,
   ...rest
 }) => {
   return (
@@ -28,7 +30,12 @@ export const AvatarInput: React.FC<IAvatarInputProps> = ({
       )}
 
       <Flex alignItems="flex-end" mt={2} mb={description ? 1 : 2}>
-        <Avatar mr={3} src={value} size={75} />
+        <Avatar
+          mr={3}
+          src={value}
+          size={75}
+          sx={{ borderRadius: shape === 'round' ? 3 : 1 }}
+        />
         <input
           type="file"
           id="avatar"

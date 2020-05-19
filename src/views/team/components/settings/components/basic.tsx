@@ -89,7 +89,7 @@ const Basic: React.FC<IBasicProps> = ({ team }) => {
       }
 
       if (patchedTeam && patchedTeam._id) {
-        formState.resetField('logo')
+        formState.clearField('logo')
         dispatch({ type: 'SUCCESS' })
         setTimeout(() => {
           dispatch({ type: 'RESET' })

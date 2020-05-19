@@ -3,18 +3,18 @@ import messages from './messages'
 import { ButtonPrimary } from '@primer/components'
 import { DEFAULT_SNACKBAR_DURATION } from '../../../../../../components/design/snackbar'
 import { IUser } from '../../../../../../types'
-import { Section, Input, Snackbar } from '../../../../../../components'
+import {
+  Section,
+  Input,
+  Snackbar,
+  AvatarInput
+} from '../../../../../../components'
 import { UserContext } from '../../../../../../context/userContext'
 import { useFormState } from 'react-use-form-state'
 import { useIntl, FormattedMessage } from 'react-intl'
 
 interface IBasicProps {
   user: IUser;
-}
-
-interface IFormValues {
-  name: string;
-  email: string;
 }
 
 type StateStatus = 'success' | 'error' | 'idle' | 'loading';
@@ -56,13 +56,17 @@ const Basic: React.FC<IBasicProps> = ({ user }) => {
   const intl = useIntl()
   const { patchUser } = React.useContext(UserContext)
   const [state, dispatch] = React.useReducer(reducer, { status: 'idle' })
-  const [formState, { email, text }] = useFormState<IFormValues>({
-    name: user.name,
-    email: user.email
-  })
+  const [formState, { email, text }] = useFormState(
+    {
+      name: user.name,
+      email: user.email
+    },
+    { withIds: true }
+  )
 
   // Check wether info has changed or form is dirty
   const isPristine =
+    !formState.values.avatar &&
     formState.values.name === user.name &&
     formState.values.email === user.email
   const isDirty = Object.values(formState.validity).some(
@@ -72,7 +76,8 @@ const Basic: React.FC<IBasicProps> = ({ user }) => {
   // Labels
   const labels = {
     name: intl.formatMessage(messages.nameLabel),
-    email: intl.formatMessage(messages.emailLabel)
+    email: intl.formatMessage(messages.emailLabel),
+    avatar: intl.formatMessage(messages.avatarLabel)
   }
 
   // Placeholders
@@ -84,7 +89,8 @@ const Basic: React.FC<IBasicProps> = ({ user }) => {
   // Descriptions
   const descriptions = {
     name: intl.formatMessage(messages.nameDescription),
-    email: intl.formatMessage(messages.emailDescription)
+    email: intl.formatMessage(messages.emailDescription),
+    avatar: intl.formatMessage(messages.avatarDescription)
   }
 
   // Errors
@@ -104,14 +110,30 @@ const Basic: React.FC<IBasicProps> = ({ user }) => {
     if (!isPristine || !isDirty) {
       dispatch({ type: 'SUBMIT' })
 
-      const patchedUser = await patchUser(user._id, formState.values)
+      let patchedUser
+
+      if (formState.values.avatar) {
+        const formData = new FormData()
+        Object.keys(formState.values).forEach((key) => {
+          formData.append(
+            key === 'avatar' ? 'logo' : key,
+            formState.values[key]
+          )
+        })
+
+        patchedUser = await patchUser(user._id, formData)
+        formState.resetField('avatar')
+      } else {
+        patchedUser = await patchUser(user._id, formState.values)
+      }
 
       if (patchedUser && patchedUser?._id) {
         dispatch({ type: 'SUCCESS' })
       } else {
-        dispatch({ type: 'FAIl' })
+        dispatch({ type: 'FAIL' })
       }
 
+      formState.clearField('avatar')
       setTimeout(() => {
         dispatch({ type: 'RESET' })
       }, DEFAULT_SNACKBAR_DURATION)
@@ -133,7 +155,20 @@ const Basic: React.FC<IBasicProps> = ({ user }) => {
 
       <Section title={messages.heading} lede={messages.lede}>
         <form onSubmit={onSubmit}>
+          <AvatarInput
+            value={
+              formState.values.avatar
+                ? URL.createObjectURL(formState.values.avatar)
+                : user.avatar
+            }
+            label={labels.avatar}
+            description={descriptions.avatar}
+            onChange={(e) => formState.setField('avatar', e.target.files[0])}
+            shape="round"
+          />
+
           <Input
+            mt={3}
             mb={3}
             required
             placeholder={placeholders.name}

@@ -42,6 +42,14 @@ export default defineMessage({
     defaultMessage: 'Email cannot be empty',
     id: 'user-profile.settings.basic.email.errors.no-empty'
   },
+  avatarLabel: {
+    defaultMessage: 'Avatar',
+    id: 'user-profile.settings.basic.avatar.label'
+  },
+  avatarDescription: {
+    defaultMessage: 'This is the image your team will see of you',
+    id: 'user-profile.settings.basic.avatar.description'
+  },
 
   ctaSave: {
     defaultMessage: 'Save',
