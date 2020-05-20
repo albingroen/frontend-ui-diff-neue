@@ -1,30 +1,33 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { getEnv } from '../config/env'
 
-axios.defaults.withCredentials = true
-
 const apiBaseUrl = getEnv()
 
 export const request = {
   get: (path: string, config?: AxiosRequestConfig) =>
     axios.get(apiBaseUrl + path, {
-      ...config
+      ...config,
+      withCredentials: true
     }),
   post: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      withCredentials: true
     }),
   put: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      withCredentials: true
     }),
   patch: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.patch(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      withCredentials: true
     }),
   delete: (path: string, config?: AxiosRequestConfig) =>
     axios.delete(apiBaseUrl + path, {
-      ...config
+      ...config,
+      withCredentials: true
     })
 }
 
