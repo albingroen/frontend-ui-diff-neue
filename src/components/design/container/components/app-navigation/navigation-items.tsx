@@ -1,17 +1,17 @@
 import * as React from 'react'
-import { Avatar, Dropdown } from '@primer/components'
-import { IntlShape, FormattedMessage } from 'react-intl'
 import messages from './messages'
+import { Avatar, Dropdown } from '@primer/components'
 import { IUser } from '../../../../../types'
-import { logout } from '../../../../../lib/auth'
+import { IntlShape, FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
+import { logout } from '../../../../../lib/auth'
 
 export default (intl: IntlShape, user: IUser) => [
   {
     key: 1,
     items: [
       {
-        value: intl.formatMessage(messages.projects),
+        value: intl.formatMessage(messages.start),
         link: '/',
         key: 1,
         active: window.location.pathname === '/',
@@ -20,13 +20,12 @@ export default (intl: IntlShape, user: IUser) => [
         }
       },
       {
-        value: intl.formatMessage(messages.auditLog),
-        link: '/audit-log',
+        value: intl.formatMessage(messages.teams),
+        link: '/teams',
         key: 2,
-        active: window.location.pathname === '/audit-log',
+        active: window.location.pathname === '/teams',
         style: {
-          paddingRight: '1rem',
-          paddingLeft: '1rem'
+          padding: '0 1rem'
         }
       },
       {
@@ -34,16 +33,6 @@ export default (intl: IntlShape, user: IUser) => [
         link: '/new-project',
         key: 3,
         active: window.location.pathname === '/new-project',
-        style: {
-          paddingRight: '1rem',
-          paddingLeft: '1rem'
-        }
-      },
-      {
-        value: intl.formatMessage(messages.teams),
-        link: '/teams',
-        key: 4,
-        active: window.location.pathname === '/teams',
         style: {
           paddingLeft: '1rem'
         }

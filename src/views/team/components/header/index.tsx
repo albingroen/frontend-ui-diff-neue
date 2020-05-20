@@ -31,7 +31,7 @@ const Header: React.FC<IHeaderProps> = ({ team, isAdmin }) => {
   const history = useHistory()
   const { projectsById } = React.useContext(ProjectsContext)
   const projects = Object.values(projectsById).filter(
-    (project: IProject) => project._team === team._id
+    (project: IProject) => project._team === team?._id
   )
   const information = getInformation(team, projects, intl)
 
