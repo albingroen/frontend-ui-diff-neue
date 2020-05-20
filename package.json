@@ -26,7 +26,7 @@
     "react-scripts": "3.4.1",
     "react-use-form-state": "0.13.0",
     "styled-components": "5.1.0",
-    "typescript": "3.9.2"
+    "typescript": "3.9.3"
   },
   "scripts": {
     "start": "react-scripts start",
