@@ -2,10 +2,10 @@ import social from './social'
 import email from './email'
 import { request } from '..'
 
-export const loggedIn = sessionStorage.getItem('loggedIn')
+export const loggedIn = localStorage.getItem('loggedIn')
 
 export const login = async () => {
-  sessionStorage.setItem('loggedIn', 'true')
+  localStorage.setItem('loggedIn', 'true')
   window.location.href = '/'
 }
 
