@@ -2,16 +2,16 @@ import social from './social'
 import email from './email'
 import { request } from '..'
 
-export const loggedIn =
-  document.cookie.includes('x-token') &&
-  document.cookie.includes('x-refresh-token')
+export const loggedIn = sessionStorage.getItem('loggedIn')
 
 export const login = async () => {
+  sessionStorage.setItem('loggedIn', 'true')
   window.location.href = '/'
 }
 
 export const logout = async () => {
   await request.post('/auth/logout')
+  sessionStorage.setItem('loggedIn', '')
   window.location.href = '/'
 }
 
