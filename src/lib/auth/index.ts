@@ -11,7 +11,7 @@ export const login = async () => {
 
 export const logout = async () => {
   await request.post('/auth/logout')
-  sessionStorage.setItem('loggedIn', '')
+  localStorage.removeItem('loggedIn')
   window.location.href = '/'
 }
 
