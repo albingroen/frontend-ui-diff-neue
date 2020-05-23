@@ -29,7 +29,7 @@ export const signup = async (
     }
 
     if (data) {
-      login()
+      login(data.authToken, data.refreshToken)
     }
   } else {
     const ghAuthUrl = await getAuthUrl(method, invitationId)

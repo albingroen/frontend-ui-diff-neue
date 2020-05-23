@@ -47,7 +47,7 @@ export const login = async ({
   }
 
   if (data) {
-    loginUser()
+    loginUser(data.authToken, data.refreshToken)
   }
 }
 
