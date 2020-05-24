@@ -67,7 +67,7 @@ const Invitations: React.FC<IInvitationsProps> = ({ team }) => {
         }))}
       />
 
-      <Box mt={4}>
+      <Box mt={invitations?.length ? 4 : 0}>
         <Heading mb={3} fontSize={3}>
           <FormattedMessage {...messages.headingInviteMember} />
         </Heading>
