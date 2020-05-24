@@ -8,24 +8,58 @@ const apiBaseUrl = getEnv()
 export const request = {
   get: (path: string, config?: AxiosRequestConfig) =>
     axios.get(apiBaseUrl + path, {
-      ...config
+      ...config,
+      headers: {
+        ...getTokens()
+      }
     }),
   post: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      headers: {
+        ...getTokens()
+      }
     }),
   put: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.post(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      headers: {
+        ...getTokens()
+      }
     }),
   patch: (path: string, body?: any, config?: AxiosRequestConfig) =>
     axios.patch(apiBaseUrl + path, body, {
-      ...config
+      ...config,
+      headers: {
+        ...getTokens()
+      }
     }),
   delete: (path: string, config?: AxiosRequestConfig) =>
     axios.delete(apiBaseUrl + path, {
-      ...config
+      ...config,
+      headers: {
+        ...getTokens()
+      }
     })
+}
+
+const getCookie = (name: string) => {
+  const cookie = document.cookie
+    .split(';')
+    .find((c: string) => c.includes(name))
+    ?.split('=')[1]
+
+  return cookie
+}
+
+export const getTokens = () => {
+  const authToken = getCookie('x-token')
+  const refreshToken = getCookie('x-refresh-token')
+
+  return {
+    'x-token': authToken,
+    'x-refresh-token': refreshToken
+  }
 }
 
 export const errorMessages: { [key: string]: string } = {
