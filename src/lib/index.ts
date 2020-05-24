@@ -54,11 +54,9 @@ const getCookie = (name: string) => {
 
 export const getTokens = () => {
   const authToken = getCookie('x-token')
-  const refreshToken = getCookie('x-refresh-token')
 
   return {
-    'x-token': authToken,
-    'x-refresh-token': refreshToken
+    'x-token': authToken
   }
 }
 
