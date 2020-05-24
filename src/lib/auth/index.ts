@@ -1,9 +1,7 @@
 import social from './social'
 import email from './email'
 
-export const loggedIn =
-  document.cookie.includes('x-token') &&
-  document.cookie.includes('x-refresh-token')
+export const loggedIn = document.cookie.includes('x-token')
 
 const deleteAllCookies = () => {
   var cookies = document.cookie.split(';')
@@ -16,10 +14,9 @@ const deleteAllCookies = () => {
   }
 }
 
-export const login = async (authToken?: string, refreshToken?: string) => {
-  if (authToken && refreshToken) {
+export const login = async (authToken?: string) => {
+  if (authToken) {
     document.cookie = `x-token=${authToken};`
-    document.cookie = `x-refresh-token=${refreshToken};`
   }
   window.location.href = '/'
 }
