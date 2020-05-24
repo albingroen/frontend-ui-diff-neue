@@ -58,7 +58,7 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
     .filter((pId: string) => projectsById[pId]._team === id)
     .map((pId: string) => projectsById[pId])
 
-  return team ? (
+  return (
     <div>
       <Helmet>
         <title>
@@ -73,7 +73,5 @@ export const Team: React.FC<RouteComponentProps> = (props) => {
 
       {renderContent(isAdmin)}
     </div>
-  ) : (
-    <Redirect to="/teams" />
   )
 }
