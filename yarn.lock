@@ -9676,10 +9676,10 @@ react-style-singleton@^2.1.0:
     invariant "^2.2.4"
     tslib "^1.0.0"
 
-react-use-form-state@0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/react-use-form-state/-/react-use-form-state-0.13.0.tgz#40c2a418521a7209bdb17383411d1b7f5c98fdcf"
-  integrity sha512-ZkETOKjKOaZnRf0qSLrhju6YjT9ad74GraQI5hvW/Sl9OC2Ww5U8PvmMRcwlFCyBdQS/fP9mSlZi3Q7m3cJaoQ==
+react-use-form-state@0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/react-use-form-state/-/react-use-form-state-0.13.1.tgz#891e678cf6248e4668bfffc1112833c2d98a2e82"
+  integrity sha512-h0b+KFykqihTpjHKOi8fKZ3aaFqZofkAMof4K2rkCgC8FaU7JnkjzCAPv9lVJjDuf9AAmFHFM1PPMzPtzdwY3Q==
 
 react@16.13.1, react@^16.10.2:
   version "16.13.1"
