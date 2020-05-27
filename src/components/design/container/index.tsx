@@ -6,6 +6,7 @@ import { Flex } from '@primer/components'
 import { Footer } from '../footer'
 import { useIntl, IntlShape } from 'react-intl'
 import messages from './messages'
+import { marketingSiteUrl } from '../../../lib'
 
 const Content = styled.div`
   width: 100%;
@@ -32,7 +33,7 @@ const getFooterLists = (intl: IntlShape) => {
       items: [
         {
           text: intl.formatMessage(messages.footerItemDocs),
-          href: '/documentation'
+          href: `${marketingSiteUrl}/documentation/getting-started`
         },
         {
           text: intl.formatMessage(messages.footerItemPricing),

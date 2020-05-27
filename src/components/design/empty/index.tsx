@@ -12,13 +12,15 @@ interface IEmptyProps {
   heading: string | MessageDescriptor;
   lede: string | MessageDescriptor;
   cta: string | MessageDescriptor;
-  onClick: () => void;
+  link?: string;
+  onClick?: () => void;
 }
 
 export const Empty: React.FC<IEmptyProps> = ({
   heading,
   lede,
   cta,
+  link,
   onClick
 }) => (
   <BorderBox mt={3} p={5} borderStyle="dashed">
@@ -34,9 +36,19 @@ export const Empty: React.FC<IEmptyProps> = ({
         {typeof lede === 'string' ? lede : <FormattedMessage {...lede} />}
       </Text>
 
-      <ButtonPrimary onClick={onClick} variant="medium">
-        {typeof cta === 'string' ? cta : <FormattedMessage {...cta} />}
-      </ButtonPrimary>
+      {link ? (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          <ButtonPrimary variant="medium">
+            {typeof cta === 'string' ? cta : <FormattedMessage {...cta} />}
+          </ButtonPrimary>
+        </a>
+      ) : (
+        onClick && (
+          <ButtonPrimary onClick={onClick} variant="medium">
+            {typeof cta === 'string' ? cta : <FormattedMessage {...cta} />}
+          </ButtonPrimary>
+        )
+      )}
     </Flex>
   </BorderBox>
 )
