@@ -5,6 +5,7 @@ import { IImage, PrimerTheme, ImagesByEnvironment } from '../../../types'
 import { Card } from '../card'
 import { Empty } from '../../'
 import { defineMessages } from 'react-intl'
+import { marketingSiteUrl } from '../../../lib'
 
 const messages = defineMessages({
   emptyHeading: {
@@ -122,7 +123,7 @@ export const Images: React.FC<IImagesProps> = ({
           heading={messages.emptyHeading}
           lede={messages.emptyLede}
           cta={messages.emptyCta}
-          onClick={() => console.log('Click')}
+          link={`${marketingSiteUrl}/documentation/getting-started`}
         />
       )
   ) : null

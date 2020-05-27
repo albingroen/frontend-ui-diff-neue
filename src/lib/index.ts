@@ -60,6 +60,8 @@ export const getTokens = () => {
   }
 }
 
+export const marketingSiteUrl = 'https://ui-diff.com'
+
 export const errorMessages: { [key: string]: string } = {
   'email-mismatch': 'This email already exists',
   'lacking-password': 'Password is not secure enough',

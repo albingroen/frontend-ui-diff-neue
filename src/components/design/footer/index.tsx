@@ -45,7 +45,12 @@ export const Footer: React.FC<IFooterProps> = ({ lists }) => (
       {lists.map((footerList: IFooterList) => (
         <FooterList key={Math.random()}>
           {footerList.items.map((footerItem: IFooterListItem) => (
-            <FooterListItem href={footerItem.href} key={Math.random()}>
+            <FooterListItem
+              href={footerItem.href}
+              key={Math.random()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {footerItem.text}
             </FooterListItem>
           ))}
