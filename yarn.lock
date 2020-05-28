@@ -9552,10 +9552,10 @@ react-helmet@6.0.0:
     react-fast-compare "^2.0.4"
     react-side-effect "^2.1.0"
 
-react-intl@4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-4.6.0.tgz#cfa10ab205cf83a9c787c77d7362ad24a70c9a22"
-  integrity sha512-UMFi3fNFXSVHrQp1m2JKsMMKEZD0h46+yhFGI+ZuA5qhSuiCXLu2j4QoYaAjMaIAOjZ6uHL8XjbJkjh0jDkzFQ==
+react-intl@4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-4.6.2.tgz#d9cb383695d31e1a1692be65145a5fccd6d9282d"
+  integrity sha512-n6sEpagR5lE8ngmN2vKMA6Z5DhGEyz6zBNLPKKizk3UpuH7fEh8zVrm7B/GMMgB9aXlF/MMQCDvp9icEvsi2vg==
   dependencies:
     "@formatjs/intl-displaynames" "^2.2.0"
     "@formatjs/intl-listformat" "^2.2.0"
