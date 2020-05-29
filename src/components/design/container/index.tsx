@@ -10,7 +10,7 @@ import { marketingSiteUrl } from '../../../lib'
 
 const Content = styled.div`
   width: 100%;
-  max-width: 1300px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: ${(props) => props?.theme?.space[4]}px 0px;
   min-height: calc(100vh - 70px);

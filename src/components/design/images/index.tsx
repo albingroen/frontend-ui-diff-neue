@@ -58,6 +58,7 @@ const ImagePreview = styled.div`
     color: white;
     font-size: 1.5em;
     transition: ${(props) => props?.theme?.transitions?.default};
+    text-align: center;
   }
 
   &:hover {
