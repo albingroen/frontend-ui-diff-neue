@@ -22,7 +22,7 @@ export default defineMessages({
   },
 
   cta: {
-    defaultMessage: 'Create proejct',
+    defaultMessage: 'Create project',
     id: 'new-project.cta'
   },
 
