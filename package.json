@@ -15,7 +15,7 @@
     "@primer/components": "19.1.1",
     "axios": "0.19.2",
     "gravatar": "1.8.0",
-    "moment": "2.26.0",
+    "moment": "2.27.0",
     "query-string": "6.13.0",
     "react": "16.13.1",
     "react-compare-image": "2.0.4",
