@@ -13,7 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "5.14.0",
     "@fortawesome/react-fontawesome": "0.1.11",
     "@primer/components": "19.1.1",
-    "axios": "0.19.2",
+    "axios": "0.20.0",
     "gravatar": "1.8.0",
     "moment": "2.27.0",
     "query-string": "6.13.1",
