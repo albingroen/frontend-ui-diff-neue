@@ -43,12 +43,12 @@ const ImagePreview = styled.div`
 
   &:after {
     opacity: 0;
-    content: '${(props: IImagePreviewProps) => `${props.name} (${props.env})`}';
+    content: "${(props: IImagePreviewProps) => `${props.name} (${props.env})`}";
     border-radius: ${(props: IImagePreviewProps) => props?.theme?.radii[2]};
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(0,0,0, 0.75);
+    background: rgba(0, 0, 0, 0.75);
     height: 100%;
     width: 100%;
     z-index: 2;
@@ -66,13 +66,13 @@ const ImagePreview = styled.div`
 
     &:after {
       opacity: 1;
-      content: '${(props: IImagePreviewProps) =>
-        `${props.name} (${props.env})`}';
+      content: "${(props: IImagePreviewProps) =>
+        `${props.name} (${props.env})`}";
       border-radius: ${(props: IImagePreviewProps) => props?.theme?.radii[2]};
       position: absolute;
       top: 0;
       left: 0;
-      background: rgba(0,0,0, 0.75);
+      background: rgba(0, 0, 0, 0.75);
       height: 100%;
       width: 100%;
       z-index: 2;
