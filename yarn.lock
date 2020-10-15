@@ -1517,10 +1517,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@primer/components@20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@primer/components/-/components-20.0.0.tgz#643bd7d719af28d6cdf446909255ee04e9f47014"
-  integrity sha512-OpnBJDB+7Rw8NK7p/UlJx3B6uGjRSVKtbEUAE+BjTYAD5wrjSnWKTgBqnorTzPcmstDAxC6GNtmsukyyk3lMHA==
+"@primer/components@20.3.0":
+  version "20.3.0"
+  resolved "https://registry.yarnpkg.com/@primer/components/-/components-20.3.0.tgz#6e71f600e6797a6d21be671ca064b76139746045"
+  integrity sha512-r5ibCW5Q4w9VpS8dE6JX+YMGzGtos4Oi2K11Mh1XfZYw8YOdpznJh7Tn8VfnZWwVsoRnUogsJKhiubDxIwvHXw==
   dependencies:
     "@babel/helpers" "7.9.2"
     "@babel/runtime" "7.9.2"
